@@ -3,7 +3,7 @@ import TodoForm from "./TodoForm";
 import TodoList from "./TodoList";
 
 // git access
-// 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
+//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
 
 export default function Todo() {
   // 0. Getting todos from local storage if it isn't empty
