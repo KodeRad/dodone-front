@@ -6,17 +6,32 @@ import TodoList from "./TodoList";
 //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
 
 export default function Todo() {
-  // 0. Getting todos from local storage if it isn't empty
-  const [todos, setTodos] = useState(() => {
-    const localTodos = localStorage.getItem("TODOS");
-    return localTodos ? JSON.parse(localTodos) : [];
-  });
+  // 0. Getting todos from database
+  // const [todos, setTodos] = useState(() => {
+  //   const localTodos = localStorage.getItem("TODOS");
+  //   return localTodos ? JSON.parse(localTodos) : [];
+  // });
+
+  const [todos, setTodos] = useState([]);
 
   // 1. setLocalStorage to a current todos
   // each time todos change, set localStorage to todos
   useEffect(() => {
-    localStorage.setItem("TODOS", JSON.stringify(todos));
-  }, [todos]);
+    async function getTodos() {
+      const response = await fetch("http://localhost:8080/todos", {
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+        },
+      });
+
+      const data = await response.json();
+      setTodos(data);
+      console.log(data);
+    }
+    getTodos();
+
+    // localStorage.setItem("TODOS", JSON.stringify(todos));
+  }, []);
 
   function addTodo(title) {
     setTodos((currentTodos) => {
@@ -49,6 +64,10 @@ export default function Todo() {
       <TodoForm addTodo={addTodo} />
       <h1 className="header">Todo List</h1>
       <TodoList todos={todos} toggleTodo={toggleTodo} deleteTodo={deleteTodo} />
+      <div>
+        <p>Todos:</p>
+        {}
+      </div>
     </>
   );
 }
