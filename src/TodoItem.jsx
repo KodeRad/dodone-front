@@ -1,7 +1,8 @@
 export default function TodoItem({
   id,
-  completed,
-  title,
+  done,
+  priority,
+  name,
   toggleTodo,
   deleteTodo,
 }) {
@@ -10,11 +11,13 @@ export default function TodoItem({
       <label>
         <input
           type="checkbox"
-          checked={completed}
-          onChange={(e) => toggleTodo(id, e.target.checked)}
+          checked={done}
+          onChange={(e) => toggleTodo(id, e.target.done)}
         />
-        {title}
+        {name}
       </label>
+      {/* TODO: Change it to empty or full star SVG */}
+      {priority ? <p>❗️</p> : null}
       <button onClick={(e) => deleteTodo(id)} className="btn btn-danger">
         Delete
       </button>
