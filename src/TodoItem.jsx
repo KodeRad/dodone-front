@@ -6,13 +6,16 @@ export default function TodoItem({
   toggleTodo,
   deleteTodo,
 }) {
+  // TODO: CONVERT DONE AND PRIORITY TO TRUE OR FALSE
   return (
     <li>
       <label>
         <input
           type="checkbox"
           checked={done}
-          onChange={(e) => toggleTodo(id, e.target.done)}
+          onChange={(e) => {
+            toggleTodo(id, e.target.checked);
+          }}
         />
         {name}
       </label>

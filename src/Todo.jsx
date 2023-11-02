@@ -22,16 +22,43 @@ export default function Todo() {
       setTodos(data);
     }
     getTodos();
-  }, []);
+  }, [todos]);
 
-  function addTodo(title) {
-    setTodos((currentTodos) => {
-      return [
-        ...currentTodos,
-        { id: crypto.randomUUID(), title, completed: false },
-      ];
-    });
+  // TODO: RETURN THE PREV ARRAY WITH NEW ENTRY
+  function addTodo(name, rating = 0, priority = false) {
+    async function postTodo() {
+      try {
+        const resp = await fetch("http://localhost:8080/todos/single", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+          },
+          body: JSON.stringify({
+            name: name,
+            rating: rating,
+            priority: priority,
+            done: false,
+          }),
+        });
+
+        if (!resp.ok) throw new Error("Failed to add todo");
+        const data = await resp.json();
+        console.log(data);
+      } catch (error) {
+        console.error("Error adding todo: ", error);
+      }
+    }
+    postTodo();
   }
+  // function addTodo(title) {
+  //   setTodos((currentTodos) => {
+  //     return [
+  //       ...currentTodos,
+  //       { id: crypto.randomUUID(), title, completed: false },
+  //     ];
+  //   });
+  // }
 
   function toggleTodo(id, done) {
     setTodos((currentTodos) => {
