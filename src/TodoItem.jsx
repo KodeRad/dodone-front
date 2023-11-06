@@ -15,7 +15,6 @@ export default function TodoItem({
   name,
   toggleTodo,
   togglePriority,
-  deleteTodo, // TODO: only usable in modalWindow
 }) {
   return (
     <ListItem key={id}>

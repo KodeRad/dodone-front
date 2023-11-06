@@ -1,19 +1,31 @@
 // TODO: CHECK WHAT FORWARDREF DOES
-import { forwardRef } from "react";
+import { forwardRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import Slide from "@mui/material/Slide";
+import DatePicker from "./DatePicker";
+import { DemoItem } from "@mui/x-date-pickers/internals/demo";
 
 const Transition = forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function TodoForm({ newTodoOpen, setNewTodoOpen }) {
+export default function TodoForm({ newTodoOpen, setNewTodoOpen, addTodo }) {
+  const [time, setTime] = useState("");
+
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = () => handleClose;
+
   const handleClose = () => {
     setNewTodoOpen(false);
   };
@@ -27,14 +39,33 @@ export default function TodoForm({ newTodoOpen, setNewTodoOpen }) {
         onClose={handleClose}
         aria-describedby="alert-dialog-slide-description"
       >
-        <DialogTitle>{"Add new Todo"}</DialogTitle>
+        <DialogTitle>{"New Todo!"}</DialogTitle>
         <DialogContent>
-          <DialogContentText id="alert-dialog-slide-description"></DialogContentText>
+          <form
+            onSubmit={handleSubmit((data) => {
+              onSubmit(data);
+              addTodo(data.todoName, data.todoPriority, time);
+            })}
+          >
+            {/* register your input into the hook by invoking the "register" function */}
+            <input
+              {...register("todoName", { required: true })}
+              placeholder="Todo's name"
+            />
+
+            {/* include validation with required or other standard HTML validation rules */}
+            <input {...register("todoPriority")} placeholder="priority" />
+            <DatePicker time={time} setTime={setTime} />
+
+            {/* errors will return when field validation fails  */}
+            {errors.exampleRequired && <span>This field is required</span>}
+
+            <DialogActions>
+              <Button onClick={handleClose}>Cancel</Button>
+              <Button type="submit">Submit</Button>
+            </DialogActions>
+          </form>
         </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose}>Disagree</Button>
-          <Button onClick={handleClose}>Agree</Button>
-        </DialogActions>
       </Dialog>
     </>
   );

@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import TodoForm from "./TodoForm";
 import TodoList from "./TodoList";
 import Navigation from "./Navigation";
-import AlertDialogSlide from "./TodoForm";
 
 // git access
 //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
@@ -29,7 +28,7 @@ export default function Todo() {
     // Empty dependency for less API calls
   }, []);
 
-  async function addTodo(name, rating = 0, priority = false) {
+  async function addTodo(name, priority = false, dueDate = null) {
     try {
       const resp = await fetch("http://localhost:8080/todos/add", {
         method: "POST",
@@ -39,9 +38,10 @@ export default function Todo() {
         },
         body: JSON.stringify({
           name: name,
-          rating: rating,
+          dueDate: dueDate,
           priority: priority,
           done: false,
+          createdDate: new Date(),
         }),
       });
 
@@ -112,6 +112,7 @@ export default function Todo() {
         todoFormOpen={todoFormOpen}
         newTodoOpen={newTodoOpen}
         setNewTodoOpen={setNewTodoOpen}
+        addTodo={addTodo}
       />
       <Navigation todoFormOpen={todoFormOpen} />
     </>
