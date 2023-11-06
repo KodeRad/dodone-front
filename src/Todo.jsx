@@ -2,12 +2,14 @@ import { useEffect, useState } from "react";
 import TodoForm from "./TodoForm";
 import TodoList from "./TodoList";
 import Navigation from "./Navigation";
+import AlertDialogSlide from "./TodoForm";
 
 // git access
 //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
 
 export default function Todo() {
   const [todos, setTodos] = useState([]);
+  const [newTodoOpen, setNewTodoOpen] = useState(false);
 
   // 1.  Getting todos from database
 
@@ -55,6 +57,7 @@ export default function Todo() {
     }
   }
 
+  // TODO: ANALIZE HOW IT WORKS
   function toggleTodo(id, done) {
     setTodos((currentTodos) => {
       return currentTodos.map((todo) => {
@@ -65,6 +68,21 @@ export default function Todo() {
       });
     });
   }
+
+  function togglePriority(id, priority) {
+    setTodos((currentTodos) => {
+      return currentTodos.map((todo) => {
+        if (todo.id === id) {
+          return { ...todo, priority };
+        }
+        return todo;
+      });
+    });
+  }
+
+  const todoFormOpen = () => {
+    setNewTodoOpen(true);
+  };
 
   async function deleteTodo(id) {
     const resp = await fetch(`http://localhost:8080/todos/${id}`, {
@@ -81,10 +99,21 @@ export default function Todo() {
 
   return (
     <>
-      <h1 className="header">Todo List</h1>
-      <TodoList todos={todos} toggleTodo={toggleTodo} deleteTodo={deleteTodo} />
-      {/* <TodoForm addTodo={addTodo} /> */}
-      <Navigation />
+      <h1 className="bg-blue-500 text-white p-4 text-4xl flex justify-center items-center h-1/6">
+        DoDone!
+      </h1>
+      <TodoList
+        todos={todos}
+        toggleTodo={toggleTodo}
+        deleteTodo={deleteTodo}
+        togglePriority={togglePriority}
+      />
+      <TodoForm
+        todoFormOpen={todoFormOpen}
+        newTodoOpen={newTodoOpen}
+        setNewTodoOpen={setNewTodoOpen}
+      />
+      <Navigation todoFormOpen={todoFormOpen} />
     </>
   );
 }

@@ -8,7 +8,7 @@ import NewTodo from "@mui/icons-material/AddBox";
 import Calendar from "@mui/icons-material/CalendarMonth";
 import Paper from "@mui/material/Paper";
 
-export default function Navigation() {
+export default function Navigation({ todoFormOpen }) {
   const [value, setValue] = useState(0);
   const ref = useRef(null);
 
@@ -27,7 +27,11 @@ export default function Navigation() {
           }}
         >
           <BottomNavigationAction label="Home" icon={<Home />} />
-          <BottomNavigationAction label="New Todo" icon={<NewTodo />} />
+          <BottomNavigationAction
+            onClick={todoFormOpen}
+            label="New Todo"
+            icon={<NewTodo />}
+          />
           <BottomNavigationAction label="Calendar" icon={<Calendar />} />
         </BottomNavigation>
       </Paper>
