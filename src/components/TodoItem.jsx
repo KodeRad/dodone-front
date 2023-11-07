@@ -28,12 +28,12 @@ export default function TodoItem({
     <ListItem key={id}>
       <IconButton
         edge="start"
-        checked={true}
         onClick={(e) => {
           toggleTodo(id, e.target.checked);
         }}
       >
         <Checkbox
+          checked={done}
           sx={{
             color: "rgb(59 130 246)",
             "&.Mui-checked": {
@@ -46,13 +46,13 @@ export default function TodoItem({
       <ListItemText primary={name} />
       <ListItemSecondaryAction>
         <IconButton
-          checked={true}
           edge="end"
           onClick={(e) => {
             togglePriority(id, e.target.checked);
           }}
         >
           <Checkbox
+            checked={priority}
             sx={{
               color: "rgb(59 130 246)",
               "&.Mui-checked": {

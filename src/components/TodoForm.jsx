@@ -8,7 +8,6 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import Slide from "@mui/material/Slide";
 import DatePicker from "./DatePicker";
-import { DemoItem } from "@mui/x-date-pickers/internals/demo";
 
 const Transition = forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -70,33 +69,3 @@ export default function TodoForm({ newTodoOpen, setNewTodoOpen, addTodo }) {
     </>
   );
 }
-
-// import { useState } from "react";
-
-// export default function TodoForm({ addTodo }) {
-//   const [newItem, setNewItem] = useState("");
-
-//   function handleSubmit(e) {
-//     e.preventDefault();
-//     if (newItem === "") return;
-
-//     addTodo(newItem);
-
-//     setNewItem("");
-//   }
-
-//   return (
-//     <form onSubmit={handleSubmit} className="new-item-form">
-//       <div className="form-row">
-//         <label htmlFor="item">New Item</label>
-//         <input
-//           value={newItem}
-//           onChange={(e) => setNewItem(e.target.value)}
-//           type="text"
-//           id="item"
-//         />
-//       </div>
-//       <button className="btn">Add</button>
-//     </form>
-//   );
-// }

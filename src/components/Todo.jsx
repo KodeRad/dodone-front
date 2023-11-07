@@ -57,7 +57,7 @@ export default function Todo() {
     }
   }
 
-  // TODO: Add a patch method
+  // TODO: EXTRACT THE FETCH FUNCTION FOR TOGGLETODO AND PRIORITY
   async function toggleTodo(id, done) {
     const resp = await fetch(`http://localhost:8080/todos/${id}`, {
       method: "PATCH",
@@ -84,7 +84,23 @@ export default function Todo() {
     });
   }
 
-  function togglePriority(id, priority) {
+  // TODO: EXTRACT THE FETCH FUNCTION FOR TOGGLETODO AND PRIORITY
+  async function togglePriority(id, priority) {
+    const resp = await fetch(`http://localhost:8080/todos/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+      body: JSON.stringify({
+        priority: priority,
+      }),
+    });
+
+    // Should it return the changed todo?
+    const data = await resp.json();
+    console.log(data);
+
     setTodos((currentTodos) => {
       return currentTodos.map((todo) => {
         if (todo.id === id) {
