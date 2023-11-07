@@ -9,7 +9,8 @@ export default function TodoList({
 }) {
   return (
     <List sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}>
-      {/* {todos.length === 0 && "No Todos"} */}
+      {/* CREATE A NICER ADNOTATION IF NO TODOS */}
+      {todos.length === 0 && "THERE ARE NO TODOS. ADD SOME PLEASE!"}
       {todos.map((todo) => {
         return (
           <TodoItem

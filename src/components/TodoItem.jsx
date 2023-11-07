@@ -7,6 +7,7 @@ import IconButton from "@mui/material/IconButton";
 import ListItemSecondaryAction from "@mui/material/ListItemSecondaryAction";
 import Star from "@mui/icons-material/Star";
 import StarEmpty from "@mui/icons-material/StarBorder";
+import { useEffect } from "react";
 
 export default function TodoItem({
   id,
@@ -16,11 +17,18 @@ export default function TodoItem({
   toggleTodo,
   togglePriority,
 }) {
+  useEffect(() => {
+    console.log("done:");
+    console.log(done);
+    console.log("priority:");
+    console.log(priority);
+  }, []);
+
   return (
     <ListItem key={id}>
       <IconButton
         edge="start"
-        checked={done}
+        checked={true}
         onClick={(e) => {
           toggleTodo(id, e.target.checked);
         }}
@@ -38,7 +46,7 @@ export default function TodoItem({
       <ListItemText primary={name} />
       <ListItemSecondaryAction>
         <IconButton
-          checked={priority}
+          checked={true}
           edge="end"
           onClick={(e) => {
             togglePriority(id, e.target.checked);

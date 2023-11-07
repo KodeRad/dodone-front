@@ -57,8 +57,23 @@ export default function Todo() {
     }
   }
 
-  // TODO: ANALIZE HOW IT WORKS
-  function toggleTodo(id, done) {
+  // TODO: Add a patch method
+  async function toggleTodo(id, done) {
+    const resp = await fetch(`http://localhost:8080/todos/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+      body: JSON.stringify({
+        done: done,
+      }),
+    });
+
+    // Should it return the changed todo?
+    const data = await resp.json();
+    console.log(data);
+
     setTodos((currentTodos) => {
       return currentTodos.map((todo) => {
         if (todo.id === id) {
