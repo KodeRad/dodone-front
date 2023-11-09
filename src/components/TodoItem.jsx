@@ -16,14 +16,8 @@ export default function TodoItem({
   name,
   toggleTodo,
   togglePriority,
+  editTodoFormOpen,
 }) {
-  useEffect(() => {
-    console.log("done:");
-    console.log(done);
-    console.log("priority:");
-    console.log(priority);
-  }, []);
-
   return (
     <ListItem key={id}>
       <IconButton
@@ -43,7 +37,14 @@ export default function TodoItem({
         />
       </IconButton>
       {/* TODO: MODAL WINDOW EDIT ON CLICK */}
-      <ListItemText primary={name} />
+      <ListItemText
+        onClick={() => {
+          // I can send ID to my Todo
+          // component and then pass it to EditTodoForm.jsx
+          editTodoFormOpen(id);
+        }}
+        primary={name}
+      />
       <ListItemSecondaryAction>
         <IconButton
           edge="end"
