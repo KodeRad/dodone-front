@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { DateTime } from "luxon";
 import TodoForm from "./TodoForm";
 import TodoList from "./TodoList";
 import Navigation from "./Navigation";
@@ -47,12 +48,13 @@ export default function Todo() {
           dueDate: dueDate,
           priority: priority,
           done: false,
-          createdDate: new Date(),
+          createdDate: DateTime.now().setLocale("pl"),
         }),
       });
 
       if (!resp.ok) throw new Error("Failed to add todo");
       const data = await resp.json();
+      console.log(data);
       if (resp.ok) {
         setTodos((currentTodos) => {
           return [...currentTodos, data];

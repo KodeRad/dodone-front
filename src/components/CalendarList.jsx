@@ -5,6 +5,9 @@ import listPlugin from "@fullcalendar/list";
 const CalendarList = ({ todos }) => {
   const calendarRef = useRef(null);
 
+  // Expected date format:
+  // '2023-11-10T12:00:00'; // YYYY-MM-DDTHH:mm:ss
+
   useEffect(() => {
     const calendar = new Calendar(calendarRef.current, {
       plugins: [listPlugin],
@@ -12,10 +15,11 @@ const CalendarList = ({ todos }) => {
       events: todos.map((todo) => {
         return {
           title: todo.name,
-          start: todo?.dueDate?.slice(0, -7),
+          start: todo?.dueDate,
         };
       }),
     });
+    //
 
     calendar.render();
 
