@@ -4,19 +4,23 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
 import "dayjs/locale/pl";
+//TODO: USE ONLY ONE LIBRARY FOR TIME
+import moment from "moment";
+import { useEffect } from "react";
 
-const todayAtNoon = dayjs().locale("pl").set("hour", 12).startOf("hour");
-
-export default function DatePicker({ time, setTime }) {
+export default function DatePicker({ setTime }) {
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="pl">
       <DemoContainer components={["DateTimePicker"]}>
-        <DemoItem label="DateTimePicker">
+        <DemoItem label="Mobile variant">
           <DateTimePicker
             disablePast
             onChange={(e) => {
-              const timeString = e.$d.toString();
-              setTime(timeString);
+              const dueDate = e.$d;
+              const formattedDate = moment(dueDate).format(
+                "YYYY-MM-DD HH:mm:ss"
+              );
+              setTime(formattedDate);
             }}
             defaultValue={dayjs(new Date())}
           />

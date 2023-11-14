@@ -14,20 +14,24 @@ dayjs.extend(utc);
 dayjs.extend(timezone);
 
 export default function DatePicker2({ setTime }) {
+  const nowTime = moment();
+
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="pl">
       <DemoContainer components={["MobileDateTimePicker"]}>
         <DemoItem label="Mobile variant">
           <MobileDateTimePicker
             onChange={(e) => {
-              const timeString = e.$d.toString().slice(0, -42);
+              const timeString = e.$d;
+              // .toString().slice(0, -42);
               const momentTime = moment(timeString).format(
-                "YYYY-MM-DDTHH:mm:ss"
+                "YYYY-MM-DD HH:mm:ss"
               );
 
               setTime(momentTime);
             }}
-            defaultValue={moment()}
+            defaultValue={dayjs(new Date())}
+            // value={nowTime}
           />
         </DemoItem>
       </DemoContainer>

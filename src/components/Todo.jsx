@@ -6,6 +6,7 @@ import Navigation from "./Navigation";
 import EditTodoForm from "./EditTodoForm";
 import CalendarList from "./CalendarList";
 import CalendarModal from "./CalendarModal";
+import moment from "moment";
 
 // git access
 //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
@@ -48,7 +49,7 @@ export default function Todo() {
           dueDate: dueDate,
           priority: priority,
           done: false,
-          createdDate: DateTime.now().setLocale("pl"),
+          createdDate: moment().format("YYYY-MM-DD HH:mm:ss"),
         }),
       });
 
