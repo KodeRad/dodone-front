@@ -3,12 +3,16 @@ import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
 import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
-import Home from "@mui/icons-material/Home";
+import Update from "@mui/icons-material/Update";
 import NewTodo from "@mui/icons-material/AddBox";
 import Calendar from "@mui/icons-material/CalendarMonth";
 import Paper from "@mui/material/Paper";
 
-export default function Navigation({ todoFormOpen, handleCalendarOpen }) {
+export default function Navigation({
+  todoFormOpen,
+  handleCalendarOpen,
+  handleSummaryOpen,
+}) {
   const [value, setValue] = useState(0);
   const ref = useRef(null);
 
@@ -26,7 +30,11 @@ export default function Navigation({ todoFormOpen, handleCalendarOpen }) {
             setValue(newValue);
           }}
         >
-          <BottomNavigationAction label="Home" icon={<Home />} />
+          <BottomNavigationAction
+            onClick={handleSummaryOpen}
+            label="Summary"
+            icon={<Update />}
+          />
           <BottomNavigationAction
             onClick={todoFormOpen}
             label="New Todo"

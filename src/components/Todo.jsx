@@ -7,6 +7,7 @@ import EditTodoForm from "./EditTodoForm";
 import CalendarList from "./CalendarList";
 import CalendarModal from "./CalendarModal";
 import moment from "moment";
+import SummaryModal from "./SummaryModal";
 
 // git access
 //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
@@ -16,10 +17,10 @@ export default function Todo() {
   const [newTodoOpen, setNewTodoOpen] = useState(false);
   const [editTodoOpen, setEditNewTodoOpen] = useState(false);
   const [calendarOpen, setCalendarOpen] = useState(false);
+  const [summaryOpen, setSummaryOpen] = useState(false);
   const [editedId, setEditedId] = useState("");
 
-  // 1.  Getting todos from database
-
+  // Getting todos from database
   useEffect(() => {
     async function getTodos() {
       const response = await fetch("http://localhost:8080/todos", {
@@ -171,6 +172,9 @@ export default function Todo() {
   const handleCalendarOpen = () => {
     setCalendarOpen(true);
   };
+  const handleSummaryOpen = () => {
+    setSummaryOpen(true);
+  };
 
   // TODO: CHANGE NAME TO HANDLE
   const editTodoFormOpen = (id) => {
@@ -198,6 +202,7 @@ export default function Todo() {
         addTodo={addTodo}
       />
       <EditTodoForm
+        // TODO: CREATE PORTAL
         editTodoFormOpen={editTodoFormOpen}
         editTodoOpen={editTodoOpen}
         setEditNewTodoOpen={setEditNewTodoOpen}
@@ -210,8 +215,19 @@ export default function Todo() {
         setCalendarOpen={setCalendarOpen}
         handleCalendarOpen={handleCalendarOpen}
       />
+      <SummaryModal
+        todos={todos}
+        toggleTodo={toggleTodo}
+        deleteTodo={deleteTodo}
+        togglePriority={togglePriority}
+        editTodoFormOpen={editTodoFormOpen}
+        summaryOpen={summaryOpen}
+        setSummaryOpen={setSummaryOpen}
+        handleSummaryOpen={handleSummaryOpen}
+      />
       <Navigation
         todoFormOpen={todoFormOpen}
+        handleSummaryOpen={handleSummaryOpen}
         handleCalendarOpen={handleCalendarOpen}
       />
     </>

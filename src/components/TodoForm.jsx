@@ -8,7 +8,6 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import Slide from "@mui/material/Slide";
 import DatePicker from "./DatePicker";
-import DatePicker2 from "./ToBeDeletedDatePicker";
 
 const Transition = forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -56,7 +55,6 @@ export default function TodoForm({ newTodoOpen, setNewTodoOpen, addTodo }) {
             {/* include validation with required or other standard HTML validation rules */}
             <input {...register("todoPriority")} placeholder="priority" />
             <DatePicker time={time} setTime={setTime} />
-            {/* <DatePicker2 time={time} setTime={setTime} /> */}
 
             {/* errors will return when field validation fails  */}
             {errors.exampleRequired && <span>This field is required</span>}
