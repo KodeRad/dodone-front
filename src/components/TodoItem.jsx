@@ -1,23 +1,17 @@
 import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import Checkbox from "@mui/material/Checkbox";
 import IconButton from "@mui/material/IconButton";
 import ListItemSecondaryAction from "@mui/material/ListItemSecondaryAction";
 import Star from "@mui/icons-material/Star";
 import StarBorder from "@mui/icons-material/StarBorder";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
+import { TodoContext } from "./Todo";
 
-export default function TodoItem({
-  id,
-  done,
-  priority,
-  name,
-  toggleTodo,
-  togglePriority,
-  editTodoFormOpen,
-}) {
+export default function TodoItem({ id, done, priority, name }) {
+  const { toggleTodo, togglePriority, editTodoFormOpen } =
+    useContext(TodoContext);
+
   return (
     <ListItem key={id}>
       <IconButton
@@ -26,6 +20,7 @@ export default function TodoItem({
           toggleTodo(id, e.target.checked);
         }}
       >
+        {/* // TODO: CHECKBOX AS A SEPARATE COMPONENT WITH CHILDREN PROPS */}
         <Checkbox
           checked={done}
           sx={{
@@ -36,14 +31,13 @@ export default function TodoItem({
           }}
         />
       </IconButton>
-      {/* TODO: MODAL WINDOW EDIT ON CLICK */}
       <ListItemText
         onClick={() => {
+          // TODO: CHECK WHERE THE NAME GOES AND CHANGE
+          // FROM PLACEHOLDER TO THE VALUE THAT YOU CAN CHANGE OR NOT
           // I can send ID to my Todo
           // component and then pass it to EditTodoForm.jsx
           editTodoFormOpen(id, name);
-
-          // I will send a name to editTodoModal
         }}
         primary={name}
       />

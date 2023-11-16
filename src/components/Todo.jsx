@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, createContext } from "react";
 import { DateTime } from "luxon";
 import TodoForm from "./TodoForm";
 import TodoList from "./TodoList";
@@ -11,6 +11,8 @@ import SummaryModal from "./SummaryModal";
 
 // git access
 //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
+
+export const TodoContext = createContext();
 
 export default function Todo() {
   const [todos, setTodos] = useState([]);
@@ -158,11 +160,9 @@ export default function Todo() {
   }
 
   async function deleteTodo(id) {
-    const resp = await fetch(`http://localhost:8080/todos/${id}`, {
+    await fetch(`http://localhost:8080/todos/${id}`, {
       method: "DELETE",
     });
-
-    const data = await resp.json();
 
     setTodos((currentTodos) => {
       return currentTodos.filter((todo) => todo.id !== id);
@@ -201,50 +201,70 @@ export default function Todo() {
         DoDone!
       </h1>
 
-      <TodoList
-        todos={todos}
-        toggleTodo={toggleTodo}
-        deleteTodo={deleteTodo}
-        togglePriority={togglePriority}
-        editTodoFormOpen={editTodoFormOpen}
-      />
-      <TodoForm
-        todoFormOpen={todoFormOpen}
-        newTodoOpen={newTodoOpen}
-        setNewTodoOpen={setNewTodoOpen}
-        addTodo={addTodo}
-      />
-      <EditTodoForm
-        // TODO: CREATE PORTAL
-        editTodoFormOpen={editTodoFormOpen}
-        editTodoOpen={editTodoOpen}
-        setEditNewTodoOpen={setEditNewTodoOpen}
-        patchTodo={patchTodo}
-        editedId={editedId}
-        editedName={editedName}
-        deleteTodo={deleteTodo}
-      />
-      <CalendarModal
-        todos={todos}
-        calendarOpen={calendarOpen}
-        setCalendarOpen={setCalendarOpen}
-        handleCalendarOpen={handleCalendarOpen}
-      />
-      <SummaryModal
-        todos={todos}
-        toggleTodo={toggleTodo}
-        deleteTodo={deleteTodo}
-        togglePriority={togglePriority}
-        editTodoFormOpen={editTodoFormOpen}
-        summaryOpen={summaryOpen}
-        setSummaryOpen={setSummaryOpen}
-        handleSummaryOpen={handleSummaryOpen}
-      />
-      <Navigation
-        todoFormOpen={todoFormOpen}
-        handleSummaryOpen={handleSummaryOpen}
-        handleCalendarOpen={handleCalendarOpen}
-      />
+      <TodoContext.Provider
+        value={{
+          addTodo,
+          calendarOpen,
+          deleteTodo,
+          editedId,
+          editedName,
+          editTodoFormOpen,
+          editTodoOpen,
+          handleCalendarOpen,
+          handleSummaryOpen,
+          newTodoOpen,
+          patchTodo,
+          setCalendarOpen,
+          setEditNewTodoOpen,
+          setNewTodoOpen,
+          setSummaryOpen,
+          summaryOpen,
+          todos,
+          togglePriority,
+          toggleTodo,
+          todoFormOpen,
+        }}
+      >
+        <TodoList />
+
+        <TodoForm
+          todoFormOpen={todoFormOpen}
+          newTodoOpen={newTodoOpen}
+          setNewTodoOpen={setNewTodoOpen}
+          addTodo={addTodo}
+        />
+        <EditTodoForm
+          // TODO: CREATE PORTAL
+          editTodoFormOpen={editTodoFormOpen}
+          editTodoOpen={editTodoOpen}
+          setEditNewTodoOpen={setEditNewTodoOpen}
+          patchTodo={patchTodo}
+          editedId={editedId}
+          editedName={editedName}
+          deleteTodo={deleteTodo}
+        />
+        <CalendarModal
+          todos={todos}
+          calendarOpen={calendarOpen}
+          setCalendarOpen={setCalendarOpen}
+          handleCalendarOpen={handleCalendarOpen}
+        />
+        <SummaryModal
+          todos={todos}
+          toggleTodo={toggleTodo}
+          deleteTodo={deleteTodo}
+          togglePriority={togglePriority}
+          editTodoFormOpen={editTodoFormOpen}
+          summaryOpen={summaryOpen}
+          setSummaryOpen={setSummaryOpen}
+          handleSummaryOpen={handleSummaryOpen}
+        />
+        <Navigation
+          todoFormOpen={todoFormOpen}
+          handleSummaryOpen={handleSummaryOpen}
+          handleCalendarOpen={handleCalendarOpen}
+        />
+      </TodoContext.Provider>
     </>
   );
 }

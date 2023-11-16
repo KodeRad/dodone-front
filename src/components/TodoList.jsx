@@ -1,13 +1,10 @@
 import TodoItem from "./TodoItem";
 import List from "@mui/material/List";
+import { TodoContext } from "./Todo";
+import { useContext } from "react";
 
-export default function TodoList({
-  todos,
-  toggleTodo,
-  deleteTodo,
-  togglePriority,
-  editTodoFormOpen,
-}) {
+export default function TodoList() {
+  const { todos } = useContext(TodoContext);
   return (
     <List sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}>
       {/* CREATE A NICER ADNOTATION IF NO TODOS */}
@@ -16,16 +13,7 @@ export default function TodoList({
       {todos
         .sort((low, high) => high.priority - low.priority)
         .map((todo) => {
-          return (
-            <TodoItem
-              {...todo}
-              toggleTodo={toggleTodo}
-              deleteTodo={deleteTodo}
-              togglePriority={togglePriority}
-              editTodoFormOpen={editTodoFormOpen}
-              key={todo.id}
-            />
-          );
+          return <TodoItem {...todo} key={todo.id} />;
         })}
     </List>
   );
