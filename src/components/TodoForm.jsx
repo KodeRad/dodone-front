@@ -8,6 +8,8 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import Slide from "@mui/material/Slide";
 import DatePicker from "./DatePicker";
+import { Checkbox } from "@mui/material";
+import { Star, StarBorder } from "@mui/icons-material";
 
 const Transition = forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -20,10 +22,11 @@ export default function TodoForm({ newTodoOpen, setNewTodoOpen, addTodo }) {
     register,
     handleSubmit,
     watch,
+    reset,
     formState: { errors },
   } = useForm();
 
-  const onSubmit = () => handleClose;
+  // const onSubmit = () => handleClose;
 
   const handleClose = () => {
     setNewTodoOpen(false);
@@ -35,15 +38,18 @@ export default function TodoForm({ newTodoOpen, setNewTodoOpen, addTodo }) {
         open={newTodoOpen}
         TransitionComponent={Transition}
         keepMounted
-        onClose={handleClose}
+        // onClose={handleClose}
         aria-describedby="alert-dialog-slide-description"
       >
         <DialogTitle>{"New Todo!"}</DialogTitle>
         <DialogContent>
           <form
             onSubmit={handleSubmit((data) => {
-              onSubmit(data);
+              // onSubmit(data);
+              handleClose();
               addTodo(data.todoName, data.todoPriority, time);
+              // TODO: CLEAR THE INPUT FIELDS
+              reset();
             })}
           >
             {/* register your input into the hook by invoking the "register" function */}
@@ -53,7 +59,19 @@ export default function TodoForm({ newTodoOpen, setNewTodoOpen, addTodo }) {
             />
 
             {/* include validation with required or other standard HTML validation rules */}
-            <input {...register("todoPriority")} placeholder="priority" />
+            <Checkbox
+              // checked={priority}
+              {...register("todoPriority")}
+              sx={{
+                color: "rgb(59 130 246)",
+                "&.Mui-checked": {
+                  color: "rgb(59 130 246)",
+                },
+              }}
+              icon={<StarBorder />}
+              checkedIcon={<Star />}
+            />
+
             <DatePicker time={time} setTime={setTime} />
 
             {/* errors will return when field validation fails  */}

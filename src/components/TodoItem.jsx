@@ -6,7 +6,7 @@ import Checkbox from "@mui/material/Checkbox";
 import IconButton from "@mui/material/IconButton";
 import ListItemSecondaryAction from "@mui/material/ListItemSecondaryAction";
 import Star from "@mui/icons-material/Star";
-import StarEmpty from "@mui/icons-material/StarBorder";
+import StarBorder from "@mui/icons-material/StarBorder";
 import { useEffect } from "react";
 
 export default function TodoItem({
@@ -41,7 +41,9 @@ export default function TodoItem({
         onClick={() => {
           // I can send ID to my Todo
           // component and then pass it to EditTodoForm.jsx
-          editTodoFormOpen(id);
+          editTodoFormOpen(id, name);
+
+          // I will send a name to editTodoModal
         }}
         primary={name}
       />
@@ -60,7 +62,7 @@ export default function TodoItem({
                 color: "rgb(59 130 246)",
               },
             }}
-            icon={<StarEmpty />}
+            icon={<StarBorder />}
             checkedIcon={<Star />}
           />
         </IconButton>

@@ -19,6 +19,7 @@ export default function Todo() {
   const [calendarOpen, setCalendarOpen] = useState(false);
   const [summaryOpen, setSummaryOpen] = useState(false);
   const [editedId, setEditedId] = useState("");
+  const [editedName, setEditedName] = useState("");
 
   // Getting todos from database
   useEffect(() => {
@@ -89,12 +90,17 @@ export default function Todo() {
 
     setTodos((currentTodos) => {
       return currentTodos.map((todo) => {
-        if (todo.id === id) {
-          return { ...todo, data };
-        }
-        return todo;
+        return todo.id === id ? data : todo;
       });
     });
+    // setTodos((currentTodos) => {
+    //   return currentTodos.map((todo) => {
+    //     if (todo.id === id) {
+    //       return { ...todo, data };
+    //     }
+    //     return todo;
+    //   });
+    // });
   }
 
   // TODO: EXTRACT THE FETCH FUNCTION FOR TOGGLETODO AND PRIORITY
@@ -157,7 +163,6 @@ export default function Todo() {
     });
 
     const data = await resp.json();
-    console.log(data);
 
     setTodos((currentTodos) => {
       return currentTodos.filter((todo) => todo.id !== id);
@@ -177,8 +182,9 @@ export default function Todo() {
   };
 
   // TODO: CHANGE NAME TO HANDLE
-  const editTodoFormOpen = (id) => {
+  const editTodoFormOpen = (id, name) => {
     setEditedId(id);
+    setEditedName(name);
     setEditNewTodoOpen(true);
   };
 
@@ -208,6 +214,8 @@ export default function Todo() {
         setEditNewTodoOpen={setEditNewTodoOpen}
         patchTodo={patchTodo}
         editedId={editedId}
+        editedName={editedName}
+        deleteTodo={deleteTodo}
       />
       <CalendarModal
         todos={todos}
