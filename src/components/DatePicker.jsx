@@ -10,9 +10,10 @@ import dayjs from "dayjs";
 export default function DatePicker({ setTime }) {
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="pl">
-      <DemoContainer components={["DateTimePicker"]}>
-        <DemoItem label="Mobile variant">
+      <DemoContainer style={{ zIndex: 9999 }} components={["DateTimePicker"]}>
+        <DemoItem style={{ zIndex: 9999 }} label="Mobile variant">
           <DateTimePicker
+            style={{ zIndex: 9999 }}
             disablePast
             onChange={(e) => {
               console.log(e);

@@ -47,6 +47,8 @@ export default function SummaryModal({
         keepMounted
         onClose={handleClose}
         aria-describedby="alert-dialog-slide-description"
+        // Lowest zIndex
+        style={{ zIndex: 500 }}
       >
         <DialogTitle>{"Summary view!"}</DialogTitle>
         <DialogContent>

@@ -1,6 +1,7 @@
 // TODO: CHECK WHAT FORWARDREF DOES
 import { forwardRef, useState } from "react";
-import { createPortal } from "react-dom";
+// import { createPortal } from "react-dom";
+import ReactDOM from "react-dom";
 import { Portal } from "./Portal";
 import { useForm } from "react-hook-form";
 import Button from "@mui/material/Button";
@@ -25,6 +26,7 @@ export default function EditTodoForm({
   editedId,
   editedName,
   deleteTodo,
+  datePickerOpen,
 }) {
   const [time, setTime] = useState("");
 
@@ -42,75 +44,74 @@ export default function EditTodoForm({
     setEditNewTodoOpen(false);
   };
 
-  return createPortal(
-    <>
-      <Dialog
-        sx={{ zIndex: "tooltip" }}
-        // closeOnSelect={true}
-        open={editTodoOpen}
-        TransitionComponent={Transition}
-        keepMounted
-        onClose={handleClose}
-        aria-describedby="alert-dialog-slide-description"
-      >
-        <DialogTitle>{"Edit todo!"}</DialogTitle>
-        <DialogContent>
-          <form
-            onSubmit={handleSubmit((data) => {
-              onSubmit(data);
-              // IF THERE ARE NO INPUTS, OR SHOULD I MAKE THOSE FILEDS POPULATED BY THE PREVIOUS VALUES?
-              // I need to pass ID, but from where? (202)
-              patchTodo(editedId, data.todoName, data.todoPriority, time);
-              reset();
-            })}
-          >
-            {/* register your input into the hook by invoking the "register" function */}
+  return ReactDOM.createPortal(
+    <Dialog
+      style={{ zIndex: 1000 }}
+      open={editTodoOpen}
+      TransitionComponent={Transition}
+      keepMounted
+      onClose={handleClose}
+      aria-describedby="alert-dialog-slide-description"
+    >
+      <DialogTitle>{"Edit todo!"}</DialogTitle>
+      <DialogContent style={{ zIndex: 3000 }}>
+        <form
+          onSubmit={handleSubmit((data) => {
+            onSubmit(data);
+            // IF THERE ARE NO INPUTS, OR SHOULD I MAKE THOSE FILEDS POPULATED BY THE PREVIOUS VALUES?
+            // I need to pass ID, but from where? (202)
+            patchTodo(editedId, data.todoName, data.todoPriority, time);
+            reset();
+          })}
+        >
+          {/* register your input into the hook by invoking the "register" function */}
 
-            {/* TODO: ADD A TODOS NAME IN EDIT FORM */}
-            <input
-              {...register("todoName", { required: true })}
-              // getById and take a name from it
-              placeholder={editedName}
-            />
+          {/* TODO: ADD A TODOS NAME IN EDIT FORM */}
+          <input
+            {...register("todoName", { required: true })}
+            // getById and take a name from it
+            placeholder={editedName}
+          />
 
-            {/* include validation with required or other standard HTML validation rules */}
-            {/* // TODO: EXTRACT IT TO THE SEPARATE COMPONENT (USED ALSO IN TodoForm) */}
-            <Checkbox
-              // checked={priority}
-              {...register("todoPriority")}
-              sx={{
+          {/* include validation with required or other standard HTML validation rules */}
+          {/* // TODO: EXTRACT IT TO THE SEPARATE COMPONENT (USED ALSO IN TodoForm) */}
+          <Checkbox
+            // checked={priority}
+            {...register("todoPriority")}
+            sx={{
+              color: "rgb(59 130 246)",
+              "&.Mui-checked": {
                 color: "rgb(59 130 246)",
-                "&.Mui-checked": {
-                  color: "rgb(59 130 246)",
-                },
-              }}
-              icon={<StarBorder />}
-              checkedIcon={<Star />}
-            />
+              },
+            }}
+            icon={<StarBorder />}
+            checkedIcon={<Star />}
+          />
 
+          <div style={{ zIndex: 4000 }}>
             <DatePicker setTime={setTime} />
+          </div>
 
-            {/* errors will return when field validation fails  */}
-            {errors.exampleRequired && <span>This field is required</span>}
+          {/* errors will return when field validation fails  */}
+          {errors.exampleRequired && <span>This field is required</span>}
 
-            <DialogActions>
-              <Button
-                onClick={() => {
-                  deleteTodo(editedId);
-                  handleClose();
-                }}
-              >
-                Delete
-              </Button>
-              <Button onClick={handleClose}>Cancel</Button>
-              <Button type="submit" onClick={handleClose}>
-                Submit
-              </Button>
-            </DialogActions>
-          </form>
-        </DialogContent>
-      </Dialog>
-    </>,
+          <DialogActions>
+            <Button
+              onClick={() => {
+                deleteTodo(editedId);
+                handleClose();
+              }}
+            >
+              Delete
+            </Button>
+            <Button onClick={handleClose}>Cancel</Button>
+            <Button type="submit" onClick={handleClose}>
+              Submit
+            </Button>
+          </DialogActions>
+        </form>
+      </DialogContent>
+    </Dialog>,
     document.getElementById("portal")
   );
 }

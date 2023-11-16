@@ -169,16 +169,17 @@ export default function Todo() {
     });
   }
 
-  // TODO: CHANGE NAM
+  // TODO: REFACTOR TO ONE FUNCTION
   // TODO: CHANGE NAME TO HANDLE
   const todoFormOpen = () => {
-    setNewTodoOpen(true);
+    // set it to !open instead of true
+    setNewTodoOpen(!newTodoOpen);
   };
   const handleCalendarOpen = () => {
-    setCalendarOpen(true);
+    setCalendarOpen(!calendarOpen);
   };
   const handleSummaryOpen = () => {
-    setSummaryOpen(true);
+    setSummaryOpen(!summaryOpen);
   };
 
   // TODO: CHANGE NAME TO HANDLE
