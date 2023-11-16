@@ -1,12 +1,13 @@
-import React, { useEffect, useRef } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import { Calendar } from "@fullcalendar/core";
 import listPlugin from "@fullcalendar/list";
+import { TodoContext } from "./Todo";
 
-const CalendarList = ({ todos }) => {
+export default function CalendarList() {
+  const { todos } = useContext(TodoContext);
+
+  // The useRef hook is used to create a reference to the div element.
   const calendarRef = useRef(null);
-
-  // Expected date format:
-  // '2023-11-10T12:00:00'; // YYYY-MM-DDTHH:mm:ss
 
   useEffect(() => {
     const calendar = new Calendar(calendarRef.current, {
@@ -19,7 +20,6 @@ const CalendarList = ({ todos }) => {
         };
       }),
     });
-    //
 
     calendar.render();
 
@@ -28,8 +28,5 @@ const CalendarList = ({ todos }) => {
     };
   }, [todos]);
 
-  // TODO: WHY DO I NEED useRef?
   return <div ref={calendarRef} />;
-};
-
-export default CalendarList;
+}

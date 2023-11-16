@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useContext } from "react";
 import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
 import BottomNavigation from "@mui/material/BottomNavigation";
@@ -7,12 +7,11 @@ import Update from "@mui/icons-material/Update";
 import NewTodo from "@mui/icons-material/AddBox";
 import Calendar from "@mui/icons-material/CalendarMonth";
 import Paper from "@mui/material/Paper";
+import { TodoContext } from "./Todo";
 
-export default function Navigation({
-  todoFormOpen,
-  handleCalendarOpen,
-  handleSummaryOpen,
-}) {
+export default function Navigation() {
+  const { todoFormOpen, handleCalendarOpen, handleSummaryOpen } =
+    useContext(TodoContext);
   const [value, setValue] = useState(0);
   const ref = useRef(null);
 

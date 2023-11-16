@@ -1,5 +1,5 @@
 // TODO: CHECK WHAT FORWARDREF DOES
-import { forwardRef, useEffect, useState } from "react";
+import { forwardRef, useContext, useEffect, useState } from "react";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
@@ -9,27 +9,29 @@ import Slide from "@mui/material/Slide";
 import ProgressCircle from "./ProgressCircle";
 import TodoItem from "./TodoItem";
 import List from "@mui/material/List";
+import { TodoContext } from "./Todo";
 
 const Transition = forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function SummaryModal({
-  summaryOpen,
-  setSummaryOpen,
-  todos,
-  toggleTodo,
-  deleteTodo,
-  togglePriority,
-  editTodoFormOpen,
-}) {
+export default function SummaryModal() {
+  const {
+    summaryOpen,
+    setSummaryOpen,
+    todos,
+    toggleTodo,
+    deleteTodo,
+    togglePriority,
+    editTodoFormOpen,
+  } = useContext(TodoContext);
+
   const totalTodos = todos.length === 0 ? 1 : todos.length;
   const [doneTodo, setDoneTodo] = useState(0);
 
   const leftTodos = todos.filter((todo) => todo.done !== true);
   const doneTodos = todos.filter((todo) => todo.done === true);
 
-  // TODO: SHOULD IT OBSERVE doneTodos? Then it causing infinite loop
   useEffect(() => {
     setDoneTodo(doneTodos.length === 0 ? 1 : doneTodos.length);
   }, [todos]);
@@ -79,6 +81,10 @@ export default function SummaryModal({
             </List>
           )}
 
+          {/* PROGRESS CIRCLE */}
+          <DialogTitle>{"PROGRESS CIRCLE: "}</DialogTitle>
+          <ProgressCircle totalTodos={totalTodos} doneTodo={doneTodo} />
+
           <DialogTitle>{"Tasks done: "}</DialogTitle>
           {/* TODOS.FILTER(DONE)  */}
           <List
@@ -103,10 +109,6 @@ export default function SummaryModal({
               );
             })}
           </List>
-
-          {/* PROGRESS CIRCLE */}
-          <DialogTitle>{"PROGRESS CIRCLE: "}</DialogTitle>
-          <ProgressCircle totalTodos={totalTodos} doneTodo={doneTodo} />
 
           <DialogActions>
             <Button onClick={handleClose}>Close</Button>

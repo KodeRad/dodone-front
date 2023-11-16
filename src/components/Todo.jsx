@@ -1,14 +1,13 @@
+import dayjs from "dayjs";
 import { useEffect, useState, createContext } from "react";
-import { DateTime } from "luxon";
 import TodoForm from "./TodoForm";
 import TodoList from "./TodoList";
 import Navigation from "./Navigation";
 import EditTodoForm from "./EditTodoForm";
-import CalendarList from "./CalendarList";
 import CalendarModal from "./CalendarModal";
-import moment from "moment";
 import SummaryModal from "./SummaryModal";
 
+// TODO: DELETE THIS SHAJT
 // git access
 //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
 
@@ -53,7 +52,7 @@ export default function Todo() {
           dueDate: dueDate,
           priority: priority,
           done: false,
-          createdDate: moment().format("YYYY-MM-DD HH:mm:ss"),
+          createdDate: dayjs(new Date()).format("YYYY-MM-DD HH:mm:ss"),
         }),
       });
 
@@ -226,39 +225,11 @@ export default function Todo() {
         }}
       >
         <TodoList />
-
         <TodoForm />
-        <EditTodoForm
-          // TODO: CREATE PORTAL
-          editTodoFormOpen={editTodoFormOpen}
-          editTodoOpen={editTodoOpen}
-          setEditNewTodoOpen={setEditNewTodoOpen}
-          patchTodo={patchTodo}
-          editedId={editedId}
-          editedName={editedName}
-          deleteTodo={deleteTodo}
-        />
-        <CalendarModal
-          todos={todos}
-          calendarOpen={calendarOpen}
-          setCalendarOpen={setCalendarOpen}
-          handleCalendarOpen={handleCalendarOpen}
-        />
-        <SummaryModal
-          todos={todos}
-          toggleTodo={toggleTodo}
-          deleteTodo={deleteTodo}
-          togglePriority={togglePriority}
-          editTodoFormOpen={editTodoFormOpen}
-          summaryOpen={summaryOpen}
-          setSummaryOpen={setSummaryOpen}
-          handleSummaryOpen={handleSummaryOpen}
-        />
-        <Navigation
-          todoFormOpen={todoFormOpen}
-          handleSummaryOpen={handleSummaryOpen}
-          handleCalendarOpen={handleCalendarOpen}
-        />
+        <EditTodoForm />
+        <CalendarModal />
+        <SummaryModal />
+        <Navigation />
       </TodoContext.Provider>
     </>
   );

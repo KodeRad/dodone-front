@@ -1,8 +1,7 @@
 // TODO: CHECK WHAT FORWARDREF DOES
-import { forwardRef, useState } from "react";
+import { forwardRef, useContext, useState } from "react";
 // import { createPortal } from "react-dom";
 import ReactDOM from "react-dom";
-import { Portal } from "./Portal";
 import { useForm } from "react-hook-form";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
@@ -11,23 +10,23 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import Slide from "@mui/material/Slide";
 import DatePicker from "./DatePicker";
-import zIndex from "@mui/material/styles/zIndex";
 import { StarBorder, Star } from "@mui/icons-material";
 import { Checkbox } from "@mui/material";
+import { TodoContext } from "./Todo";
 
 const Transition = forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function EditTodoForm({
-  editTodoOpen,
-  setEditNewTodoOpen,
-  patchTodo,
-  editedId,
-  editedName,
-  deleteTodo,
-  datePickerOpen,
-}) {
+export default function EditTodoForm() {
+  const {
+    editTodoOpen,
+    setEditNewTodoOpen,
+    patchTodo,
+    editedId,
+    editedName,
+    deleteTodo,
+  } = useContext(TodoContext);
   const [time, setTime] = useState("");
 
   const {

@@ -3,7 +3,6 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
 import "dayjs/locale/pl";
-
 import dayjs from "dayjs";
 
 export default function DatePicker({ setTime }) {
@@ -14,6 +13,7 @@ export default function DatePicker({ setTime }) {
           <DateTimePicker
             disablePast
             onChange={(e) => {
+              // TODO: GET RID OF SECONDS FROM FORMAT BOTH IN FE AND BE
               const formattedDate = dayjs(e).format("YYYY-MM-DD HH:mm:ss");
               console.log(formattedDate);
               setTime(formattedDate);
