@@ -22,6 +22,7 @@ export default function Todo() {
   const [summaryOpen, setSummaryOpen] = useState(false);
   const [editedId, setEditedId] = useState("");
   const [editedName, setEditedName] = useState("");
+  const [editedPriority, setEditedPriority] = useState(false);
 
   // Getting todos from database
   useEffect(() => {
@@ -178,9 +179,10 @@ export default function Todo() {
   };
 
   // TODO: CHANGE NAME TO HANDLE
-  const editTodoFormOpen = (id, name) => {
+  const editTodoFormOpen = (id, name, priority) => {
     setEditedId(id);
     setEditedName(name);
+    setEditedPriority(priority);
     setEditNewTodoOpen(true);
   };
 
@@ -197,6 +199,7 @@ export default function Todo() {
           deleteTodo,
           editedId,
           editedName,
+          editedPriority,
           editTodoFormOpen,
           editTodoOpen,
           handleCalendarOpen,

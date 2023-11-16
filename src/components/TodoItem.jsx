@@ -7,6 +7,7 @@ import Star from "@mui/icons-material/Star";
 import StarBorder from "@mui/icons-material/StarBorder";
 import { useContext, useEffect } from "react";
 import { TodoContext } from "./Todo";
+import CheckboxComponent from "./Checkbox";
 
 export default function TodoItem({ id, done, priority, name }) {
   const { toggleTodo, togglePriority, editTodoFormOpen } =
@@ -21,7 +22,8 @@ export default function TodoItem({ id, done, priority, name }) {
         }}
       >
         {/* // TODO: CHECKBOX AS A SEPARATE COMPONENT WITH CHILDREN PROPS */}
-        <Checkbox
+        <CheckboxComponent checkedValue={done} />
+        {/* <Checkbox
           checked={done}
           sx={{
             color: "rgb(59 130 246)",
@@ -29,7 +31,7 @@ export default function TodoItem({ id, done, priority, name }) {
               color: "rgb(59 130 246)",
             },
           }}
-        />
+        /> */}
       </IconButton>
       <ListItemText
         onClick={() => {
@@ -37,7 +39,7 @@ export default function TodoItem({ id, done, priority, name }) {
           // FROM PLACEHOLDER TO THE VALUE THAT YOU CAN CHANGE OR NOT
           // I can send ID to my Todo
           // component and then pass it to EditTodoForm.jsx
-          editTodoFormOpen(id, name);
+          editTodoFormOpen(id, name, priority);
         }}
         primary={name}
       />
@@ -48,7 +50,7 @@ export default function TodoItem({ id, done, priority, name }) {
             togglePriority(id, e.target.checked);
           }}
         >
-          <Checkbox
+          {/* <Checkbox
             checked={priority}
             sx={{
               color: "rgb(59 130 246)",
@@ -56,6 +58,11 @@ export default function TodoItem({ id, done, priority, name }) {
                 color: "rgb(59 130 246)",
               },
             }}
+            icon={<StarBorder />}
+            checkedIcon={<Star />}
+          /> */}
+          <CheckboxComponent
+            checkedValue={priority}
             icon={<StarBorder />}
             checkedIcon={<Star />}
           />

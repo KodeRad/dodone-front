@@ -1,6 +1,5 @@
 // TODO: CHECK WHAT FORWARDREF DOES
 import { forwardRef, useContext, useState } from "react";
-// import { createPortal } from "react-dom";
 import ReactDOM from "react-dom";
 import { useForm } from "react-hook-form";
 import Button from "@mui/material/Button";
@@ -13,6 +12,7 @@ import DatePicker from "./DatePicker";
 import { StarBorder, Star } from "@mui/icons-material";
 import { Checkbox } from "@mui/material";
 import { TodoContext } from "./Todo";
+import CheckboxComponent from "./Checkbox";
 
 const Transition = forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -25,6 +25,7 @@ export default function EditTodoForm() {
     patchTodo,
     editedId,
     editedName,
+    editedPriority,
     deleteTodo,
   } = useContext(TodoContext);
   const [time, setTime] = useState("");
@@ -74,8 +75,9 @@ export default function EditTodoForm() {
 
           {/* include validation with required or other standard HTML validation rules */}
           {/* // TODO: EXTRACT IT TO THE SEPARATE COMPONENT (USED ALSO IN TodoForm) */}
+          {/* ONCLICK = CHANGE STATE, UDPATE STATE BY FETCH ??? */}
           <Checkbox
-            // checked={priority}
+            checked={editedPriority}
             {...register("todoPriority")}
             sx={{
               color: "rgb(59 130 246)",
@@ -87,9 +89,43 @@ export default function EditTodoForm() {
             checkedIcon={<Star />}
           />
 
-          <div style={{ zIndex: 4000 }}>
-            <DatePicker setTime={setTime} />
-          </div>
+          {/* @react-refresh:160 Warning: Function components cannot be given refs. Attempts to access this ref will fail. Did you mean to use React.forwardRef()? Check the render method of `TodoForm`. */}
+          {/* <CheckboxComponent
+            {...register("todoPriority")}
+            checked={editedPriority}
+            icon={<StarBorder />}
+            checkedIcon={<Star />}
+          /> */}
+
+          {/* {editedPriority ? (
+            <Checkbox
+              defaultChecked
+              // checked={editedPriority}
+              {...register("todoPriority")}
+              sx={{
+                color: "rgb(59 130 246)",
+                "&.Mui-checked": {
+                  color: "rgb(59 130 246)",
+                },
+              }}
+              icon={<StarBorder />}
+              checkedIcon={<Star />}
+            />
+          ) : (
+            <Checkbox
+              {...register("todoPriority")}
+              sx={{
+                color: "rgb(59 130 246)",
+                "&.Mui-checked": {
+                  color: "rgb(59 130 246)",
+                },
+              }}
+              icon={<StarBorder />}
+              checkedIcon={<Star />}
+            />
+          )} */}
+
+          <DatePicker style={{ zIndex: 4000 }} setTime={setTime} />
 
           {/* errors will return when field validation fails  */}
           {errors.exampleRequired && <span>This field is required</span>}

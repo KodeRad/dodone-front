@@ -11,6 +11,7 @@ import DatePicker from "./DatePicker";
 import { Checkbox } from "@mui/material";
 import { Star, StarBorder } from "@mui/icons-material";
 import { TodoContext } from "./Todo";
+import CheckboxComponent from "./Checkbox";
 
 const Transition = forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -69,6 +70,13 @@ export default function TodoForm() {
               icon={<StarBorder />}
               checkedIcon={<Star />}
             />
+
+            {/* @react-refresh:160 Warning: Function components cannot be given refs. Attempts to access this ref will fail. Did you mean to use React.forwardRef()? Check the render method of `TodoForm`. */}
+            {/* <CheckboxComponent
+              {...register("todoPriority")}
+              icon={<StarBorder />}
+              checkedIcon={<Star />}
+            /> */}
 
             <DatePicker time={time} setTime={setTime} />
 
