@@ -1,5 +1,5 @@
 // TODO: CHECK WHAT FORWARDREF DOES
-import { forwardRef, useState } from "react";
+import { forwardRef, useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
@@ -10,12 +10,14 @@ import Slide from "@mui/material/Slide";
 import DatePicker from "./DatePicker";
 import { Checkbox } from "@mui/material";
 import { Star, StarBorder } from "@mui/icons-material";
+import { TodoContext } from "./Todo";
 
 const Transition = forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function TodoForm({ newTodoOpen, setNewTodoOpen, addTodo }) {
+export default function TodoForm() {
+  const { newTodoOpen, setNewTodoOpen, addTodo } = useContext(TodoContext);
   const [time, setTime] = useState("");
 
   const {
@@ -25,8 +27,6 @@ export default function TodoForm({ newTodoOpen, setNewTodoOpen, addTodo }) {
     reset,
     formState: { errors },
   } = useForm();
-
-  // const onSubmit = () => handleClose;
 
   const handleClose = () => {
     setNewTodoOpen(false);
@@ -38,29 +38,27 @@ export default function TodoForm({ newTodoOpen, setNewTodoOpen, addTodo }) {
         open={newTodoOpen}
         TransitionComponent={Transition}
         keepMounted
-        // onClose={handleClose}
         aria-describedby="alert-dialog-slide-description"
       >
         <DialogTitle>{"New Todo!"}</DialogTitle>
         <DialogContent>
           <form
             onSubmit={handleSubmit((data) => {
-              // onSubmit(data);
-              handleClose();
               addTodo(data.todoName, data.todoPriority, time);
-              // TODO: CLEAR THE INPUT FIELDS
+              handleClose();
+
+              // Cleares input fields
               reset();
             })}
           >
-            {/* register your input into the hook by invoking the "register" function */}
             <input
               {...register("todoName", { required: true })}
               placeholder="Todo's name"
             />
 
+            {/* // TODO: VALIDATION */}
             {/* include validation with required or other standard HTML validation rules */}
             <Checkbox
-              // checked={priority}
               {...register("todoPriority")}
               sx={{
                 color: "rgb(59 130 246)",
@@ -74,6 +72,7 @@ export default function TodoForm({ newTodoOpen, setNewTodoOpen, addTodo }) {
 
             <DatePicker time={time} setTime={setTime} />
 
+            {/* // TODO: SET ERRORS AND DISPLAY THEM ON UI */}
             {/* errors will return when field validation fails  */}
             {errors.exampleRequired && <span>This field is required</span>}
 

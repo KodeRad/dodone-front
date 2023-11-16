@@ -227,12 +227,7 @@ export default function Todo() {
       >
         <TodoList />
 
-        <TodoForm
-          todoFormOpen={todoFormOpen}
-          newTodoOpen={newTodoOpen}
-          setNewTodoOpen={setNewTodoOpen}
-          addTodo={addTodo}
-        />
+        <TodoForm />
         <EditTodoForm
           // TODO: CREATE PORTAL
           editTodoFormOpen={editTodoFormOpen}
