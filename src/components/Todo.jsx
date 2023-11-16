@@ -6,6 +6,7 @@ import Navigation from "./Navigation";
 import EditTodoForm from "./EditTodoForm";
 import CalendarModal from "./CalendarModal";
 import SummaryModal from "./SummaryModal";
+import getTodos from "./APIQueries/getTodos";
 
 // TODO: DELETE THIS SHAJT
 // git access
@@ -24,19 +25,7 @@ export default function Todo() {
 
   // Getting todos from database
   useEffect(() => {
-    async function getTodos() {
-      const response = await fetch("http://localhost:8080/todos", {
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-        },
-      });
-
-      const data = await response.json();
-      setTodos(data);
-    }
-
-    getTodos();
-    // Empty dependency for less API calls
+    getTodos(setTodos);
   }, []);
 
   async function addTodo(name, priority = false, dueDate = null) {
@@ -58,6 +47,7 @@ export default function Todo() {
 
       if (!resp.ok) throw new Error("Failed to add todo");
       const data = await resp.json();
+      // CONSOLE LOG TO BE DELETED
       console.log(data);
       if (resp.ok) {
         setTodos((currentTodos) => {
