@@ -174,12 +174,18 @@ export default function Todo() {
   const todoFormOpen = () => {
     // set it to !open instead of true
     setNewTodoOpen(!newTodoOpen);
+    setCalendarOpen(false);
+    setSummaryOpen(false);
   };
   const handleCalendarOpen = () => {
     setCalendarOpen(!calendarOpen);
+    setNewTodoOpen(false);
+    setSummaryOpen(false);
   };
   const handleSummaryOpen = () => {
     setSummaryOpen(!summaryOpen);
+    setCalendarOpen(false);
+    setNewTodoOpen(false);
   };
 
   // TODO: CHANGE NAME TO HANDLE
