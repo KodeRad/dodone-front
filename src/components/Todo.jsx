@@ -6,7 +6,7 @@ import Navigation from "./Navigation";
 import EditTodoForm from "./EditTodoForm";
 import CalendarModal from "./CalendarModal";
 import SummaryModal from "./SummaryModal";
-import getTodos from "./APIQueries/getTodos";
+import getTodos from "./API/getTodos";
 import DownloadButton from "./ICSButton";
 
 // TODO: DELETE THIS SHAJT
@@ -22,8 +22,11 @@ export default function Todo() {
   const [calendarOpen, setCalendarOpen] = useState(false);
   const [summaryOpen, setSummaryOpen] = useState(false);
   const [editedId, setEditedId] = useState("");
+
   const [editedName, setEditedName] = useState("");
   const [editedPriority, setEditedPriority] = useState(false);
+  const [editedDueDate, setEditedDueDate] = useState("");
+  const [time, setTime] = useState(dayjs(new Date()));
 
   // Getting todos from database
   useEffect(() => {
@@ -40,7 +43,7 @@ export default function Todo() {
         },
         body: JSON.stringify({
           name: name,
-          dueDate: dueDate,
+          dueDate: dayjs(dueDate).format("YYYY-MM-DD HH:mm:ss"),
           priority: priority,
           done: false,
           createdDate: dayjs(new Date()).format("YYYY-MM-DD HH:mm:ss"),
@@ -180,7 +183,8 @@ export default function Todo() {
   };
 
   // TODO: CHANGE NAME TO HANDLE
-  const editTodoFormOpen = (id, name, priority) => {
+  const editTodoFormOpen = (id, name, priority, dueDate) => {
+    setTime(dayjs(dueDate));
     setEditedId(id);
     setEditedName(name);
     setEditedPriority(priority);
@@ -198,6 +202,7 @@ export default function Todo() {
           addTodo,
           calendarOpen,
           deleteTodo,
+          editedDueDate,
           editedId,
           editedName,
           editedPriority,
@@ -216,6 +221,8 @@ export default function Todo() {
           togglePriority,
           toggleTodo,
           todoFormOpen,
+          time,
+          setTime,
         }}
       >
         <TodoList />

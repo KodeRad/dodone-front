@@ -12,14 +12,16 @@ import { Checkbox } from "@mui/material";
 import { Star, StarBorder } from "@mui/icons-material";
 import { TodoContext } from "./Todo";
 import CheckboxComponent from "./Checkbox";
+import dayjs from "dayjs";
 
 const Transition = forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
 export default function TodoForm() {
-  const { newTodoOpen, setNewTodoOpen, addTodo } = useContext(TodoContext);
-  const [time, setTime] = useState("");
+  const { newTodoOpen, setNewTodoOpen, addTodo, time, setTime } =
+    useContext(TodoContext);
+  // const [time, setTime] = useState(dayjs(new Date()));
 
   const {
     register,
@@ -78,7 +80,7 @@ export default function TodoForm() {
               checkedIcon={<Star />}
             /> */}
 
-            <DatePicker time={time} setTime={setTime} />
+            <DatePicker />
 
             {/* // TODO: SET ERRORS AND DISPLAY THEM ON UI */}
             {/* errors will return when field validation fails  */}

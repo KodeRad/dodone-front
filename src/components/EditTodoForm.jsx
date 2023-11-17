@@ -13,6 +13,7 @@ import { StarBorder, Star } from "@mui/icons-material";
 import { Checkbox } from "@mui/material";
 import { TodoContext } from "./Todo";
 import CheckboxComponent from "./Checkbox";
+import dayjs from "dayjs";
 
 const Transition = forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -27,8 +28,10 @@ export default function EditTodoForm() {
     editedName,
     editedPriority,
     deleteTodo,
+    time,
+    setTime,
   } = useContext(TodoContext);
-  const [time, setTime] = useState("");
+  // const [time, setTime] = useState(dayjs(new Date()));
 
   const {
     register,
@@ -121,7 +124,7 @@ export default function EditTodoForm() {
           )} */}
 
           {/* TODO: SHOW THE TIME FOR THE TODO THAT YOU CLICK */}
-          <DatePicker style={{ zIndex: 4000 }} setTime={setTime} />
+          <DatePicker style={{ zIndex: 4000 }} time={time} setTime={setTime} />
 
           {/* errors will return when field validation fails  */}
           {errors.exampleRequired && <span>This field is required</span>}
