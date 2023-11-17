@@ -7,6 +7,7 @@ import EditTodoForm from "./EditTodoForm";
 import CalendarModal from "./CalendarModal";
 import SummaryModal from "./SummaryModal";
 import getTodos from "./APIQueries/getTodos";
+import DownloadButton from "./ICSButton";
 
 // TODO: DELETE THIS SHAJT
 // git access
@@ -222,6 +223,7 @@ export default function Todo() {
         <EditTodoForm />
         <CalendarModal />
         <SummaryModal />
+        <DownloadButton todos={todos} />
         <Navigation />
       </TodoContext.Provider>
     </>

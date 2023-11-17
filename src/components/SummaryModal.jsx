@@ -26,14 +26,14 @@ export default function SummaryModal() {
     editTodoFormOpen,
   } = useContext(TodoContext);
 
-  const totalTodos = todos.length === 0 ? 1 : todos.length;
+  const totalTodos = todos.length;
   const [doneTodo, setDoneTodo] = useState(0);
 
   const leftTodos = todos.filter((todo) => todo.done !== true);
   const doneTodos = todos.filter((todo) => todo.done === true);
 
   useEffect(() => {
-    setDoneTodo(doneTodos.length === 0 ? 1 : doneTodos.length);
+    setDoneTodo(doneTodos.length);
   }, [todos]);
 
   const handleClose = () => {
