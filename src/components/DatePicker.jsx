@@ -8,27 +8,19 @@ import { useContext } from "react";
 import { TodoContext } from "./Todo";
 
 export default function DatePicker() {
-  // WHAT STATE WILL TELL ME? EDITOPEN FOR EG
-  const { editTodoOpen, editedDueDate, time, setTime } =
-    useContext(TodoContext);
+  const { time, setTime } = useContext(TodoContext);
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="pl">
       <DemoContainer components={["DateTimePicker"]}>
-        <DemoItem label="Mobile variant">
+        <DemoItem label="Due Date">
           <DateTimePicker
             disablePast
             onChange={(e) => {
               // TODO: GET RID OF SECONDS FROM FORMAT BOTH IN FE AND BE
-              const formattedDate = dayjs(e).format("YYYY-MM-DD HH:mm:ss");
-              // setTime(formattedDate);
+              // const formattedDate = dayjs(e).format("YYYY-MM-DD HH:mm:ss");
+              // // setTime(formattedDate);
               setTime(e);
             }}
-            // GET THE VALUE FROM THE EDITED TASK
-            // IF EDIT = DEFAULT VALUE = EDITEDTASK TIMEVALUE
-            // IF NEW TASK = DEFAULT VALUE NEW DATE
-            // get the state so I can check it?
-            // how to grab this todo.dueDate
-            // defaultValue={editTodoOpen ? editedDueDate : dayjs(new Date())}
             value={time}
           />
         </DemoItem>

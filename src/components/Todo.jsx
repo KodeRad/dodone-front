@@ -28,10 +28,14 @@ export default function Todo() {
   const [editedDueDate, setEditedDueDate] = useState("");
   const [time, setTime] = useState(dayjs(new Date()));
 
+  // TODO: CUSTOM HOOK WITH ALL THE LOGIC THAT RETURNS WHATEVER YOU NEED (AS AN OBJECT) EXAMPLES: REACT USE LIBRARY
   // Getting todos from database
   useEffect(() => {
     getTodos(setTodos);
   }, []);
+
+  // example custom hook
+  // const dupa = useDupa(id)
 
   async function addTodo(name, priority = false, dueDate = null) {
     try {
@@ -163,6 +167,11 @@ export default function Todo() {
     });
   }
 
+  // TODO: ENUM AS A REGULAR JS OBJECT
+  const types = {
+    DUPA: "DUPA",
+  };
+
   // TODO: REFACTOR TO ONE FUNCTION
   // TODO: CHANGE NAME TO HANDLE
   const todoFormOpen = () => {
@@ -171,7 +180,7 @@ export default function Todo() {
     setCalendarOpen(false);
     setSummaryOpen(false);
   };
-  const handleCalendarOpen = () => {
+  const handleCalendarOpen = (type) => {
     setCalendarOpen(!calendarOpen);
     setNewTodoOpen(false);
     setSummaryOpen(false);
@@ -186,7 +195,7 @@ export default function Todo() {
   const editTodoFormOpen = (id, name, priority, dueDate) => {
     setTime(dayjs(dueDate));
     setEditedId(id);
-    setEditedName(name);
+    // setEditedName(name);
     setEditedPriority(priority);
     setEditNewTodoOpen(true);
   };
@@ -223,6 +232,8 @@ export default function Todo() {
           todoFormOpen,
           time,
           setTime,
+          setEditedName,
+          setEditedPriority,
         }}
       >
         <TodoList />

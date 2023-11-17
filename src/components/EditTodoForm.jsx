@@ -26,10 +26,12 @@ export default function EditTodoForm() {
     patchTodo,
     editedId,
     editedName,
-    editedPriority,
     deleteTodo,
+    editedPriority,
     time,
     setTime,
+    setEditedName,
+    setEditedPriority,
   } = useContext(TodoContext);
   // const [time, setTime] = useState(dayjs(new Date()));
 
@@ -60,7 +62,6 @@ export default function EditTodoForm() {
           onSubmit={handleSubmit((data) => {
             // TODO: IF THERE ARE NO INPUTS, OR SHOULD I MAKE THOSE FILEDS POPULATED BY THE PREVIOUS VALUES?
             patchTodo(editedId, data.todoName, data.todoPriority, time);
-            reset();
           })}
         >
           {/* register your input into the hook by invoking the "register" function */}
@@ -69,13 +70,20 @@ export default function EditTodoForm() {
           <input
             {...register("todoName", { required: true })}
             // getById and take a name from it
-            placeholder={editedName}
+            value={editedName}
+            onChange={(e) => {
+              setEditedName(e.target.value);
+            }}
           />
 
           {/* include validation with required or other standard HTML validation rules */}
           {/* // TODO: EXTRACT IT TO THE SEPARATE COMPONENT (USED ALSO IN TodoForm) */}
           {/* ONCLICK = CHANGE STATE, UDPATE STATE BY FETCH ??? */}
           <Checkbox
+            checked={editedPriority}
+            onClick={() => {
+              setEditedPriority(!editedPriority);
+            }}
             {...register("todoPriority")}
             sx={{
               color: "rgb(59 130 246)",
