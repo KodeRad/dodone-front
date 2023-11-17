@@ -31,7 +31,6 @@ function CircularProgressWithLabel(props) {
   );
 }
 
-// TODO: FIX THE 0 PROGRESS CIRCLE
 export default function ProgressCircle({ totalTodos, doneTodo }) {
   const progress = (doneTodo / totalTodos) * 100;
   return <CircularProgressWithLabel value={progress} />;

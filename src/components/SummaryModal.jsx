@@ -66,17 +66,7 @@ export default function SummaryModal() {
               }}
             >
               {leftTodos.map((todo) => {
-                return (
-                  <TodoItem
-                    {...todo}
-                    // TODO: GET RID OF
-                    toggleTodo={toggleTodo}
-                    deleteTodo={deleteTodo}
-                    togglePriority={togglePriority}
-                    handleEditForm={handleEditForm}
-                    key={todo.id}
-                  />
-                );
+                return <TodoItem {...todo} key={todo.id} />;
               })}
             </List>
           )}
@@ -86,7 +76,6 @@ export default function SummaryModal() {
           <ProgressCircle totalTodos={totalTodos} doneTodo={doneTodo} />
 
           <DialogTitle>{"Tasks done: "}</DialogTitle>
-          {/* TODOS.FILTER(DONE)  */}
           <List
             sx={{
               width: "100%",
@@ -94,20 +83,10 @@ export default function SummaryModal() {
               bgcolor: "background.paper",
             }}
           >
-            {/* CREATE A NICER ADNOTATION IF NO TODOS */}
+            {/* // TODO: CREATE A NICER ADNOTATION IF NO TODOS */}
             {todos.length === 0 && "EVERYTHING IS DONE, GOOD JOB!"}
             {doneTodos.map((todo) => {
-              return (
-                <TodoItem
-                  {...todo}
-                  // TODO: GET RID OF
-                  toggleTodo={toggleTodo}
-                  deleteTodo={deleteTodo}
-                  togglePriority={togglePriority}
-                  handleEditForm={handleEditForm}
-                  key={todo.id}
-                />
-              );
+              return <TodoItem {...todo} key={todo.id} />;
             })}
           </List>
 
@@ -119,3 +98,9 @@ export default function SummaryModal() {
     </>
   );
 }
+
+// TODO: MUI: A component is changing the controlled checked state of SwitchBase to be uncontrolled.
+// Elements should not switch from uncontrolled to controlled (or vice versa).
+// Decide between using a controlled or uncontrolled SwitchBase element for the lifetime of the component.
+// The nature of the state is determined during the first render. It's considered controlled if the value is not `undefined`.
+// OCCURES WHILE SETTING DONE ON AND OFF IN SUMARRY VIEW
