@@ -38,8 +38,6 @@ export default function EditTodoForm() {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = () => handleClose;
-
   const handleClose = () => {
     setEditNewTodoOpen(false);
   };
@@ -57,9 +55,7 @@ export default function EditTodoForm() {
       <DialogContent style={{ zIndex: 3000 }}>
         <form
           onSubmit={handleSubmit((data) => {
-            onSubmit(data);
-            // IF THERE ARE NO INPUTS, OR SHOULD I MAKE THOSE FILEDS POPULATED BY THE PREVIOUS VALUES?
-            // I need to pass ID, but from where? (202)
+            // TODO: IF THERE ARE NO INPUTS, OR SHOULD I MAKE THOSE FILEDS POPULATED BY THE PREVIOUS VALUES?
             patchTodo(editedId, data.todoName, data.todoPriority, time);
             reset();
           })}
@@ -77,7 +73,6 @@ export default function EditTodoForm() {
           {/* // TODO: EXTRACT IT TO THE SEPARATE COMPONENT (USED ALSO IN TodoForm) */}
           {/* ONCLICK = CHANGE STATE, UDPATE STATE BY FETCH ??? */}
           <Checkbox
-            checked={editedPriority}
             {...register("todoPriority")}
             sx={{
               color: "rgb(59 130 246)",
