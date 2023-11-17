@@ -1,6 +1,5 @@
-// TODO: CHECK WHAT FORWARDREF DOES
-import { forwardRef, useContext, useState } from "react";
-import ReactDOM from "react-dom";
+import { forwardRef, useContext } from "react";
+import { createPortal } from "react-dom";
 import { useForm } from "react-hook-form";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
@@ -13,7 +12,6 @@ import { StarBorder, Star } from "@mui/icons-material";
 import { Checkbox } from "@mui/material";
 import { TodoContext } from "./Todo";
 import CheckboxComponent from "./Checkbox";
-import dayjs from "dayjs";
 
 const Transition = forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -33,7 +31,6 @@ export default function EditTodoForm() {
     setEditedName,
     setEditedPriority,
   } = useContext(TodoContext);
-  // const [time, setTime] = useState(dayjs(new Date()));
 
   const {
     register,
@@ -47,7 +44,7 @@ export default function EditTodoForm() {
     setEditNewTodoOpen(false);
   };
 
-  return ReactDOM.createPortal(
+  return createPortal(
     <Dialog
       style={{ zIndex: 1000 }}
       open={editTodoOpen}
@@ -60,7 +57,6 @@ export default function EditTodoForm() {
       <DialogContent style={{ zIndex: 3000 }}>
         <form
           onSubmit={handleSubmit((data) => {
-            // TODO: IF THERE ARE NO INPUTS, OR SHOULD I MAKE THOSE FILEDS POPULATED BY THE PREVIOUS VALUES?
             patchTodo(editedId, data.todoName, data.todoPriority, time);
           })}
         >
@@ -77,7 +73,7 @@ export default function EditTodoForm() {
           />
 
           {/* include validation with required or other standard HTML validation rules */}
-          {/* // TODO: EXTRACT IT TO THE SEPARATE COMPONENT (USED ALSO IN TodoForm) */}
+          {/* // TODO: EXTRACT IT TO THE SEPARATE COMPONENT (USED ALSO IN NewTodoForm) */}
           {/* ONCLICK = CHANGE STATE, UDPATE STATE BY FETCH ??? */}
           <Checkbox
             checked={editedPriority}
@@ -95,7 +91,7 @@ export default function EditTodoForm() {
             checkedIcon={<Star />}
           />
 
-          {/* @react-refresh:160 Warning: Function components cannot be given refs. Attempts to access this ref will fail. Did you mean to use React.forwardRef()? Check the render method of `TodoForm`. */}
+          {/* @react-refresh:160 Warning: Function components cannot be given refs. Attempts to access this ref will fail. Did you mean to use React.forwardRef()? Check the render method of `NewTodoForm`. */}
           {/* <CheckboxComponent
             {...register("todoPriority")}
             checked={editedPriority}

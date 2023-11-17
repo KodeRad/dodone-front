@@ -10,7 +10,7 @@ import Paper from "@mui/material/Paper";
 import { TodoContext } from "./Todo";
 
 export default function Navigation() {
-  const { todoFormOpen, handleCalendarOpen, handleSummaryOpen } =
+  const { newTodoFormOpen, handleCalendarOpen, handleSummaryOpen } =
     useContext(TodoContext);
   const [value, setValue] = useState(0);
   const ref = useRef(null);
@@ -41,7 +41,7 @@ export default function Navigation() {
             icon={<Update />}
           />
           <BottomNavigationAction
-            onClick={todoFormOpen}
+            onClick={newTodoFormOpen}
             label="New Todo"
             icon={<NewTodo />}
           />

@@ -10,7 +10,7 @@ import { TodoContext } from "./Todo";
 import CheckboxComponent from "./Checkbox";
 
 export default function TodoItem({ id, done, priority, name, dueDate }) {
-  const { toggleTodo, togglePriority, editTodoFormOpen } =
+  const { toggleTodo, togglePriority, handleEditForm } =
     useContext(TodoContext);
 
   return (
@@ -39,7 +39,7 @@ export default function TodoItem({ id, done, priority, name, dueDate }) {
           // FROM PLACEHOLDER TO THE VALUE THAT YOU CAN CHANGE OR NOT
           // I can send ID to my Todo
           // component and then pass it to EditTodoForm.jsx
-          editTodoFormOpen(id, name, priority, dueDate);
+          handleEditForm(id, name, priority, dueDate);
         }}
         primary={name}
       />

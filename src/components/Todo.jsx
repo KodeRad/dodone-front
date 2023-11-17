@@ -1,6 +1,6 @@
 import dayjs from "dayjs";
 import { useEffect, useState, createContext } from "react";
-import TodoForm from "./TodoForm";
+import NewTodoForm from "./NewTodoForm";
 import TodoList from "./TodoList";
 import Navigation from "./Navigation";
 import EditTodoForm from "./EditTodoForm";
@@ -174,7 +174,7 @@ export default function Todo() {
 
   // TODO: REFACTOR TO ONE FUNCTION
   // TODO: CHANGE NAME TO HANDLE
-  const todoFormOpen = () => {
+  const NewTodoFormOpen = () => {
     // set it to !open instead of true
     setNewTodoOpen(!newTodoOpen);
     setCalendarOpen(false);
@@ -192,10 +192,11 @@ export default function Todo() {
   };
 
   // TODO: CHANGE NAME TO HANDLE
-  const editTodoFormOpen = (id, name, priority, dueDate) => {
+  // TODO: PASS IT AS AN OBJECT, CHANGE NAME
+  const handleEditForm = (id, name, priority, dueDate) => {
     setTime(dayjs(dueDate));
     setEditedId(id);
-    // setEditedName(name);
+    setEditedName(name);
     setEditedPriority(priority);
     setEditNewTodoOpen(true);
   };
@@ -215,7 +216,7 @@ export default function Todo() {
           editedId,
           editedName,
           editedPriority,
-          editTodoFormOpen,
+          handleEditForm,
           editTodoOpen,
           handleCalendarOpen,
           handleSummaryOpen,
@@ -229,7 +230,7 @@ export default function Todo() {
           todos,
           togglePriority,
           toggleTodo,
-          todoFormOpen,
+          NewTodoFormOpen,
           time,
           setTime,
           setEditedName,
@@ -237,7 +238,7 @@ export default function Todo() {
         }}
       >
         <TodoList />
-        <TodoForm />
+        <NewTodoForm />
         <EditTodoForm />
         <CalendarModal />
         <SummaryModal />

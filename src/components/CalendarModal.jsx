@@ -1,12 +1,10 @@
-// TODO: CHECK WHAT FORWARDREF DOES
-import { forwardRef, useContext, useState } from "react";
+import { forwardRef, useContext } from "react";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import Slide from "@mui/material/Slide";
-import DatePicker from "./DatePicker";
 import CalendarList from "./CalendarList";
 import { TodoContext } from "./Todo";
 

@@ -2,7 +2,7 @@ import { Button, Box } from "@mui/material";
 import dayjs from "dayjs";
 import { createEvents } from "ics";
 
-// TODO: REFACTOR
+// TODO: REFACTOR TO GET RID OF PUSHING INTO EVENTS ARRAY (MUTATING)
 const getEvents = (todos) => {
   const events = [];
   todos

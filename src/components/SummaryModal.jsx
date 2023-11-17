@@ -23,7 +23,7 @@ export default function SummaryModal() {
     toggleTodo,
     deleteTodo,
     togglePriority,
-    editTodoFormOpen,
+    handleEditForm,
   } = useContext(TodoContext);
 
   const totalTodos = todos.length;
@@ -69,11 +69,11 @@ export default function SummaryModal() {
                 return (
                   <TodoItem
                     {...todo}
+                    // TODO: GET RID OF
                     toggleTodo={toggleTodo}
                     deleteTodo={deleteTodo}
                     togglePriority={togglePriority}
-                    // TODO: THE EDIT MODAL SHOWS UNDERNEETH
-                    editTodoFormOpen={editTodoFormOpen}
+                    handleEditForm={handleEditForm}
                     key={todo.id}
                   />
                 );
@@ -100,10 +100,11 @@ export default function SummaryModal() {
               return (
                 <TodoItem
                   {...todo}
+                  // TODO: GET RID OF
                   toggleTodo={toggleTodo}
                   deleteTodo={deleteTodo}
                   togglePriority={togglePriority}
-                  editTodoFormOpen={editTodoFormOpen}
+                  handleEditForm={handleEditForm}
                   key={todo.id}
                 />
               );

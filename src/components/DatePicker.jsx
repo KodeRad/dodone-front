@@ -18,7 +18,6 @@ export default function DatePicker() {
             onChange={(e) => {
               // TODO: GET RID OF SECONDS FROM FORMAT BOTH IN FE AND BE
               // const formattedDate = dayjs(e).format("YYYY-MM-DD HH:mm:ss");
-              // // setTime(formattedDate);
               setTime(e);
             }}
             value={time}

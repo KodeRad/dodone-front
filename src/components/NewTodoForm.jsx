@@ -1,5 +1,5 @@
 // TODO: CHECK WHAT FORWARDREF DOES
-import { forwardRef, useContext, useState } from "react";
+import { forwardRef, useContext } from "react";
 import { useForm } from "react-hook-form";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
@@ -12,13 +12,12 @@ import { Checkbox } from "@mui/material";
 import { Star, StarBorder } from "@mui/icons-material";
 import { TodoContext } from "./Todo";
 import CheckboxComponent from "./Checkbox";
-import dayjs from "dayjs";
 
 const Transition = forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function TodoForm() {
+export default function NewTodoForm() {
   const { newTodoOpen, setNewTodoOpen, addTodo, time, setTime } =
     useContext(TodoContext);
   // const [time, setTime] = useState(dayjs(new Date()));
@@ -73,7 +72,7 @@ export default function TodoForm() {
               checkedIcon={<Star />}
             />
 
-            {/* @react-refresh:160 Warning: Function components cannot be given refs. Attempts to access this ref will fail. Did you mean to use React.forwardRef()? Check the render method of `TodoForm`. */}
+            {/* @react-refresh:160 Warning: Function components cannot be given refs. Attempts to access this ref will fail. Did you mean to use React.forwardRef()? Check the render method of `NewTodoForm`. */}
             {/* <CheckboxComponent
               {...register("todoPriority")}
               icon={<StarBorder />}
