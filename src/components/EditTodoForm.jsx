@@ -62,10 +62,8 @@ export default function EditTodoForm() {
         >
           {/* register your input into the hook by invoking the "register" function */}
 
-          {/* TODO: ADD A TODOS NAME IN EDIT FORM */}
           <input
             {...register("todoName", { required: true })}
-            // TODO: IF I WON'T CHANGE NAME IT WILL USE A PREVIOUS STATE TO REGISTER INSTEAD OF THE VALUE EDITEDNAME
             value={editedName}
             onChange={(e) => {
               setEditedName(e.target.value);

@@ -22,7 +22,7 @@ export default function TodoItem({ id, done, priority, name, dueDate }) {
           toggleTodo(id, e.target.checked);
         }}
       >
-        {/* // TODO: CHECKBOX AS A SEPARATE COMPONENT WITH CHILDREN PROPS */}
+        {/* // REFACTOR: CHECKBOX AS A SEPARATE COMPONENT WITH CHILDREN PROPS */}
         <CheckboxComponent checkedValue={done} />
         {/* <Checkbox
           checked={done}
@@ -35,11 +35,8 @@ export default function TodoItem({ id, done, priority, name, dueDate }) {
         /> */}
       </IconButton>
       <ListItemText
+        // REFACTOR: I am sending info about the task I am editing to parent component
         onClick={() => {
-          // TODO: CHECK WHERE THE NAME GOES AND CHANGE
-          // FROM PLACEHOLDER TO THE VALUE THAT YOU CAN CHANGE OR NOT
-          // I can send ID to my Todo
-          // component and then pass it to EditTodoForm.jsx
           handleEditForm(id, name, priority, dueDate);
         }}
         primary={name}

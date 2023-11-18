@@ -9,10 +9,6 @@ import SummaryModal from "./SummaryModal";
 import getTodos from "./API/getTodos";
 import DownloadButton from "./ICSButton";
 
-// TODO: DELETE THIS SHAJT
-// git access
-//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
-
 export const TodoContext = createContext();
 
 export default function Todo() {
@@ -191,9 +187,9 @@ export default function Todo() {
     setNewTodoOpen(false);
   };
 
-  // TODO: CHANGE NAME TO HANDLE
-  // TODO: PASS IT AS AN OBJECT, CHANGE NAME
+  // REFACTOR: PASS IT AS AN OBJECT, CHANGE NAME
   const handleEditForm = (id, name, priority, dueDate) => {
+    // REFACTOR: setEditedObject and then use it for less code
     setTime(dayjs(dueDate));
     setEditedId(id);
     setEditedName(name);

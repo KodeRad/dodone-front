@@ -1,4 +1,4 @@
-// TODO: CHECK WHAT FORWARDREF DOES
+// LEARN: CHECK WHAT FORWARDREF DOES
 import { forwardRef, useContext, useEffect, useState } from "react";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
@@ -54,29 +54,12 @@ export default function SummaryModal() {
       >
         <DialogTitle>{"Summary view!"}</DialogTitle>
         <DialogContent>
-          <DialogTitle>{"Tasks left to be done:"}</DialogTitle>
-          {leftTodos.length === 0 ? (
-            "EVERYTHING IS DONE, GOOD JOB!"
-          ) : (
-            <List
-              sx={{
-                width: "100%",
-                maxWidth: 360,
-                bgcolor: "background.paper",
-              }}
-            >
-              {leftTodos.map((todo) => {
-                // REFACTOR: why if I choose to pass a whole item, I got undefined
-                return <TodoItem todo={todo} {...todo} key={todo.id} />;
-              })}
-            </List>
-          )}
+          <DialogTitle>
+            {leftTodos.length === 0
+              ? "EVERYTHING IS DONE, GOOD JOB!"
+              : "Tasks left to be done:"}
+          </DialogTitle>
 
-          {/* PROGRESS CIRCLE */}
-          <DialogTitle>{"PROGRESS CIRCLE: "}</DialogTitle>
-          <ProgressCircle totalTodos={totalTodos} doneTodo={doneTodo} />
-
-          <DialogTitle>{"Tasks done: "}</DialogTitle>
           <List
             sx={{
               width: "100%",
@@ -84,8 +67,26 @@ export default function SummaryModal() {
               bgcolor: "background.paper",
             }}
           >
-            {/* // TODO: CREATE A NICER ADNOTATION IF NO TODOS */}
-            {todos.length === 0 && "EVERYTHING IS DONE, GOOD JOB!"}
+            {leftTodos.map((todo) => {
+              // REFACTOR: why if I choose to pass a whole item, I got undefined
+              return <TodoItem todo={todo} {...todo} key={todo.id} />;
+            })}
+          </List>
+
+          {/* PROGRESS CIRCLE */}
+          <DialogTitle>{"PROGRESS CIRCLE: "}</DialogTitle>
+          <ProgressCircle totalTodos={totalTodos} doneTodo={doneTodo} />
+
+          <DialogTitle>
+            {doneTodos.length === 0 ? "GET TO WORK MAN!" : "Tasks done: "}
+          </DialogTitle>
+          <List
+            sx={{
+              width: "100%",
+              maxWidth: 360,
+              bgcolor: "background.paper",
+            }}
+          >
             {doneTodos.map((todo) => {
               return <TodoItem todo={todo} {...todo} key={todo.id} />;
             })}
