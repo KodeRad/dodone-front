@@ -66,7 +66,8 @@ export default function SummaryModal() {
               }}
             >
               {leftTodos.map((todo) => {
-                return <TodoItem {...todo} key={todo.id} />;
+                // REFACTOR: why if I choose to pass a whole item, I got undefined
+                return <TodoItem todo={todo} {...todo} key={todo.id} />;
               })}
             </List>
           )}
@@ -86,7 +87,7 @@ export default function SummaryModal() {
             {/* // TODO: CREATE A NICER ADNOTATION IF NO TODOS */}
             {todos.length === 0 && "EVERYTHING IS DONE, GOOD JOB!"}
             {doneTodos.map((todo) => {
-              return <TodoItem {...todo} key={todo.id} />;
+              return <TodoItem todo={todo} {...todo} key={todo.id} />;
             })}
           </List>
 

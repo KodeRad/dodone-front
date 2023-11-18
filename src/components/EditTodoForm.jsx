@@ -1,4 +1,4 @@
-import { forwardRef, useContext } from "react";
+import { forwardRef, useContext, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { useForm } from "react-hook-form";
 import Button from "@mui/material/Button";
@@ -20,7 +20,7 @@ const Transition = forwardRef(function Transition(props, ref) {
 export default function EditTodoForm() {
   const {
     editTodoOpen,
-    setEditNewTodoOpen,
+    setEditTodoOpen,
     patchTodo,
     editedId,
     editedName,
@@ -41,7 +41,7 @@ export default function EditTodoForm() {
   } = useForm();
 
   const handleClose = () => {
-    setEditNewTodoOpen(false);
+    setEditTodoOpen(false);
   };
 
   return createPortal(
@@ -57,7 +57,7 @@ export default function EditTodoForm() {
       <DialogContent style={{ zIndex: 3000 }}>
         <form
           onSubmit={handleSubmit((data) => {
-            patchTodo(editedId, data.todoName, data.todoPriority, time);
+            patchTodo(editedId, editedName, data.todoPriority, time);
           })}
         >
           {/* register your input into the hook by invoking the "register" function */}
@@ -65,7 +65,7 @@ export default function EditTodoForm() {
           {/* TODO: ADD A TODOS NAME IN EDIT FORM */}
           <input
             {...register("todoName", { required: true })}
-            // getById and take a name from it
+            // TODO: IF I WON'T CHANGE NAME IT WILL USE A PREVIOUS STATE TO REGISTER INSTEAD OF THE VALUE EDITEDNAME
             value={editedName}
             onChange={(e) => {
               setEditedName(e.target.value);

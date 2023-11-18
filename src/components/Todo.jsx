@@ -18,14 +18,14 @@ export const TodoContext = createContext();
 export default function Todo() {
   const [todos, setTodos] = useState([]);
   const [newTodoOpen, setNewTodoOpen] = useState(false);
-  const [editTodoOpen, setEditNewTodoOpen] = useState(false);
+  const [editTodoOpen, setEditTodoOpen] = useState(false);
   const [calendarOpen, setCalendarOpen] = useState(false);
   const [summaryOpen, setSummaryOpen] = useState(false);
   const [editedId, setEditedId] = useState("");
 
   const [editedName, setEditedName] = useState("");
   const [editedPriority, setEditedPriority] = useState(false);
-  const [editedDueDate, setEditedDueDate] = useState("");
+  // const [editedDueDate, setEditedDueDate] = useState("");
   const [time, setTime] = useState(dayjs(new Date()));
 
   // TODO: CUSTOM HOOK WITH ALL THE LOGIC THAT RETURNS WHATEVER YOU NEED (AS AN OBJECT) EXAMPLES: REACT USE LIBRARY
@@ -174,7 +174,7 @@ export default function Todo() {
 
   // TODO: REFACTOR TO ONE FUNCTION
   // TODO: CHANGE NAME TO HANDLE
-  const NewTodoFormOpen = () => {
+  const newTodoFormOpen = () => {
     // set it to !open instead of true
     setNewTodoOpen(!newTodoOpen);
     setCalendarOpen(false);
@@ -198,7 +198,7 @@ export default function Todo() {
     setEditedId(id);
     setEditedName(name);
     setEditedPriority(priority);
-    setEditNewTodoOpen(true);
+    setEditTodoOpen(true);
   };
 
   return (
@@ -212,7 +212,7 @@ export default function Todo() {
           addTodo,
           calendarOpen,
           deleteTodo,
-          editedDueDate,
+          // editedDueDate,
           editedId,
           editedName,
           editedPriority,
@@ -223,14 +223,14 @@ export default function Todo() {
           newTodoOpen,
           patchTodo,
           setCalendarOpen,
-          setEditNewTodoOpen,
+          setEditTodoOpen,
           setNewTodoOpen,
           setSummaryOpen,
           summaryOpen,
           todos,
           togglePriority,
           toggleTodo,
-          NewTodoFormOpen,
+          newTodoFormOpen,
           time,
           setTime,
           setEditedName,

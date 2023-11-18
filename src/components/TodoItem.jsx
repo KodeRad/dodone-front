@@ -13,6 +13,7 @@ export default function TodoItem({ id, done, priority, name, dueDate }) {
   const { toggleTodo, togglePriority, handleEditForm } =
     useContext(TodoContext);
 
+  // console.log(todo);
   return (
     <ListItem key={id}>
       <IconButton
