@@ -8,6 +8,7 @@ import CalendarModal from "./CalendarModal";
 import SummaryModal from "./SummaryModal";
 import getTodos from "./API/getTodos";
 import DownloadButton from "./ICSButton";
+import LoginModal from "./LoginModal";
 
 export const TodoContext = createContext();
 
@@ -19,6 +20,7 @@ export default function Todo() {
   const [summaryOpen, setSummaryOpen] = useState(false);
   const [editedId, setEditedId] = useState("");
   const [priority, setPriority] = useState(false);
+  const [loginOpen, setLoginOpen] = useState(true);
 
   const [editedName, setEditedName] = useState("");
   const [editedPriority, setEditedPriority] = useState(false);
@@ -236,8 +238,11 @@ export default function Todo() {
           setEditedPriority,
           priority,
           setPriority,
+          loginOpen,
+          setLoginOpen,
         }}
       >
+        <LoginModal />
         <TodoList />
         <NewTodoForm />
         <EditTodoForm />
