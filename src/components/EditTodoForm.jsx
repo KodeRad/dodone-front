@@ -12,6 +12,7 @@ import { StarBorder, Star } from "@mui/icons-material";
 import { Checkbox } from "@mui/material";
 import { TodoContext } from "./Todo";
 import CheckboxComponent from "./Checkbox";
+import dayjs from "dayjs";
 
 const Transition = forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -57,7 +58,12 @@ export default function EditTodoForm() {
       <DialogContent style={{ zIndex: 3000 }}>
         <form
           onSubmit={handleSubmit((data) => {
-            patchTodo(editedId, editedName, data.todoPriority, time);
+            patchTodo(
+              editedId,
+              editedName,
+              editedPriority,
+              dayjs(time).format("YYYY-MM-DD HH:mm:ss")
+            );
           })}
         >
           {/* register your input into the hook by invoking the "register" function */}
@@ -73,6 +79,7 @@ export default function EditTodoForm() {
           {/* include validation with required or other standard HTML validation rules */}
           {/* // TODO: EXTRACT IT TO THE SEPARATE COMPONENT (USED ALSO IN NewTodoForm) */}
           {/* ONCLICK = CHANGE STATE, UDPATE STATE BY FETCH ??? */}
+          {/*  // REFACTOR: AT FIRST RENDER MY STATE IS EMPTY FOR CHANGING THE PRIORITY OF THE TASK */}
           <Checkbox
             checked={editedPriority}
             onClick={() => {
@@ -91,39 +98,28 @@ export default function EditTodoForm() {
 
           {/* @react-refresh:160 Warning: Function components cannot be given refs. Attempts to access this ref will fail. Did you mean to use React.forwardRef()? Check the render method of `NewTodoForm`. */}
           {/* <CheckboxComponent
-            {...register("todoPriority")}
             checked={editedPriority}
+            {...register("todoPriority")}
             icon={<StarBorder />}
             checkedIcon={<Star />}
           /> */}
 
-          {/* {editedPriority ? (
-            <Checkbox
-              defaultChecked
-              // checked={editedPriority}
-              {...register("todoPriority")}
-              sx={{
+          {/* <Checkbox
+            value={editedPriority}
+            onClick={() => {
+              setEditedPriority(!editedPriority);
+            }}
+            // checked={editedPriority}
+            {...register("todoPriority")}
+            sx={{
+              color: "rgb(59 130 246)",
+              "&.Mui-checked": {
                 color: "rgb(59 130 246)",
-                "&.Mui-checked": {
-                  color: "rgb(59 130 246)",
-                },
-              }}
-              icon={<StarBorder />}
-              checkedIcon={<Star />}
-            />
-          ) : (
-            <Checkbox
-              {...register("todoPriority")}
-              sx={{
-                color: "rgb(59 130 246)",
-                "&.Mui-checked": {
-                  color: "rgb(59 130 246)",
-                },
-              }}
-              icon={<StarBorder />}
-              checkedIcon={<Star />}
-            />
-          )} */}
+              },
+            }}
+            icon={<StarBorder />}
+            checkedIcon={<Star />}
+          /> */}
 
           {/* TODO: SHOW THE TIME FOR THE TODO THAT YOU CLICK */}
           <DatePicker style={{ zIndex: 4000 }} time={time} setTime={setTime} />

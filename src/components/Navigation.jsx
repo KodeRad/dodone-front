@@ -24,7 +24,7 @@ export default function Navigation() {
           bottom: 0,
           left: 0,
           right: 0,
-          zIndex: "tooltip",
+          // zIndex: "tooltip",
         }}
         elevation={3}
       >

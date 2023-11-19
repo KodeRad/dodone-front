@@ -18,6 +18,7 @@ export default function Todo() {
   const [calendarOpen, setCalendarOpen] = useState(false);
   const [summaryOpen, setSummaryOpen] = useState(false);
   const [editedId, setEditedId] = useState("");
+  const [priority, setPriority] = useState(false);
 
   const [editedName, setEditedName] = useState("");
   const [editedPriority, setEditedPriority] = useState(false);
@@ -175,6 +176,8 @@ export default function Todo() {
     setNewTodoOpen(!newTodoOpen);
     setCalendarOpen(false);
     setSummaryOpen(false);
+    setTime(dayjs(new Date()));
+    setPriority(false);
   };
   const handleCalendarOpen = (type) => {
     setCalendarOpen(!calendarOpen);
@@ -231,6 +234,8 @@ export default function Todo() {
           setTime,
           setEditedName,
           setEditedPriority,
+          priority,
+          setPriority,
         }}
       >
         <TodoList />

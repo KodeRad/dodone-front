@@ -1,6 +1,6 @@
-// REFACTOR: NEWTODOFORM AND EDITTODOFORM CAN BE ONE COMPONENT?
+// REFACTOR: NEWTODOFORM AND EDITTODOFORM CAN BE ONE?
 
-import { forwardRef, useContext } from "react";
+import { forwardRef, useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
@@ -13,15 +13,17 @@ import { Checkbox } from "@mui/material";
 import { Star, StarBorder } from "@mui/icons-material";
 import { TodoContext } from "./Todo";
 import CheckboxComponent from "./Checkbox";
+import dayjs from "dayjs";
 
 const Transition = forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
 export default function NewTodoForm() {
-  const { newTodoOpen, setNewTodoOpen, addTodo, time, setTime } =
+  const { newTodoOpen, setNewTodoOpen, addTodo, time, priority, setPriority } =
     useContext(TodoContext);
-  // const [time, setTime] = useState(dayjs(new Date()));
+
+  const [todoPriority, setTodoPriority] = useState(false);
 
   const {
     register,
@@ -29,7 +31,9 @@ export default function NewTodoForm() {
     watch,
     reset,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    // defaultValues: { todoPriority: false },
+  });
 
   const handleClose = () => {
     setNewTodoOpen(false);
@@ -47,6 +51,7 @@ export default function NewTodoForm() {
         <DialogContent>
           <form
             onSubmit={handleSubmit((data) => {
+              console.log(data);
               addTodo(data.todoName, data.todoPriority, time);
               handleClose();
 
@@ -61,6 +66,7 @@ export default function NewTodoForm() {
 
             {/* // TODO: VALIDATION */}
             {/* include validation with required or other standard HTML validation rules */}
+            {/* // TODO: PRIORITY SET TO DISPLAY TO FALSE WHEN IT'S FALSE */}
             <Checkbox
               {...register("todoPriority")}
               sx={{
@@ -69,6 +75,11 @@ export default function NewTodoForm() {
                   color: "rgb(59 130 246)",
                 },
               }}
+              // value={priority}
+              // onChange={(e) => {
+              //   // console.log(e.target.checked);
+              //   setPriority(e.target.checked);
+              // }}
               icon={<StarBorder />}
               checkedIcon={<Star />}
             />
@@ -80,6 +91,7 @@ export default function NewTodoForm() {
               checkedIcon={<Star />}
             /> */}
 
+            {/* // TODO: NEWTODOFORM HAS WRONG DATE, PRIORITY SET TO FALSE */}
             <DatePicker />
 
             {/* // TODO: SET ERRORS AND DISPLAY THEM ON UI */}
