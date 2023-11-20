@@ -16,7 +16,7 @@
     "@fullcalendar/daygrid": "^6.1.9",
     "@fullcalendar/react": "^6.1.9",
     "@mui/icons-material": "^5.14.16",
-    "@mui/material": "^5.14.16",
+    "@mui/material": "^5.14.18",
     "@mui/x-date-pickers": "^6.18.0",
     "dayjs": "^1.11.10",
     "ics": "^3.5.0",

@@ -16,18 +16,11 @@ const Transition = forwardRef(function Transition(props, ref) {
 });
 
 export default function SummaryModal() {
-  const { summaryOpen, todos } = useContext(TodoContext);
-  const [leftTodos, setLeftTodos] = useState([]);
-  const [doneTodos, setDoneTodos] = useState([]);
-  const [totalTodos, setTotalTodos] = useState(0);
-  const [doneTodo, setDoneTodo] = useState(0);
+  const { summaryOpen, setSummaryOpen, todos } = useContext(TodoContext);
 
-  useEffect(() => {
-    setTotalTodos(todos.length);
-    setDoneTodo(doneTodos.length);
-    setDoneTodos(todos.filter((todo) => todo.done === true));
-    setLeftTodos(todos.filter((todo) => todo.done !== true));
-  }, [todos, doneTodo]);
+  const totalTodos = todos.length;
+  const doneTodos = todos.filter((todo) => todo.done === true);
+  const doneTodoNo = doneTodos.length;
 
   return (
     <>
@@ -66,7 +59,7 @@ export default function SummaryModal() {
 
           {/* // TODO: STICKY NAV TASKS LEFT TO BE DONE */}
           {/* <DialogTitle className="bg-blue-400 text-blue-50 rounded-lg text-4xl flex justify-center items-center">
-              {leftTodos.length === 0
+             {leftTodos.length === 0
                 ? "EVERYTHING IS DONE, GOOD JOB!"
                 : "Tasks left to be done:"}
             </DialogTitle>
@@ -78,11 +71,7 @@ export default function SummaryModal() {
 
           {/* PROGRESS CIRCLE */}
           <DialogTitle>{"PROGRESS CIRCLE: "}</DialogTitle>
-          <ProgressCircle
-            leftTodos={leftTodos}
-            totalTodos={totalTodos}
-            doneTodo={doneTodo}
-          />
+          <ProgressCircle totalTodos={totalTodos} doneTodos={doneTodoNo} />
 
           {/* TODOS DONE */}
           <List
@@ -98,7 +87,7 @@ export default function SummaryModal() {
             }}
           >
             <DialogTitle>
-              {doneTodos.length === 0 ? "GET TO WORK MAN!" : "Tasks done: "}
+              {doneTodoNo === 0 ? "GET TO WORK MAN!" : "Tasks done: "}
             </DialogTitle>
             {doneTodos.map((todo) => {
               return <TodoItem todo={todo} {...todo} key={todo.id} />;
