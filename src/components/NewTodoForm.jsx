@@ -44,7 +44,7 @@ export default function NewTodoForm() {
         open={newTodoOpen}
         TransitionComponent={Transition}
         keepMounted
-        aria-describedby="alert-dialog-slide-description"
+        aria-describedby="new-todo-form-modal"
       >
         <DialogTitle>{"New Todo!"}</DialogTitle>
         <DialogContent>

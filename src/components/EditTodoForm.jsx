@@ -52,7 +52,7 @@ export default function EditTodoForm() {
       TransitionComponent={Transition}
       keepMounted
       onClose={handleClose}
-      aria-describedby="alert-dialog-slide-description"
+      aria-describedby="edit-todo-form-modal"
     >
       <DialogTitle>{"Edit todo!"}</DialogTitle>
       <DialogContent style={{ zIndex: 3000 }}>

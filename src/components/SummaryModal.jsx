@@ -49,7 +49,7 @@ export default function SummaryModal() {
         TransitionComponent={Transition}
         keepMounted
         onClose={handleClose}
-        aria-describedby="alert-dialog-slide-description"
+        aria-describedby="summary-modal"
         // Lowest zIndex
         style={{ zIndex: 500 }}
       >

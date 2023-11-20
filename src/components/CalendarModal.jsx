@@ -13,10 +13,7 @@ const Transition = forwardRef(function Transition(props, ref) {
 });
 
 export default function CalendarModal() {
-  const { calendarOpen, setCalendarOpen } = useContext(TodoContext);
-  const handleClose = () => {
-    setCalendarOpen(false);
-  };
+  const { calendarOpen } = useContext(TodoContext);
 
   return (
     <>
@@ -25,16 +22,11 @@ export default function CalendarModal() {
         fullScreen
         TransitionComponent={Transition}
         keepMounted
-        // TODO: GET ONE NAMING CONVENTIONS FOR PASSING PROPS AND HELPER FUNCTIONS
-        onClose={handleClose}
-        aria-describedby="alert-dialog-slide-description"
+        aria-describedby="calendar-modal"
       >
         <DialogTitle>{"El Calendarrro!"}</DialogTitle>
         <DialogContent>
           <CalendarList />
-          <DialogActions>
-            <Button onClick={handleClose}>Close</Button>
-          </DialogActions>
         </DialogContent>
       </Dialog>
     </>

@@ -37,7 +37,7 @@ export default function LoginModal() {
         fullScreen
         TransitionComponent={Transition}
         keepMounted
-        aria-describedby="alert-dialog-slide-description"
+        aria-describedby="login-modal"
       >
         <DialogTitle className="bg-blue-500 text-blue-50 p-4 text-4xl flex justify-center items-center h-1/6">
           {"LOGIN TO DODONE"}
