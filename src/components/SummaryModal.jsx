@@ -35,7 +35,7 @@ export default function SummaryModal() {
   return (
     <>
       <Dialog
-        className="bg-blue-100 text-blue-30  p-4 text-4xl flex justify-center items-center"
+        // className="bg-blue-100 text-blue-30 flex justify-center items-center"
         open={summaryOpen}
         fullScreen
         TransitionComponent={Transition}
@@ -45,23 +45,35 @@ export default function SummaryModal() {
         // Lowest zIndex
         style={{ zIndex: 500 }}
       >
-        <DialogTitle className="bg-blue-500 text-blue-50 text-4xl flex justify-center items-center h-1/8">
+        <DialogTitle className="bg-blue-300 text-blue-50 text-4xl flex justify-center items-center h-1/8">
           Summary view!
+          <img
+            className="w-32 pl-10"
+            src="src/layout/dodone_design.svg"
+            alt="DoDone Logo"
+          />
         </DialogTitle>
-        <DialogContent className="bg-blue-100 text-blue-50">
-          <DialogTitle className="bg-blue-400 text-blue-50 rounded-lg text-4xl flex justify-center items-center">
-            {leftTodos.length === 0
-              ? "EVERYTHING IS DONE, GOOD JOB!"
-              : "Tasks left to be done:"}
-          </DialogTitle>
-
+        <DialogContent className="bg-blue-50 text-blue-50">
           <List
             sx={{
               width: "100%",
-              maxWidth: 360,
-              bgcolor: "background.paper",
+              maxWidth: 580,
+              // height: 300,
+              // overflow: scroll,
+              backgroundColor: "rgb(147 197 253)",
+              marginTop: "3vh",
+              // marginBottom: "8vh",
+              borderRadius: "10px",
             }}
           >
+            {/* TODOS UNDONE */}
+
+            {/* // TODO: STICKY NAV TASKS LEFT TO BE DONE */}
+            <DialogTitle className="bg-blue-400 text-blue-50 rounded-lg text-4xl flex justify-center items-center">
+              {leftTodos.length === 0
+                ? "EVERYTHING IS DONE, GOOD JOB!"
+                : "Tasks left to be done:"}
+            </DialogTitle>
             {leftTodos.map((todo) => {
               // REFACTOR: why if I choose to pass a whole item, I got undefined
               return <TodoItem todo={todo} {...todo} key={todo.id} />;
@@ -72,16 +84,22 @@ export default function SummaryModal() {
           <DialogTitle>{"PROGRESS CIRCLE: "}</DialogTitle>
           <ProgressCircle totalTodos={totalTodos} doneTodo={doneTodo} />
 
-          <DialogTitle>
-            {doneTodos.length === 0 ? "GET TO WORK MAN!" : "Tasks done: "}
-          </DialogTitle>
+          {/* TODOS DONE */}
           <List
             sx={{
               width: "100%",
-              maxWidth: 360,
-              bgcolor: "background.paper",
+              maxWidth: 580,
+              // height: 300,
+              // overflow: scroll,
+              backgroundColor: "rgb(147 197 253)",
+              marginTop: "3vh",
+              // marginBottom: "8vh",
+              borderRadius: "10px",
             }}
           >
+            <DialogTitle>
+              {doneTodos.length === 0 ? "GET TO WORK MAN!" : "Tasks done: "}
+            </DialogTitle>
             {doneTodos.map((todo) => {
               return <TodoItem todo={todo} {...todo} key={todo.id} />;
             })}

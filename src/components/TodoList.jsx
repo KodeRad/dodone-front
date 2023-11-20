@@ -8,7 +8,6 @@ export default function TodoList() {
   const { todos } = useContext(TodoContext);
   return (
     <List
-      // className="bg-blue-300"
       sx={{
         width: "100%",
         maxWidth: 580,
