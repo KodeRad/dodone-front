@@ -27,7 +27,7 @@ export default function SummaryModal() {
     setDoneTodo(doneTodos.length);
     setDoneTodos(todos.filter((todo) => todo.done === true));
     setLeftTodos(todos.filter((todo) => todo.done !== true));
-  }, [todos, doneTodos]);
+  }, [todos, doneTodo]);
 
   return (
     <>
