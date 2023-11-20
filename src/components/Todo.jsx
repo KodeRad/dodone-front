@@ -23,7 +23,7 @@ export default function Todo() {
   const [editedId, setEditedId] = useState("");
   const [priority, setPriority] = useState(false);
   // TODO: CHANGE STATE TO TRUE FOR LOGIN WINDOW
-  const [loginOpen, setLoginOpen] = useState(true);
+  const [loginOpen, setLoginOpen] = useState(false);
 
   const [editedName, setEditedName] = useState("");
   const [editedPriority, setEditedPriority] = useState(false);

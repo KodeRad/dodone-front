@@ -21,7 +21,19 @@ export default function TodoList() {
       {todos.length === 0 && "THERE ARE NO TODOS. ADD SOME PLEASE!"}
       {/* TODO: DO THE SORTING FOR DONE */}
       {todos
-        .sort((low, high) => high.priority - low.priority)
+        .sort((a, b) => {
+          // First, prioritize todos with done: false
+          if (a.done && !b.done) {
+            return 1; // a should come after b
+          }
+
+          if (!a.done && b.done) {
+            return -1; // a should come before b
+          }
+
+          // If both have the same done status, then sort by priority
+          return a.priority === b.priority ? 0 : a.priority ? -1 : 1;
+        })
         .map((todo) => {
           return <TodoItem {...todo} key={todo.id} />;
         })}
