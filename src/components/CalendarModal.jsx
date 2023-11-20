@@ -7,6 +7,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import Slide from "@mui/material/Slide";
 import CalendarList from "./CalendarList";
 import { TodoContext } from "./Todo";
+import styles from "./../layout/calendar.css";
 
 const Transition = forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -26,7 +27,7 @@ export default function CalendarModal() {
       >
         <DialogTitle>{"El Calendarrro!"}</DialogTitle>
         <DialogContent>
-          <CalendarList />
+          <CalendarList styles={{ styles }} />
         </DialogContent>
       </Dialog>
     </>

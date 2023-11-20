@@ -7,49 +7,64 @@ import { TodoContext } from "./Todo";
 export default function CalendarList() {
   const { todos } = useContext(TodoContext);
 
-  // The useRef hook is used to create a reference to the div element.
-  const calendarRef = useRef(null);
-
-  // TODO: ADD DEBOUNCING?
-  // REFACTOR: CHANGEVIEW DOESN'T WORK
-  function handleResize() {
-    const calendar = calendarRef.current;
-    if (calendar) {
-      const view = window.innerWidth < 600 ? "listWeek" : "dayGridMonth";
-      // console.log(view);
-      // calendar.changeView("listWeek");
-    }
-  }
+  const calendarSmall = useRef(null);
+  const calendarLarge = useRef(null);
 
   useEffect(() => {
-    const calendar = new Calendar(calendarRef.current, {
+    const calendar = new Calendar(calendarSmall.current, {
       plugins: [listPlugin, dayGridPlugin],
+      headerToolbar: {
+        left: "prev,next today",
+        right: "dayGridMonth,timeGridDay,listWeek",
+      },
       initialView: "listWeek",
+      contentHeight: "auto",
+
       events: todos.map((todo) => {
         return {
           title: todo.name,
           start: todo?.dueDate,
         };
       }),
+      eventDisplay: "auto",
     });
 
     calendar.render();
 
-    function resizeListener() {
-      handleResize();
-    }
-
-    window.addEventListener("resize", resizeListener);
-
     return () => {
       calendar.destroy();
-      window.removeEventListener("resize", resizeListener);
     };
   }, [todos]);
 
   useEffect(() => {
-    handleResize();
-  }, []);
+    const calendar = new Calendar(calendarLarge.current, {
+      plugins: [dayGridPlugin, listPlugin],
+      headerToolbar: {
+        left: "prev,next today",
+        right: "dayGridMonth,timeGridDay,listWeek",
+      },
+      initialView: "dayGridMonth",
+      contentHeight: "auto",
+      events: todos.map((todo) => {
+        return {
+          title: todo.name,
+          start: todo?.dueDate,
+        };
+      }),
+      eventDisplay: "auto",
+    });
 
-  return <div ref={calendarRef} />;
+    calendar.render();
+
+    return () => {
+      calendar.destroy();
+    };
+  }, [todos]);
+
+  return (
+    <>
+      <div className="block sm:hidden" ref={calendarSmall} />
+      <div className="hidden sm:block" ref={calendarLarge} />
+    </>
+  );
 }

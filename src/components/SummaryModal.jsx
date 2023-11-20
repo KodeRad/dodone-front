@@ -16,15 +16,7 @@ const Transition = forwardRef(function Transition(props, ref) {
 });
 
 export default function SummaryModal() {
-  const {
-    summaryOpen,
-    setSummaryOpen,
-    todos,
-    toggleTodo,
-    deleteTodo,
-    togglePriority,
-    handleEditForm,
-  } = useContext(TodoContext);
+  const { summaryOpen, setSummaryOpen, todos } = useContext(TodoContext);
 
   const totalTodos = todos.length;
   const [doneTodo, setDoneTodo] = useState(0);
