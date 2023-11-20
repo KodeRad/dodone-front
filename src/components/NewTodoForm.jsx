@@ -23,8 +23,6 @@ export default function NewTodoForm() {
   const { newTodoOpen, setNewTodoOpen, addTodo, time, priority, setPriority } =
     useContext(TodoContext);
 
-  const [todoPriority, setTodoPriority] = useState(false);
-
   const {
     register,
     handleSubmit,

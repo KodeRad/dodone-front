@@ -29,6 +29,7 @@ export default function Navigation() {
         elevation={3}
       >
         <BottomNavigation
+          sx={{ backgroundColor: "rgb(147 197 253)" }}
           showLabels
           value={value}
           onChange={(event, newValue) => {

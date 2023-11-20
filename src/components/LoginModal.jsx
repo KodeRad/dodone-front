@@ -7,6 +7,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import Slide from "@mui/material/Slide";
 import { TodoContext } from "./Todo";
 import { useForm } from "react-hook-form";
+import dodonelogo from "./../layout/dodone_logo.svg";
 
 const Transition = forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -39,13 +40,13 @@ export default function LoginModal() {
         keepMounted
         aria-describedby="login-modal"
       >
-        <DialogTitle className="bg-blue-200 text-blue-50 p-4 text-4xl flex justify-center items-center h-1/6">
-          {"LOGIN TO DODONE"}
+        <DialogTitle className="bg-blue-200 text-blue-50 p-4 text-4xl flex justify-center items-center h-2/6">
+          <img src={dodonelogo} alt="DoDone Logo" />
         </DialogTitle>
         <DialogContent className="bg-blue-200">
           {/* // CONTENT: FORM */}
           <form
-            className="flex flex-col items-center"
+            className="flex flex-col items-center mt-12"
             onSubmit={handleSubmit((data) => {
               handleClose();
               // Cleares input fields
@@ -53,7 +54,7 @@ export default function LoginModal() {
             })}
           >
             <input
-              className="rounded-lg bg-blue-100 mt-20 mb-4 p-2 w-72 "
+              className="rounded-lg text-center bg-blue-100 mb-4 p-2 w-72 "
               // sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-2/5
               // className="flex justify-center items-center"
               {...register("Username", { required: true })}
@@ -61,7 +62,7 @@ export default function LoginModal() {
               placeholder="Username"
             />
             <input
-              className="rounded-lg bg-blue-100 mb-4 p-2 w-72"
+              className="rounded-lg text-center bg-blue-100 mb-4 p-2 w-72"
               {...register("Password", { required: true })}
               id="password"
               type="password"

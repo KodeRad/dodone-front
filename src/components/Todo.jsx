@@ -9,6 +9,8 @@ import SummaryModal from "./SummaryModal";
 import getTodos from "./API/getTodos";
 import DownloadButton from "./ICSButton";
 import LoginModal from "./LoginModal";
+import { DialogTitle } from "@mui/material";
+import dodonedesign from "./../layout/dodone_design.svg";
 
 export const TodoContext = createContext();
 
@@ -205,10 +207,14 @@ export default function Todo() {
 
   return (
     <>
-      <h1 className="bg-blue-500 text-white p-4 text-4xl flex justify-center items-center h-1/6">
-        DoDone!
+      <h1 className="bg-blue-300 flex justify-center items-center h-1/6">
+        <img className="" src={dodonedesign} alt="DoDone Logo" />
       </h1>
+      {/* <DialogTitle className="bg-blue-200 text-blue-50 p-0 m-0">
+        <img src={dodonelogo2} alt="DoDone Logo" />
+      </DialogTitle> */}
 
+      {/* TODO: GET RID OF SOME OF THE ELEMENTS */}
       <TodoContext.Provider
         value={{
           addTodo,
