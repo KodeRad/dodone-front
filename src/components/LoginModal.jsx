@@ -31,7 +31,7 @@ export default function LoginModal() {
   return (
     <>
       <Dialog
-        className="bg-blue-100 text-blue-30 rounded-lg p-4 text-4xl block justify-center items-center"
+        className="bg-blue-100 text-blue-30 rounded-lg text-4xl block justify-center items-center"
         // TODO: zIndex ? // CSS: STYLE TO BLUE
         open={loginOpen}
         fullScreen
@@ -39,7 +39,7 @@ export default function LoginModal() {
         keepMounted
         aria-describedby="login-modal"
       >
-        <DialogTitle className="bg-blue-500 text-blue-50 p-4 text-4xl flex justify-center items-center h-1/6">
+        <DialogTitle className="bg-blue-200 text-blue-50 p-4 text-4xl flex justify-center items-center h-1/6">
           {"LOGIN TO DODONE"}
         </DialogTitle>
         <DialogContent className="bg-blue-200">
