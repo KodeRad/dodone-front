@@ -20,7 +20,7 @@ export default function Todo() {
   const [calendarOpen, setCalendarOpen] = useState(false);
   const [summaryOpen, setSummaryOpen] = useState(false);
   // TODO: CHANGE STATE TO TRUE FOR LOGIN WINDOW
-  const [loginOpen, setLoginOpen] = useState(false);
+  const [loginOpen, setLoginOpen] = useState(true);
   const [priority, setPriority] = useState(false);
   const [time, setTime] = useState(dayjs(new Date()));
 

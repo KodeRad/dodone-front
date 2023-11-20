@@ -16,21 +16,18 @@ const Transition = forwardRef(function Transition(props, ref) {
 });
 
 export default function SummaryModal() {
-  const { summaryOpen, setSummaryOpen, todos } = useContext(TodoContext);
-
-  const totalTodos = todos.length;
+  const { summaryOpen, todos } = useContext(TodoContext);
+  const [leftTodos, setLeftTodos] = useState([]);
+  const [doneTodos, setDoneTodos] = useState([]);
+  const [totalTodos, setTotalTodos] = useState(0);
   const [doneTodo, setDoneTodo] = useState(0);
 
-  const leftTodos = todos.filter((todo) => todo.done !== true);
-  const doneTodos = todos.filter((todo) => todo.done === true);
-
   useEffect(() => {
+    setTotalTodos(todos.length);
     setDoneTodo(doneTodos.length);
-  }, [todos]);
-
-  const handleClose = () => {
-    setSummaryOpen(false);
-  };
+    setDoneTodos(todos.filter((todo) => todo.done === true));
+    setLeftTodos(todos.filter((todo) => todo.done !== true));
+  }, [todos, doneTodos]);
 
   return (
     <>
@@ -40,7 +37,6 @@ export default function SummaryModal() {
         fullScreen
         TransitionComponent={Transition}
         keepMounted
-        onClose={handleClose}
         aria-describedby="summary-modal"
         // Lowest zIndex
         style={{ zIndex: 500 }}
@@ -54,7 +50,7 @@ export default function SummaryModal() {
           />
         </DialogTitle>
         <DialogContent className="bg-blue-50 text-blue-50">
-          <List
+          {/* <List
             sx={{
               width: "100%",
               maxWidth: 580,
@@ -65,11 +61,11 @@ export default function SummaryModal() {
               // marginBottom: "8vh",
               borderRadius: "10px",
             }}
-          >
-            {/* TODOS UNDONE */}
+          > */}
+          {/* TODOS UNDONE */}
 
-            {/* // TODO: STICKY NAV TASKS LEFT TO BE DONE */}
-            <DialogTitle className="bg-blue-400 text-blue-50 rounded-lg text-4xl flex justify-center items-center">
+          {/* // TODO: STICKY NAV TASKS LEFT TO BE DONE */}
+          {/* <DialogTitle className="bg-blue-400 text-blue-50 rounded-lg text-4xl flex justify-center items-center">
               {leftTodos.length === 0
                 ? "EVERYTHING IS DONE, GOOD JOB!"
                 : "Tasks left to be done:"}
@@ -78,11 +74,15 @@ export default function SummaryModal() {
               // REFACTOR: why if I choose to pass a whole item, I got undefined
               return <TodoItem todo={todo} {...todo} key={todo.id} />;
             })}
-          </List>
+          </List> */}
 
           {/* PROGRESS CIRCLE */}
           <DialogTitle>{"PROGRESS CIRCLE: "}</DialogTitle>
-          <ProgressCircle totalTodos={totalTodos} doneTodo={doneTodo} />
+          <ProgressCircle
+            leftTodos={leftTodos}
+            totalTodos={totalTodos}
+            doneTodo={doneTodo}
+          />
 
           {/* TODOS DONE */}
           <List
@@ -104,10 +104,6 @@ export default function SummaryModal() {
               return <TodoItem todo={todo} {...todo} key={todo.id} />;
             })}
           </List>
-
-          <DialogActions>
-            <Button onClick={handleClose}>Close</Button>
-          </DialogActions>
         </DialogContent>
       </Dialog>
     </>
