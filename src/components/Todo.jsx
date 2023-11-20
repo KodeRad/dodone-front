@@ -242,14 +242,20 @@ export default function Todo() {
           setLoginOpen,
         }}
       >
-        <LoginModal />
-        <TodoList />
-        <NewTodoForm />
-        <EditTodoForm />
-        <CalendarModal />
-        <SummaryModal />
-        <DownloadButton todos={todos} />
-        <Navigation />
+        <div className="flex justify-center items-center">
+          <LoginModal />
+          {!loginOpen ? (
+            <>
+              <TodoList />
+              <NewTodoForm />
+              <EditTodoForm />
+              <CalendarModal />
+              <SummaryModal />
+              {/* <DownloadButton todos={todos} /> */}
+              <Navigation />
+            </>
+          ) : null}
+        </div>
       </TodoContext.Provider>
     </>
   );

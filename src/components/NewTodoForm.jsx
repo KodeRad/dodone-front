@@ -28,7 +28,6 @@ export default function NewTodoForm() {
   const {
     register,
     handleSubmit,
-    watch,
     reset,
     formState: { errors },
   } = useForm({
@@ -61,6 +60,7 @@ export default function NewTodoForm() {
           >
             <input
               {...register("todoName", { required: true })}
+              id="newTodoName"
               placeholder="Todo's name"
             />
 

@@ -43,6 +43,7 @@ export default function SummaryModal() {
   return (
     <>
       <Dialog
+        className="bg-blue-100 text-blue-30  p-4 text-4xl flex justify-center items-center"
         open={summaryOpen}
         fullScreen
         TransitionComponent={Transition}
@@ -52,9 +53,11 @@ export default function SummaryModal() {
         // Lowest zIndex
         style={{ zIndex: 500 }}
       >
-        <DialogTitle>{"Summary view!"}</DialogTitle>
-        <DialogContent>
-          <DialogTitle>
+        <DialogTitle className="bg-blue-500 text-blue-50 text-4xl flex justify-center items-center h-1/8">
+          Summary view!
+        </DialogTitle>
+        <DialogContent className="bg-blue-100 text-blue-50">
+          <DialogTitle className="bg-blue-400 text-blue-50 rounded-lg text-4xl flex justify-center items-center">
             {leftTodos.length === 0
               ? "EVERYTHING IS DONE, GOOD JOB!"
               : "Tasks left to be done:"}

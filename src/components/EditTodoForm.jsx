@@ -70,6 +70,7 @@ export default function EditTodoForm() {
 
           <input
             {...register("todoName", { required: true })}
+            id="editTodoName"
             value={editedName}
             onChange={(e) => {
               setEditedName(e.target.value);

@@ -8,14 +8,16 @@ import StarBorder from "@mui/icons-material/StarBorder";
 import { useContext, useEffect } from "react";
 import { TodoContext } from "./Todo";
 import CheckboxComponent from "./Checkbox";
+import dayjs from "dayjs";
 
 export default function TodoItem({ id, done, priority, name, dueDate }) {
   const { toggleTodo, togglePriority, handleEditForm } =
     useContext(TodoContext);
 
   // console.log(todo);
+
   return (
-    <ListItem key={id}>
+    <ListItem className="bg-blue-100 text-blue-50" key={id}>
       <IconButton
         edge="start"
         onClick={(e) => {
@@ -35,10 +37,13 @@ export default function TodoItem({ id, done, priority, name, dueDate }) {
         /> */}
       </IconButton>
       <ListItemText
+        className="bg-blue-100 text-blue-500"
         // REFACTOR: I am sending info about the task I am editing to parent component
         onClick={() => {
           handleEditForm(id, name, priority, dueDate);
         }}
+        // TODO: ADD DUEDATE TO BROWSER VIEW
+        // primary={`${name} due to: ${dayjs(dueDate).format("YYYY-M-D-H-m")}`}
         primary={name}
       />
       <ListItemSecondaryAction>

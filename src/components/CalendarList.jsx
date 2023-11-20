@@ -16,7 +16,7 @@ export default function CalendarList() {
     const calendar = calendarRef.current;
     if (calendar) {
       const view = window.innerWidth < 600 ? "listWeek" : "dayGridMonth";
-      console.log(view);
+      // console.log(view);
       // calendar.changeView("listWeek");
     }
   }
