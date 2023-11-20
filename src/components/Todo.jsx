@@ -7,7 +7,6 @@ import EditTodoForm from "./EditTodoForm";
 import CalendarModal from "./CalendarModal";
 import SummaryModal from "./SummaryModal";
 import getTodos from "./API/getTodos";
-import DownloadButton from "./ICSButton";
 import LoginModal from "./LoginModal";
 import { DialogTitle } from "@mui/material";
 import dodonedesign from "./../layout/dodone_design.svg";
@@ -20,15 +19,15 @@ export default function Todo() {
   const [editTodoOpen, setEditTodoOpen] = useState(false);
   const [calendarOpen, setCalendarOpen] = useState(false);
   const [summaryOpen, setSummaryOpen] = useState(false);
-  const [editedId, setEditedId] = useState("");
-  const [priority, setPriority] = useState(false);
   // TODO: CHANGE STATE TO TRUE FOR LOGIN WINDOW
   const [loginOpen, setLoginOpen] = useState(false);
+  const [priority, setPriority] = useState(false);
+  const [time, setTime] = useState(dayjs(new Date()));
 
+  const [editedId, setEditedId] = useState("");
   const [editedName, setEditedName] = useState("");
   const [editedPriority, setEditedPriority] = useState(false);
   // const [editedDueDate, setEditedDueDate] = useState("");
-  const [time, setTime] = useState(dayjs(new Date()));
 
   // TODO: CUSTOM HOOK WITH ALL THE LOGIC THAT RETURNS WHATEVER YOU NEED (AS AN OBJECT) EXAMPLES: REACT USE LIBRARY
   // Getting todos from database
@@ -255,7 +254,6 @@ export default function Todo() {
               <EditTodoForm />
               <CalendarModal />
               <SummaryModal />
-              {/* <DownloadButton todos={todos} /> */}
               <Navigation />
             </>
           ) : null}

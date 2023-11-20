@@ -2,6 +2,7 @@ import TodoItem from "./TodoItem";
 import List from "@mui/material/List";
 import { TodoContext } from "./Todo";
 import { useContext } from "react";
+import DownloadButton from "./ICSButton";
 
 export default function TodoList() {
   const { todos } = useContext(TodoContext);
@@ -37,6 +38,7 @@ export default function TodoList() {
         .map((todo) => {
           return <TodoItem {...todo} key={todo.id} />;
         })}
+      <DownloadButton />
     </List>
   );
 }

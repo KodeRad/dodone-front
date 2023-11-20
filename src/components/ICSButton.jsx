@@ -1,6 +1,8 @@
 import { Button, Box } from "@mui/material";
 import dayjs from "dayjs";
 import { createEvents } from "ics";
+import { useContext } from "react";
+import { TodoContext } from "./Todo";
 
 // TODO: REFACTOR TO GET RID OF PUSHING INTO EVENTS ARRAY (MUTATING)
 const getEvents = (todos) => {
@@ -23,7 +25,8 @@ const getEvents = (todos) => {
   return events;
 };
 
-const ICSButton = ({ todos }) => {
+const ICSButton = () => {
+  const { todos } = useContext(TodoContext);
   const handleDownload = async () => {
     const filename = "todos.ics";
     const file = await new Promise((resolve, reject) => {
@@ -47,8 +50,11 @@ const ICSButton = ({ todos }) => {
   };
 
   return (
-    <Box textAlign="center" mt={4}>
-      <Button onClick={handleDownload}>Download calendar</Button>
+    // TODO: ADD SECOND BUTTON TO CLEAR FINISHED TASKS
+    <Box className="text-black text-center mt-2">
+      <Button className="text-black" onClick={handleDownload}>
+        Download calendar
+      </Button>
     </Box>
   );
 };
