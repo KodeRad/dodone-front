@@ -207,12 +207,9 @@ export default function Todo() {
 
   return (
     <>
-      <h1 className="bg-blue-300 flex justify-center items-center h-1/6">
-        <img className="" src={dodonedesign} alt="DoDone Logo" />
+      <h1 className="bg-blue-300 flex justify-center items-center h-1/6 fixed w-full top-0 z-10">
+        <img src={dodonedesign} alt="DoDone Logo" />
       </h1>
-      {/* <DialogTitle className="bg-blue-200 text-blue-50 p-0 m-0">
-        <img src={dodonelogo2} alt="DoDone Logo" />
-      </DialogTitle> */}
 
       {/* TODO: GET RID OF SOME OF THE ELEMENTS */}
       <TodoContext.Provider

@@ -63,7 +63,7 @@ export default function CalendarList() {
 
   return (
     <>
-      <div className="block sm:hidden " ref={calendarSmall} />
+      <div className="block sm:hidden" ref={calendarSmall} />
       <div className="hidden sm:block " ref={calendarLarge} />
     </>
   );
