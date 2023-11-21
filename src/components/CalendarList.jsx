@@ -29,12 +29,14 @@ export default function CalendarList() {
         hour12: false,
       },
 
-      events: todos.map((todo) => {
-        return {
-          title: todo.name,
-          start: todo?.dueDate,
-        };
-      }),
+      events: todos
+        .filter((todo) => !todo.done)
+        .map((todo) => {
+          return {
+            title: todo.name,
+            start: todo?.dueDate,
+          };
+        }),
       eventDisplay: "auto",
       dayMaxEvents: true,
       themeSystem: "bootstrap5",
@@ -63,12 +65,14 @@ export default function CalendarList() {
         minute: "2-digit",
         hour12: false,
       },
-      events: todos.map((todo) => {
-        return {
-          title: todo.name,
-          start: todo?.dueDate,
-        };
-      }),
+      events: todos
+        .filter((todo) => !todo.done)
+        .map((todo) => {
+          return {
+            title: todo.name,
+            start: todo?.dueDate,
+          };
+        }),
       eventDisplay: "auto",
       themeSystem: "bootstrap5",
 

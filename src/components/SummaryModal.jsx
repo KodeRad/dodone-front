@@ -16,7 +16,7 @@ const Transition = forwardRef(function Transition(props, ref) {
 });
 
 export default function SummaryModal() {
-  const { summaryOpen, setSummaryOpen, todos } = useContext(TodoContext);
+  const { summaryOpen, todos } = useContext(TodoContext);
 
   const totalTodos = todos.length;
   const doneTodos = todos.filter((todo) => todo.done === true);
@@ -68,23 +68,32 @@ export default function SummaryModal() {
               return <TodoItem todo={todo} {...todo} key={todo.id} />;
             })}
           </List> */}
-          <DialogTitle className="text-blue-500">
-            <div className="max-w-2xl"> PROGRESS CIRCLE:</div>
+          <DialogTitle className="text-blue-500 text-center">
+            <div> PROGRESS CIRCLE:</div>
           </DialogTitle>
 
-          <div className="flex justify-evenly items-center max-w-2xl">
+          <div className="flex justify-center items-center mt-3 mb-2 ">
             {/* PROGRESS CIRCLE */}
             <ProgressCircle totalTodos={totalTodos} doneTodos={doneTodoNo} />
             <div className="flex flex-col justify-evenly">
               <Chip
                 sx={{
                   padding: "12px",
-                  marginBottom: "1rem",
+                  marginBottom: "1.25rem",
+                  marginLeft: "2rem",
                 }}
                 label="DONE"
                 color="primary"
               />
-              <Chip label="UN-DONE " color="secondary" />
+              <Chip
+                sx={{
+                  padding: "12px",
+
+                  marginLeft: "2rem",
+                }}
+                label="UN-DONE "
+                color="secondary"
+              />
             </div>
           </div>
 
@@ -96,7 +105,7 @@ export default function SummaryModal() {
                 maxWidth: 580,
                 backgroundColor: "rgb(147 197 253)",
                 marginTop: "3vh",
-                marginBottom: "4vh",
+                marginBottom: "5vh",
                 borderRadius: "10px",
               }}
             >
@@ -113,9 +122,3 @@ export default function SummaryModal() {
     </>
   );
 }
-
-// TODO: MUI: A component is changing the controlled checked state of SwitchBase to be uncontrolled.
-// Elements should not switch from uncontrolled to controlled (or vice versa).
-// Decide between using a controlled or uncontrolled SwitchBase element for the lifetime of the component.
-// The nature of the state is determined during the first render. It's considered controlled if the value is not `undefined`.
-// OCCURES WHILE SETTING DONE ON AND OFF IN SUMARRY VIEW
