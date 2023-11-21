@@ -25,8 +25,10 @@ export default function CalendarModal() {
         keepMounted
         aria-describedby="calendar-modal"
       >
-        <DialogTitle>{"El Calendarrro!"}</DialogTitle>
-        <DialogContent>
+        <DialogTitle className="bg-blue-300 text-blue-50">
+          {"El Calendarrro!"}
+        </DialogTitle>
+        <DialogContent className="bg-blue-100 text-blue-500">
           <CalendarList styles={{ styles }} />
         </DialogContent>
       </Dialog>

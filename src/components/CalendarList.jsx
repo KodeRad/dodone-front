@@ -10,6 +10,7 @@ export default function CalendarList() {
   const calendarSmall = useRef(null);
   const calendarLarge = useRef(null);
 
+  // LIST CALENDAR VIEW
   useEffect(() => {
     const calendar = new Calendar(calendarSmall.current, {
       plugins: [listPlugin, dayGridPlugin],
@@ -27,6 +28,17 @@ export default function CalendarList() {
         };
       }),
       eventDisplay: "auto",
+      eventColor: "rgb(59 130 246)",
+      eventBorderColor: "rgb(59 130 246)",
+      eventTextColor: "rgb(59 130 246)",
+      eventBackgroundColor: "rgb(219 234 254)",
+
+      eventTimeFormat: {
+        // like '14:30:00'
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: false,
+      },
     });
 
     calendar.render();
@@ -36,6 +48,7 @@ export default function CalendarList() {
     };
   }, [todos]);
 
+  // MONTH CALENDAR VIEW
   useEffect(() => {
     const calendar = new Calendar(calendarLarge.current, {
       plugins: [dayGridPlugin, listPlugin],
@@ -52,6 +65,10 @@ export default function CalendarList() {
         };
       }),
       eventDisplay: "auto",
+      eventColor: "rgb(59 130 246)",
+      eventBorderColor: "rgb(59 130 246)",
+      eventTextColor: "rgb(59 130 246)",
+      eventBackgroundColor: "rgb(219 234 254)",
     });
 
     calendar.render();
