@@ -13,7 +13,7 @@ export default function DatePicker() {
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="pl">
       <DemoContainer components={["DateTimePicker"]}>
-        <DemoItem label="Due Date">
+        <DemoItem>
           <DateTimePicker
             disablePast
             onChange={(e) => {

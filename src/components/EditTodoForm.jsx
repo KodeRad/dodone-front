@@ -52,10 +52,15 @@ export default function EditTodoForm() {
       TransitionComponent={Transition}
       keepMounted
       onClose={handleClose}
-      aria-describedby="edit-todo-form-modal"
+      aria-describedby="alert-dialog-slide-description"
     >
-      <DialogTitle>{"Edit todo!"}</DialogTitle>
-      <DialogContent style={{ zIndex: 3000 }}>
+      <DialogTitle className="bg-blue-300 text-blue-50">
+        {"Edit todo!"}
+      </DialogTitle>
+      <DialogContent
+        className=" bg-blue-100 text-blue-500"
+        style={{ zIndex: 3000 }}
+      >
         <form
           onSubmit={handleSubmit((data) => {
             patchTodo(
@@ -69,8 +74,8 @@ export default function EditTodoForm() {
           {/* register your input into the hook by invoking the "register" function */}
 
           <input
+            className="bg-blue-200 rounded-md pl-2 mr-12"
             {...register("todoName", { required: true })}
-            id="editTodoName"
             value={editedName}
             onChange={(e) => {
               setEditedName(e.target.value);

@@ -13,7 +13,6 @@ import { Checkbox } from "@mui/material";
 import { Star, StarBorder } from "@mui/icons-material";
 import { TodoContext } from "./Todo";
 import CheckboxComponent from "./Checkbox";
-import dayjs from "dayjs";
 
 const Transition = forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -44,9 +43,12 @@ export default function NewTodoForm() {
         keepMounted
         aria-describedby="new-todo-form-modal"
       >
-        <DialogTitle>{"New Todo!"}</DialogTitle>
-        <DialogContent>
+        <DialogTitle className="bg-blue-300 text-blue-50">
+          {"New Todo!"}
+        </DialogTitle>
+        <DialogContent className="bg-blue-100 text-blue-500">
           <form
+            className="mt-3"
             onSubmit={handleSubmit((data) => {
               console.log(data);
               addTodo(data.todoName, data.todoPriority, time);
@@ -57,6 +59,7 @@ export default function NewTodoForm() {
             })}
           >
             <input
+              className="bg-blue-200 rounded-md"
               {...register("todoName", { required: true })}
               id="newTodoName"
               placeholder="Todo's name"
