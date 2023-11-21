@@ -1,11 +1,18 @@
 import TodoItem from "./TodoItem";
 import List from "@mui/material/List";
 import { TodoContext } from "./Todo";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import DownloadButton from "./ICSButton";
+import { Box, Button } from "@mui/material";
 
 export default function TodoList() {
   const { todos } = useContext(TodoContext);
+  const [leftTodos, setLeftTodos] = useState([]);
+
+  useEffect(() => {
+    setLeftTodos(todos.filter((todo) => !todo.done));
+  }, [todos]);
+
   return (
     <List
       sx={{
@@ -18,26 +25,21 @@ export default function TodoList() {
       }}
     >
       {/* TODO: CREATE A NICER ADNOTATION IF NO TODOS */}
-      {todos.length === 0 && "THERE ARE NO TODOS. ADD SOME PLEASE!"}
+
       {/* TODO: DO THE SORTING FOR DONE */}
-      {todos
-        .sort((a, b) => {
-          // First, prioritize todos with done: false
-          if (a.done && !b.done) {
-            return 1; // a should come after b
-          }
-
-          if (!a.done && b.done) {
-            return -1; // a should come before b
-          }
-
-          // If both have the same done status, then sort by priority
-          return a.priority === b.priority ? 0 : a.priority ? -1 : 1;
-        })
+      {leftTodos
+        .sort((a, b) => b.priority - a.priority)
         .map((todo) => {
           return <TodoItem {...todo} key={todo.id} />;
         })}
-      <DownloadButton />
+      {leftTodos.length === 0 ? (
+        <Box className="text-blue-50 text-center mt-2 p-1">
+          ADD NEW TASK!
+          {/* <Button className="text-white">Download calendar</Button> */}
+        </Box>
+      ) : (
+        <DownloadButton />
+      )}
     </List>
   );
 }

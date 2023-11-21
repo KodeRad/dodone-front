@@ -8,7 +8,6 @@ import CalendarModal from "./CalendarModal";
 import SummaryModal from "./SummaryModal";
 import getTodos from "./API/getTodos";
 import LoginModal from "./LoginModal";
-import { DialogTitle } from "@mui/material";
 import dodonedesign from "./../layout/dodone_design.svg";
 
 export const TodoContext = createContext();
@@ -20,7 +19,7 @@ export default function Todo() {
   const [calendarOpen, setCalendarOpen] = useState(false);
   const [summaryOpen, setSummaryOpen] = useState(false);
   // TODO: CHANGE STATE TO TRUE FOR LOGIN WINDOW
-  const [loginOpen, setLoginOpen] = useState(false);
+  const [loginOpen, setLoginOpen] = useState(true);
   const [priority, setPriority] = useState(false);
   const [time, setTime] = useState(dayjs(new Date()));
 
@@ -36,7 +35,7 @@ export default function Todo() {
   }, []);
 
   // example custom hook
-  // const dupa = useDupa(id)
+  // const customHook = useCustomHook(id)
 
   async function addTodo(name, priority = false, dueDate = null) {
     try {

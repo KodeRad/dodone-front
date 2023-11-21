@@ -51,8 +51,8 @@ const ICSButton = () => {
 
   return (
     // TODO: ADD SECOND BUTTON TO CLEAR FINISHED TASKS
-    <Box className="text-black text-center mt-2">
-      <Button className="text-black" onClick={handleDownload}>
+    <Box className="text-blue-500 text-center mt-2">
+      <Button className="text-white" onClick={handleDownload}>
         Download calendar
       </Button>
     </Box>
