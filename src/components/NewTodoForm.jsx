@@ -59,7 +59,7 @@ export default function NewTodoForm() {
             })}
           >
             <input
-              className="bg-blue-200 rounded-md"
+              className="bg-blue-200 rounded-md pl-2 mr-2"
               {...register("todoName", { required: true })}
               id="newTodoName"
               placeholder="Todo's name"
@@ -99,7 +99,9 @@ export default function NewTodoForm() {
             {/* errors will return when field validation fails  */}
             {errors.exampleRequired && <span>This field is required</span>}
 
-            <DialogActions>
+            <DialogActions
+              sx={{ display: "flex", justifyContent: "space-evenly" }}
+            >
               <Button onClick={handleClose}>Cancel</Button>
               <Button type="submit">Submit</Button>
             </DialogActions>

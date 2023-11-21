@@ -180,6 +180,7 @@ export default function Todo() {
     setNewTodoOpen(!newTodoOpen);
     setCalendarOpen(false);
     setSummaryOpen(false);
+    setEditTodoOpen(false);
     setTime(dayjs(new Date()));
     setPriority(false);
   };
@@ -187,11 +188,13 @@ export default function Todo() {
     setCalendarOpen(!calendarOpen);
     setNewTodoOpen(false);
     setSummaryOpen(false);
+    setEditTodoOpen(false);
   };
   const handleSummaryOpen = () => {
     setSummaryOpen(!summaryOpen);
     setCalendarOpen(false);
     setNewTodoOpen(false);
+    setEditTodoOpen(false);
   };
 
   // REFACTOR: PASS IT AS AN OBJECT, CHANGE NAME

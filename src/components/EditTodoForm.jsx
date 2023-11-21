@@ -74,7 +74,7 @@ export default function EditTodoForm() {
           {/* register your input into the hook by invoking the "register" function */}
 
           <input
-            className="bg-blue-200 rounded-md pl-2 mr-12"
+            className="bg-blue-200  rounded-md pl-2 mr-12"
             {...register("todoName", { required: true })}
             value={editedName}
             onChange={(e) => {
@@ -133,8 +133,12 @@ export default function EditTodoForm() {
           {/* errors will return when field validation fails  */}
           {errors.exampleRequired && <span>This field is required</span>}
 
-          <DialogActions>
+          <DialogActions
+            sx={{ display: "flex", justifyContent: "space-evenly" }}
+          >
+            {/* //TODO: ADD POP OUT WINDOW TO CONFIRM DELETING  */}
             <Button
+              sx={{ color: "rgb(248 113 113)" }}
               onClick={() => {
                 deleteTodo(editedId);
                 handleClose();
