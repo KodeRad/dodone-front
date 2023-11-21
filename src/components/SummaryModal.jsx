@@ -10,7 +10,7 @@ import ProgressCircle from "./ProgressCircle";
 import TodoItem from "./TodoItem";
 import List from "@mui/material/List";
 import { TodoContext } from "./Todo";
-
+import Chip from "@mui/material/Chip";
 const Transition = forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
@@ -34,7 +34,7 @@ export default function SummaryModal() {
         // Lowest zIndex
         style={{ zIndex: 500 }}
       >
-        <DialogTitle className="bg-blue-300 text-blue-50 text-4xl flex justify-center items-center">
+        <DialogTitle className="bg-blue-300 text-blue-50 text-4xl flex justify-evenly items-center">
           Summary view!
           <img
             className="w-32 pl-10"
@@ -42,7 +42,7 @@ export default function SummaryModal() {
             alt="DoDone Logo"
           />
         </DialogTitle>
-        <DialogContent className="bg-blue-50 text-blue-50">
+        <DialogContent className="bg-blue-50 text-blue-50 ">
           {/* <List
             sx={{
               width: "100%",
@@ -68,31 +68,46 @@ export default function SummaryModal() {
               return <TodoItem todo={todo} {...todo} key={todo.id} />;
             })}
           </List> */}
+          <DialogTitle className="text-blue-500">
+            <div className="max-w-2xl"> PROGRESS CIRCLE:</div>
+          </DialogTitle>
 
-          {/* PROGRESS CIRCLE */}
-          <DialogTitle>{"PROGRESS CIRCLE: "}</DialogTitle>
-          <ProgressCircle totalTodos={totalTodos} doneTodos={doneTodoNo} />
+          <div className="flex justify-evenly items-center max-w-2xl">
+            {/* PROGRESS CIRCLE */}
+            <ProgressCircle totalTodos={totalTodos} doneTodos={doneTodoNo} />
+            <div className="flex flex-col justify-evenly">
+              <Chip
+                sx={{
+                  padding: "12px",
+                  marginBottom: "1rem",
+                }}
+                label="DONE"
+                color="primary"
+              />
+              <Chip label="UN-DONE " color="secondary" />
+            </div>
+          </div>
 
-          {/* TODOS DONE */}
-          <List
-            sx={{
-              width: "100%",
-              maxWidth: 580,
-              // height: 300,
-              // overflow: scroll,
-              backgroundColor: "rgb(147 197 253)",
-              marginTop: "3vh",
-              // marginBottom: "8vh",
-              borderRadius: "10px",
-            }}
-          >
-            <DialogTitle>
-              {doneTodoNo === 0 ? "GET TO WORK MAN!" : "Tasks done: "}
-            </DialogTitle>
-            {doneTodos.map((todo) => {
-              return <TodoItem todo={todo} {...todo} key={todo.id} />;
-            })}
-          </List>
+          <div className="flex justify-center items-center">
+            {/* TODOS DONE */}
+            <List
+              sx={{
+                width: "100%",
+                maxWidth: 580,
+                backgroundColor: "rgb(147 197 253)",
+                marginTop: "3vh",
+                marginBottom: "4vh",
+                borderRadius: "10px",
+              }}
+            >
+              <DialogTitle>
+                {doneTodoNo === 0 ? "GET TO WORK MAN!" : "Tasks done: "}
+              </DialogTitle>
+              {doneTodos.map((todo) => {
+                return <TodoItem todo={todo} {...todo} key={todo.id} />;
+              })}
+            </List>
+          </div>
         </DialogContent>
       </Dialog>
     </>
