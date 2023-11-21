@@ -34,7 +34,7 @@ export default function SummaryModal() {
         // Lowest zIndex
         style={{ zIndex: 500 }}
       >
-        <DialogTitle className="bg-blue-300 text-blue-50 text-4xl flex justify-center items-center h-1/8">
+        <DialogTitle className="bg-blue-300 text-blue-50 text-4xl flex justify-center items-center">
           Summary view!
           <img
             className="w-32 pl-10"

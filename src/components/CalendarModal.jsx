@@ -1,5 +1,4 @@
 import { forwardRef, useContext } from "react";
-import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
@@ -25,10 +24,18 @@ export default function CalendarModal() {
         keepMounted
         aria-describedby="calendar-modal"
       >
-        <DialogTitle className="bg-blue-300 text-blue-50">
-          {"El Calendarrro!"}
+        <DialogTitle className="bg-blue-300 text-blue-50 flex justify-center items-center h-1/8">
+          Calendar view!
+          <img
+            className="w-32 pl-10"
+            src="src/layout/dodone_design.svg"
+            alt="DoDone Logo"
+          />
         </DialogTitle>
-        <DialogContent className="bg-blue-100 text-blue-500">
+        <div className="bg-blue-300 text-blue-50"></div>
+        <div className="bg-blue-300 text-blue-50"></div>
+        <DialogContent className="bg-blue-100 text-blue-500 mb-10">
+          {/* calendarList styles which don't work */}
           <CalendarList styles={{ styles }} />
         </DialogContent>
       </Dialog>
