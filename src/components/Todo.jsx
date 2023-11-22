@@ -11,6 +11,7 @@ import dodonedesign from "./../layout/dodone_design.svg";
 import useTodoApi from "./API/useTodoApi";
 
 export const TodoContext = createContext();
+export const FormContext = createContext();
 
 export default function Todo() {
   // PROPS
@@ -101,6 +102,7 @@ export default function Todo() {
       {/* TODO: GET RID OF SOME OF THE ELEMENTS */}
       <TodoContext.Provider
         value={{
+          // global
           calendarOpen,
           setCalendarOpen,
           summaryOpen,
@@ -109,25 +111,15 @@ export default function Todo() {
           setTime,
           todos,
 
-          editedId,
-          editedName,
-          editedPriority,
-          handleEditForm,
-          editTodoOpen,
-          handleCalendarOpen,
-          handleSummaryOpen,
-          newTodoOpen,
-          setNewTodoOpen,
-
-          setEditTodoOpen,
+          // TODO ITEM
           togglePriority,
           toggleTodo,
+          handleEditForm,
+
+          // NAVIGATION
+          handleCalendarOpen,
+          handleSummaryOpen,
           newTodoFormOpen,
-          setEditedName,
-          setEditedPriority,
-          // editedTodo,
-          priority,
-          setPriority,
         }}
       >
         <div className="flex justify-center items-center">
@@ -135,8 +127,27 @@ export default function Todo() {
           {!loginOpen && (
             <>
               <TodoList />
-              <NewTodoForm addTodo={addTodo} />
-              <EditTodoForm deleteTodo={deleteTodo} patchTodo={patchTodo} />
+
+              <FormContext.Provider
+                value={{
+                  // EDIT TODO FORM
+                  editedId,
+                  editedName,
+                  setEditedName,
+                  editedPriority,
+                  setEditedPriority,
+                  editTodoOpen,
+                  setEditTodoOpen,
+                  // NEW TODO FORM
+                  newTodoOpen,
+                  setNewTodoOpen,
+                  priority,
+                  setPriority,
+                }}
+              >
+                <NewTodoForm addTodo={addTodo} />
+                <EditTodoForm deleteTodo={deleteTodo} patchTodo={patchTodo} />
+              </FormContext.Provider>
               <CalendarModal />
               <SummaryModal />
               <Navigation />

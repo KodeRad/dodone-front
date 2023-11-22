@@ -11,7 +11,7 @@ import Slide from "@mui/material/Slide";
 import DatePicker from "./DatePicker";
 import { Checkbox } from "@mui/material";
 import { Star, StarBorder } from "@mui/icons-material";
-import { TodoContext } from "./Todo";
+import { TodoContext, FormContext } from "./Todo";
 import CheckboxComponent from "./Checkbox";
 
 const Transition = forwardRef(function Transition(props, ref) {
@@ -20,7 +20,7 @@ const Transition = forwardRef(function Transition(props, ref) {
 
 export default function NewTodoForm({ addTodo }) {
   const { newTodoOpen, setNewTodoOpen, time, priority, setPriority } =
-    useContext(TodoContext);
+    useContext(FormContext);
 
   const {
     register,

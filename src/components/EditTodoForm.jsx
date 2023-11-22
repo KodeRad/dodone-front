@@ -1,4 +1,4 @@
-import { forwardRef, useContext, useEffect } from "react";
+import { forwardRef, useContext } from "react";
 import { createPortal } from "react-dom";
 import { useForm } from "react-hook-form";
 import Button from "@mui/material/Button";
@@ -10,7 +10,7 @@ import Slide from "@mui/material/Slide";
 import DatePicker from "./DatePicker";
 import { StarBorder, Star } from "@mui/icons-material";
 import { Checkbox } from "@mui/material";
-import { TodoContext } from "./Todo";
+import { FormContext } from "./Todo";
 import CheckboxComponent from "./Checkbox";
 import dayjs from "dayjs";
 
@@ -29,7 +29,7 @@ export default function EditTodoForm({ deleteTodo, patchTodo }) {
     setTime,
     setEditedName,
     setEditedPriority,
-  } = useContext(TodoContext);
+  } = useContext(FormContext);
 
   const {
     register,
