@@ -3,8 +3,11 @@ import { useState } from "react";
 
 const useTodoApi = () => {
   const [todos, setTodos] = useState([]);
+
+  // TODO: VITE ENV TO HIDE
   const apiUrl = "http://localhost:8080/todos";
 
+  // TODO: TO DIFFERENT FILE AND EXPORT FROM THERE TO EACH HOOK
   const fetchData = async (url, method, data = null) => {
     try {
       const headers = {
@@ -31,6 +34,7 @@ const useTodoApi = () => {
     }
   };
 
+  // TODO: FOR EACH FETCH DO A SEPARATE HOOK
   const getTodos = async () => {
     try {
       const data = await fetchData(apiUrl, "GET");

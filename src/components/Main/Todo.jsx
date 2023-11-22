@@ -89,7 +89,7 @@ export default function Todo() {
 
   return (
     <>
-      <h1 className="bg-blue-300 flex justify-center items-center h-1/6 fixed w-full top-0 z-10">
+      <h1 className="fixed top-0 z-10 flex items-center justify-center w-full bg-blue-300 h-1/6">
         <img src={dodonedesign} alt="DoDone Logo" />
       </h1>
 
@@ -113,7 +113,7 @@ export default function Todo() {
           newTodoFormOpen,
         }}
       >
-        <div className="flex justify-center items-center">
+        <div className="flex items-center justify-center">
           <LoginModal loginOpen={loginOpen} setLoginOpen={setLoginOpen} />
           {!loginOpen && (
             <>
@@ -148,13 +148,3 @@ export default function Todo() {
     </>
   );
 }
-
-// setEditedTodo({
-//   id: id,
-//   name: name,
-//   priority: priority,
-//   dueDate: dueDate,
-//   dateCreated: dayjs(new Date()).format("YYYY-MM-DD HH:mm:ss"),
-// });
-// setEditedTodo(todos.filter((todo) => todo.id === id));
-// REFACTOR: setEditedObject and then use it for less code

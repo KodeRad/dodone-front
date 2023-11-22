@@ -1,8 +1,6 @@
 // LEARN: CHECK WHAT FORWARDREF DOES
-import { forwardRef, useContext, useEffect, useState } from "react";
-import Button from "@mui/material/Button";
+import { forwardRef, useContext } from "react";
 import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import Slide from "@mui/material/Slide";
@@ -25,7 +23,7 @@ export default function SummaryModal() {
   return (
     <>
       <Dialog
-        // className="bg-blue-100 text-blue-30 flex justify-center items-center"
+        // className="flex items-center justify-center bg-blue-100 text-blue-30"
         open={summaryOpen}
         fullScreen
         TransitionComponent={Transition}
@@ -34,7 +32,7 @@ export default function SummaryModal() {
         // Lowest zIndex
         style={{ zIndex: 500 }}
       >
-        <DialogTitle className="bg-blue-300 text-blue-50 text-4xl flex justify-evenly items-center">
+        <DialogTitle className="flex items-center text-4xl bg-blue-300 text-blue-50 justify-evenly">
           Summary view!
           <img
             className="w-32 pl-10"
@@ -43,36 +41,11 @@ export default function SummaryModal() {
           />
         </DialogTitle>
         <DialogContent className="bg-blue-50 text-blue-50 ">
-          {/* <List
-            sx={{
-              width: "100%",
-              maxWidth: 580,
-              // height: 300,
-              // overflow: scroll,
-              backgroundColor: "rgb(147 197 253)",
-              marginTop: "3vh",
-              // marginBottom: "8vh",
-              borderRadius: "10px",
-            }}
-          > */}
-          {/* TODOS UNDONE */}
-
-          {/* // TODO: STICKY NAV TASKS LEFT TO BE DONE */}
-          {/* <DialogTitle className="bg-blue-400 text-blue-50 rounded-lg text-4xl flex justify-center items-center">
-             {leftTodos.length === 0
-                ? "EVERYTHING IS DONE, GOOD JOB!"
-                : "Tasks left to be done:"}
-            </DialogTitle>
-            {leftTodos.map((todo) => {
-              // REFACTOR: why if I choose to pass a whole item, I got undefined
-              return <TodoItem todo={todo} {...todo} key={todo.id} />;
-            })}
-          </List> */}
-          <DialogTitle className="text-blue-500 text-center">
+          <DialogTitle className="text-center text-blue-500">
             <div> PROGRESS CIRCLE:</div>
           </DialogTitle>
 
-          <div className="flex justify-center items-center mt-3 mb-2 ">
+          <div className="flex items-center justify-center mt-3 mb-2 ">
             {/* PROGRESS CIRCLE */}
             <ProgressCircle totalTodos={totalTodos} doneTodos={doneTodoNo} />
             <div className="flex flex-col justify-evenly">
@@ -97,7 +70,7 @@ export default function SummaryModal() {
             </div>
           </div>
 
-          <div className="flex justify-center items-center">
+          <div className="flex items-center justify-center">
             {/* TODOS DONE */}
             <List
               sx={{
@@ -110,9 +83,10 @@ export default function SummaryModal() {
               }}
             >
               <DialogTitle>
-                {doneTodoNo === 0 ? "GET TO WORK MAN!" : "Tasks done: "}
+                {!doneTodoNo ? "GET TO WORK MAN!" : "Tasks done: "}
               </DialogTitle>
               {doneTodos.map((todo) => {
+                // TODO: GET RID OF {...TODO} // DONT SPREAD OBJECTS LIKE THAT
                 return <TodoItem todo={todo} {...todo} key={todo.id} />;
               })}
             </List>

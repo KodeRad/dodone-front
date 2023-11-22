@@ -1,8 +1,11 @@
 import { Star, StarBorder } from "@mui/icons-material";
 import { Checkbox } from "@mui/material";
+import { useState } from "react";
 
 export default function CheckboxComponent({ checkedValue, icon, checkedIcon }) {
   return (
+    // CONST [CHECKED, SETCHECKED] = useState();
+
     <Checkbox
       checked={checkedValue}
       sx={{

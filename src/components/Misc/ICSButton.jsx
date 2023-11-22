@@ -25,6 +25,7 @@ const getEvents = (todos) => {
   return events;
 };
 
+// TODO: PRINTSCREEN DO TRY/CATCH INSTEAD OF PROMISE
 const ICSButton = () => {
   const { todos } = useContext(TodoContext);
   const handleDownload = async () => {
@@ -50,8 +51,7 @@ const ICSButton = () => {
   };
 
   return (
-    // TODO: ADD SECOND BUTTON TO CLEAR FINISHED TASKS
-    <Box className="text-blue-500 text-center mt-2">
+    <Box className="mt-2 text-center text-blue-500">
       <Button className="text-white" onClick={handleDownload}>
         Download calendar
       </Button>

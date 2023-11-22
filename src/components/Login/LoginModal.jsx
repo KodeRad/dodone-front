@@ -8,6 +8,7 @@ import dodonelogo from "./../../styles/dodone_logo.svg";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 
+// TODO: OSOBNY KOMPONENT TRANSITION
 const Transition = forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
@@ -29,7 +30,7 @@ export default function LoginModal({ setLoginOpen, loginOpen }) {
   return (
     <>
       <Dialog
-        className="bg-blue-100 text-blue-30 rounded-lg text-4xl block justify-center items-center"
+        className="items-center justify-center block text-4xl bg-blue-100 rounded-lg text-blue-30"
         // TODO: zIndex ? // CSS: STYLE TO BLUE
         open={loginOpen}
         fullScreen
@@ -37,7 +38,7 @@ export default function LoginModal({ setLoginOpen, loginOpen }) {
         keepMounted
         aria-describedby="login-modal"
       >
-        <DialogTitle className="bg-blue-200 text-blue-50 p-4 text-4xl flex justify-center items-center h-2/6">
+        <DialogTitle className="flex items-center justify-center p-4 text-4xl bg-blue-200 text-blue-50 h-2/6">
           <img src={dodonelogo} alt="DoDone Logo" />
         </DialogTitle>
         <DialogContent className="bg-blue-200">
@@ -50,16 +51,17 @@ export default function LoginModal({ setLoginOpen, loginOpen }) {
               reset();
             })}
           >
+            {/* TODO: DECLARE ARRAY WITH VALUES AND MAP IT OVER IN HERE */}
             <input
-              className="rounded-lg text-center bg-blue-100 mb-4 p-2 w-72 "
+              className="p-2 mb-4 text-center bg-blue-100 rounded-lg w-72 "
               // sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-2/5
-              // className="flex justify-center items-center"
+              // className="flex items-center justify-center"
               {...register("Username", { required: true })}
               id="username"
               placeholder="Username"
             />
             <input
-              className="rounded-lg text-center bg-blue-100 mb-4 p-2 w-72"
+              className="p-2 mb-4 text-center bg-blue-100 rounded-lg w-72"
               {...register("Password", { required: true })}
               id="password"
               type="password"

@@ -15,6 +15,8 @@ export default function Navigation() {
   const [value, setValue] = useState(0);
   const ref = useRef(null);
 
+  // TODO: SCREEN SHOTS MAKE AN ARRAY AND MAP OVER IT (USE KEY WHEN YOU MAP)
+
   return (
     <Box sx={{ pb: 7 }} ref={ref}>
       <CssBaseline />
@@ -32,7 +34,7 @@ export default function Navigation() {
           sx={{ backgroundColor: "rgb(147 197 253)" }}
           showLabels
           value={value}
-          onChange={(event, newValue) => {
+          onChange={(_, newValue) => {
             setValue(newValue);
           }}
         >

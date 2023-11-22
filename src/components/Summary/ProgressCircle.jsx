@@ -2,7 +2,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 
-function CircularProgressWithLabel({ value }) {
+function CircularProgressWithLabel({ value = 0 }) {
   return (
     <Box sx={{ position: "relative", display: "inline-flex" }}>
       <CircularProgress

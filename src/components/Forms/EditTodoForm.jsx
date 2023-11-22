@@ -57,6 +57,7 @@ export default function EditTodoForm({ deleteTodo, patchTodo }) {
         className=" bg-blue-100 text-blue-500"
         style={{ zIndex: 3000 }}
       >
+        {/* // TODO: NEW COMPONENT FOR FORM */}
         <form
           onSubmit={handleSubmit((data) => {
             patchTodo(
