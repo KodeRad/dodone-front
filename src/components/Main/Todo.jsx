@@ -7,7 +7,7 @@ import EditTodoForm from "../Forms/EditTodoForm";
 import CalendarModal from "../Calendar/CalendarModal";
 import SummaryModal from "../Summary/SummaryModal";
 import LoginModal from "../Login/LoginModal";
-import dodonedesign from "../../layout/dodone_design.svg";
+import dodonedesign from "../../styles/dodone_design.svg";
 import useTodoApi from "../API/useTodoApi";
 
 export const TodoContext = createContext();

@@ -5,7 +5,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import Slide from "@mui/material/Slide";
 import CalendarList from "./CalendarList";
 import { TodoContext } from "../Main/Todo";
-import styles from "./../../layout/calendar.css";
+import styles from "./calendar.css";
 
 const Transition = forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -27,7 +27,7 @@ export default function CalendarModal() {
           Calendar view!
           <img
             className="w-32 pl-10"
-            src="src/layout/dodone_design.svg"
+            src="src/styles/dodone_design.svg"
             alt="DoDone Logo"
           />
         </DialogTitle>

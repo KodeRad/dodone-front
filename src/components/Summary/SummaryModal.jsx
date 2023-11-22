@@ -38,7 +38,7 @@ export default function SummaryModal() {
           Summary view!
           <img
             className="w-32 pl-10"
-            src="src/layout/dodone_design.svg"
+            src="src/styles/dodone_design.svg"
             alt="DoDone Logo"
           />
         </DialogTitle>
