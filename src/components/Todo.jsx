@@ -6,174 +6,50 @@ import Navigation from "./Navigation";
 import EditTodoForm from "./EditTodoForm";
 import CalendarModal from "./CalendarModal";
 import SummaryModal from "./SummaryModal";
-import getTodos from "./API/getTodos";
 import LoginModal from "./LoginModal";
 import dodonedesign from "./../layout/dodone_design.svg";
+import useTodoApi from "./API/useTodoApi";
 
 export const TodoContext = createContext();
 
 export default function Todo() {
-  const [todos, setTodos] = useState([]);
+  // const [todos, setTodos] = useState([]);
   const [newTodoOpen, setNewTodoOpen] = useState(false);
   const [editTodoOpen, setEditTodoOpen] = useState(false);
   const [calendarOpen, setCalendarOpen] = useState(false);
   const [summaryOpen, setSummaryOpen] = useState(false);
   // TODO: CHANGE STATE TO TRUE FOR LOGIN WINDOW
-  const [loginOpen, setLoginOpen] = useState(true);
+  const [loginOpen, setLoginOpen] = useState(false);
   const [priority, setPriority] = useState(false);
   const [time, setTime] = useState(dayjs(new Date()));
 
   const [editedId, setEditedId] = useState("");
   const [editedName, setEditedName] = useState("");
   const [editedPriority, setEditedPriority] = useState(false);
-  // const [editedDueDate, setEditedDueDate] = useState("");
 
-  // TODO: CUSTOM HOOK WITH ALL THE LOGIC THAT RETURNS WHATEVER YOU NEED (AS AN OBJECT) EXAMPLES: REACT USE LIBRARY
-  // Getting todos from database
+  const [editedTodo, setEditedTodo] = useState({});
+
+  const {
+    todos,
+    getTodos,
+    addTodo,
+    patchTodo,
+    putTodo,
+    toggleTodo,
+    togglePriority,
+    deleteTodo,
+  } = useTodoApi();
+
   useEffect(() => {
-    getTodos(setTodos);
+    getTodos();
   }, []);
-
-  // example custom hook
-  // const customHook = useCustomHook(id)
-
-  async function addTodo(name, priority = false, dueDate = null) {
-    try {
-      const resp = await fetch("http://localhost:8080/todos/add", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*",
-        },
-        body: JSON.stringify({
-          name: name,
-          dueDate: dayjs(dueDate).format("YYYY-MM-DD HH:mm:ss"),
-          priority: priority,
-          done: false,
-          createdDate: dayjs(new Date()).format("YYYY-MM-DD HH:mm:ss"),
-        }),
-      });
-
-      if (!resp.ok) throw new Error("Failed to add todo");
-      const data = await resp.json();
-      // CONSOLE LOG TO BE DELETED
-      console.log(data);
-      if (resp.ok) {
-        setTodos((currentTodos) => {
-          return [...currentTodos, data];
-        });
-      }
-    } catch (error) {
-      console.error("Error adding todo: ", error);
-    }
-  }
-
-  // patchTodo
-  async function patchTodo(id, name, priority, dueDate) {
-    const resp = await fetch(`http://localhost:8080/todos/${id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
-      },
-      body: JSON.stringify({
-        name: name,
-        dueDate: dueDate,
-        priority: priority,
-        done: false,
-      }),
-    });
-
-    // Should it return the changed todo?
-    const data = await resp.json();
-    console.log(data);
-
-    setTodos((currentTodos) => {
-      return currentTodos.map((todo) => {
-        return todo.id === id ? data : todo;
-      });
-    });
-    // setTodos((currentTodos) => {
-    //   return currentTodos.map((todo) => {
-    //     if (todo.id === id) {
-    //       return { ...todo, data };
-    //     }
-    //     return todo;
-    //   });
-    // });
-  }
-
-  // TODO: EXTRACT THE FETCH FUNCTION FOR TOGGLETODO AND PRIORITY
-  async function toggleTodo(id, done) {
-    const resp = await fetch(`http://localhost:8080/todos/${id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
-      },
-      body: JSON.stringify({
-        done: done,
-      }),
-    });
-
-    // Should it return the changed todo?
-    const data = await resp.json();
-    console.log(data);
-
-    setTodos((currentTodos) => {
-      return currentTodos.map((todo) => {
-        if (todo.id === id) {
-          return { ...todo, done };
-        }
-        return todo;
-      });
-    });
-  }
-
-  // TODO: EXTRACT THE FETCH FUNCTION FOR TOGGLETODO AND PRIORITY
-  async function togglePriority(id, priority) {
-    const resp = await fetch(`http://localhost:8080/todos/${id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
-      },
-      body: JSON.stringify({
-        priority: priority,
-      }),
-    });
-
-    // Should it return the changed todo?
-    const data = await resp.json();
-    console.log(data);
-
-    setTodos((currentTodos) => {
-      return currentTodos.map((todo) => {
-        if (todo.id === id) {
-          return { ...todo, priority };
-        }
-        return todo;
-      });
-    });
-  }
-
-  async function deleteTodo(id) {
-    await fetch(`http://localhost:8080/todos/${id}`, {
-      method: "DELETE",
-    });
-
-    setTodos((currentTodos) => {
-      return currentTodos.filter((todo) => todo.id !== id);
-    });
-  }
-
-  // TODO: ENUM AS A REGULAR JS OBJECT
-  const types = {
-    DUPA: "DUPA",
-  };
 
   // TODO: REFACTOR TO ONE FUNCTION
   // TODO: CHANGE NAME TO HANDLE
+  // TODO: ENUM AS A REGULAR JS OBJECT
+  const types = {
+    type: "1",
+  };
   const newTodoFormOpen = () => {
     // set it to !open instead of true
     setNewTodoOpen(!newTodoOpen);
@@ -198,6 +74,14 @@ export default function Todo() {
 
   // REFACTOR: PASS IT AS AN OBJECT, CHANGE NAME
   const handleEditForm = (id, name, priority, dueDate) => {
+    // setEditedTodo({
+    //   id: id,
+    //   name: name,
+    //   priority: priority,
+    //   dueDate: dueDate,
+    //   dateCreated: dayjs(new Date()).format("YYYY-MM-DD HH:mm:ss"),
+    // });
+    setEditedTodo(todos.filter((todo) => todo.id === id));
     // REFACTOR: setEditedObject and then use it for less code
     setTime(dayjs(dueDate));
     setEditedId(id);
@@ -218,6 +102,7 @@ export default function Todo() {
           addTodo,
           calendarOpen,
           deleteTodo,
+          editedTodo,
           // editedDueDate,
           editedId,
           editedName,

@@ -36,8 +36,6 @@ export default function EditTodoForm() {
   const {
     register,
     handleSubmit,
-    watch,
-    reset,
     formState: { errors },
   } = useForm();
 

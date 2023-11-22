@@ -50,7 +50,6 @@ export default function NewTodoForm() {
           <form
             className="mt-3"
             onSubmit={handleSubmit((data) => {
-              console.log(data);
               addTodo(data.todoName, data.todoPriority, time);
               handleClose();
 
