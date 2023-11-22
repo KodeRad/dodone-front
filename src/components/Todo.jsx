@@ -1,12 +1,12 @@
 import dayjs from "dayjs";
 import { useEffect, useState, createContext } from "react";
-import NewTodoForm from "./NewTodoForm";
+import NewTodoForm from "./Forms/NewTodoForm";
 import TodoList from "./TodoList";
 import Navigation from "./Navigation";
-import EditTodoForm from "./EditTodoForm";
-import CalendarModal from "./CalendarModal";
-import SummaryModal from "./SummaryModal";
-import LoginModal from "./LoginModal";
+import EditTodoForm from "./Forms/EditTodoForm";
+import CalendarModal from "./Calendar/CalendarModal";
+import SummaryModal from "./Summary/SummaryModal";
+import LoginModal from "./Login/LoginModal";
 import dodonedesign from "./../layout/dodone_design.svg";
 import useTodoApi from "./API/useTodoApi";
 
@@ -53,39 +53,33 @@ export default function Todo() {
   const types = {
     type: "1",
   };
+
+  const resetWindows = () => {
+    setNewTodoOpen(false);
+    setCalendarOpen(false);
+    setSummaryOpen(false);
+    setEditTodoOpen(false);
+  };
+
   const newTodoFormOpen = () => {
-    // set it to !open instead of true
+    resetWindows();
     setNewTodoOpen(!newTodoOpen);
-    setCalendarOpen(false);
-    setSummaryOpen(false);
-    setEditTodoOpen(false);
-    setTime(dayjs(new Date()));
     setPriority(false);
+    setTime(dayjs(new Date()));
   };
+
   const handleCalendarOpen = (type) => {
+    resetWindows();
     setCalendarOpen(!calendarOpen);
-    setNewTodoOpen(false);
-    setSummaryOpen(false);
-    setEditTodoOpen(false);
   };
+
   const handleSummaryOpen = () => {
+    resetWindows();
     setSummaryOpen(!summaryOpen);
-    setCalendarOpen(false);
-    setNewTodoOpen(false);
-    setEditTodoOpen(false);
   };
 
   // REFACTOR: PASS IT AS AN OBJECT, CHANGE NAME
   const handleEditForm = (id, name, priority, dueDate) => {
-    // setEditedTodo({
-    //   id: id,
-    //   name: name,
-    //   priority: priority,
-    //   dueDate: dueDate,
-    //   dateCreated: dayjs(new Date()).format("YYYY-MM-DD HH:mm:ss"),
-    // });
-    // setEditedTodo(todos.filter((todo) => todo.id === id));
-    // REFACTOR: setEditedObject and then use it for less code
     setTime(dayjs(dueDate));
     setEditedId(id);
     setEditedName(name);
@@ -99,7 +93,6 @@ export default function Todo() {
         <img src={dodonedesign} alt="DoDone Logo" />
       </h1>
 
-      {/* TODO: GET RID OF SOME OF THE ELEMENTS */}
       <TodoContext.Provider
         value={{
           // global
@@ -110,12 +103,10 @@ export default function Todo() {
           time,
           setTime,
           todos,
-
           // TODO ITEM
           togglePriority,
           toggleTodo,
           handleEditForm,
-
           // NAVIGATION
           handleCalendarOpen,
           handleSummaryOpen,
@@ -127,7 +118,6 @@ export default function Todo() {
           {!loginOpen && (
             <>
               <TodoList />
-
               <FormContext.Provider
                 value={{
                   // EDIT TODO FORM
@@ -158,3 +148,13 @@ export default function Todo() {
     </>
   );
 }
+
+// setEditedTodo({
+//   id: id,
+//   name: name,
+//   priority: priority,
+//   dueDate: dueDate,
+//   dateCreated: dayjs(new Date()).format("YYYY-MM-DD HH:mm:ss"),
+// });
+// setEditedTodo(todos.filter((todo) => todo.id === id));
+// REFACTOR: setEditedObject and then use it for less code

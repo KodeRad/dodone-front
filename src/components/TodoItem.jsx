@@ -7,7 +7,7 @@ import Star from "@mui/icons-material/Star";
 import StarBorder from "@mui/icons-material/StarBorder";
 import { useContext, useEffect } from "react";
 import { TodoContext } from "./Todo";
-import CheckboxComponent from "./Checkbox";
+import CheckboxComponent from "./Misc/Checkbox";
 import dayjs from "dayjs";
 
 export default function TodoItem({ id, done, priority, name, dueDate }) {

@@ -11,8 +11,8 @@ import Slide from "@mui/material/Slide";
 import DatePicker from "./DatePicker";
 import { Checkbox } from "@mui/material";
 import { Star, StarBorder } from "@mui/icons-material";
-import { TodoContext, FormContext } from "./Todo";
-import CheckboxComponent from "./Checkbox";
+import { TodoContext, FormContext } from "../Todo";
+import CheckboxComponent from "../Misc/Checkbox";
 
 const Transition = forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;

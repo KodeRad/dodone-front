@@ -1,12 +1,11 @@
 import { forwardRef, useContext } from "react";
 import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import Slide from "@mui/material/Slide";
 import CalendarList from "./CalendarList";
-import { TodoContext } from "./Todo";
-import styles from "./../layout/calendar.css";
+import { TodoContext } from "../Todo";
+import styles from "./../../layout/calendar.css";
 
 const Transition = forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -35,7 +34,6 @@ export default function CalendarModal() {
         <div className="bg-blue-300 text-blue-50"></div>
         <div className="bg-blue-300 text-blue-50"></div>
         <DialogContent className="bg-blue-100 text-blue-500 mb-10">
-          {/* calendarList styles which don't work */}
           <CalendarList styles={{ styles }} />
         </DialogContent>
       </Dialog>

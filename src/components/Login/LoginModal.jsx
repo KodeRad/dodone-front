@@ -1,4 +1,4 @@
-import { forwardRef, useContext } from "react";
+import { forwardRef } from "react";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
@@ -6,7 +6,7 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import Slide from "@mui/material/Slide";
 import { useForm } from "react-hook-form";
-import dodonelogo from "./../layout/dodone_logo.svg";
+import dodonelogo from "./../../layout/dodone_logo.svg";
 
 const Transition = forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
