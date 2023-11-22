@@ -7,11 +7,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import dodonelogo from "./../../styles/dodone_logo.svg";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
-
-// TODO: OSOBNY KOMPONENT TRANSITION
-const Transition = forwardRef(function Transition(props, ref) {
-  return <Slide direction="up" ref={ref} {...props} />;
-});
+import Transition from "../Misc/Transition";
 
 export default function LoginModal({ setLoginOpen, loginOpen }) {
   const {

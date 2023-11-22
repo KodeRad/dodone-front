@@ -13,10 +13,7 @@ import { Checkbox } from "@mui/material";
 import { Star, StarBorder } from "@mui/icons-material";
 import { TodoContext, FormContext } from "../Main/Todo";
 import CheckboxComponent from "../Misc/Checkbox";
-
-const Transition = forwardRef(function Transition(props, ref) {
-  return <Slide direction="up" ref={ref} {...props} />;
-});
+import Transition from "../Misc/Transition";
 
 export default function NewTodoForm({ addTodo }) {
   const { newTodoOpen, setNewTodoOpen, time, priority, setPriority } =
@@ -46,7 +43,7 @@ export default function NewTodoForm({ addTodo }) {
         <DialogTitle className="bg-blue-300 text-blue-50">
           {"New Todo!"}
         </DialogTitle>
-        <DialogContent className="bg-blue-100 text-blue-500">
+        <DialogContent className="text-blue-500 bg-blue-100">
           <form
             className="mt-3"
             onSubmit={handleSubmit((data) => {
@@ -58,7 +55,7 @@ export default function NewTodoForm({ addTodo }) {
             })}
           >
             <input
-              className="bg-blue-200 rounded-md pl-2 mr-2"
+              className="pl-2 mr-2 bg-blue-200 rounded-md"
               {...register("todoName", { required: true })}
               id="newTodoName"
               placeholder="Todo's name"
