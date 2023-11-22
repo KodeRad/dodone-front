@@ -18,14 +18,12 @@ const Transition = forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function EditTodoForm() {
+export default function EditTodoForm({ deleteTodo, patchTodo }) {
   const {
     editTodoOpen,
     setEditTodoOpen,
-    patchTodo,
     editedId,
     editedName,
-    deleteTodo,
     editedPriority,
     time,
     setTime,

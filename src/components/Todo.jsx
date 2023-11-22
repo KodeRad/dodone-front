@@ -13,28 +13,30 @@ import useTodoApi from "./API/useTodoApi";
 export const TodoContext = createContext();
 
 export default function Todo() {
-  // const [todos, setTodos] = useState([]);
+  // PROPS
   const [newTodoOpen, setNewTodoOpen] = useState(false);
   const [editTodoOpen, setEditTodoOpen] = useState(false);
-  const [calendarOpen, setCalendarOpen] = useState(false);
-  const [summaryOpen, setSummaryOpen] = useState(false);
-  // TODO: CHANGE STATE TO TRUE FOR LOGIN WINDOW
-  const [loginOpen, setLoginOpen] = useState(false);
-  const [priority, setPriority] = useState(false);
-  const [time, setTime] = useState(dayjs(new Date()));
-
+  const [loginOpen, setLoginOpen] = useState(true); // LOGIN
   const [editedId, setEditedId] = useState("");
   const [editedName, setEditedName] = useState("");
   const [editedPriority, setEditedPriority] = useState(false);
 
-  const [editedTodo, setEditedTodo] = useState({});
+  // CONTEXT
+  const [calendarOpen, setCalendarOpen] = useState(false);
+  const [summaryOpen, setSummaryOpen] = useState(false);
+  const [time, setTime] = useState(dayjs(new Date()));
+
+  // NEEDED ONLY IN NEWTODOFORM. IS IT THOUGH?
+  const [priority, setPriority] = useState(false);
+
+  // const [editedTodo, setEditedTodo] = useState({});
 
   const {
     todos,
     getTodos,
     addTodo,
     patchTodo,
-    putTodo,
+    // putTodo,
     toggleTodo,
     togglePriority,
     deleteTodo,
@@ -81,7 +83,7 @@ export default function Todo() {
     //   dueDate: dueDate,
     //   dateCreated: dayjs(new Date()).format("YYYY-MM-DD HH:mm:ss"),
     // });
-    setEditedTodo(todos.filter((todo) => todo.id === id));
+    // setEditedTodo(todos.filter((todo) => todo.id === id));
     // REFACTOR: setEditedObject and then use it for less code
     setTime(dayjs(dueDate));
     setEditedId(id);
@@ -99,11 +101,14 @@ export default function Todo() {
       {/* TODO: GET RID OF SOME OF THE ELEMENTS */}
       <TodoContext.Provider
         value={{
-          addTodo,
           calendarOpen,
-          deleteTodo,
-          editedTodo,
-          // editedDueDate,
+          setCalendarOpen,
+          summaryOpen,
+          setSummaryOpen,
+          time,
+          setTime,
+          todos,
+
           editedId,
           editedName,
           editedPriority,
@@ -112,38 +117,31 @@ export default function Todo() {
           handleCalendarOpen,
           handleSummaryOpen,
           newTodoOpen,
-          patchTodo,
-          setCalendarOpen,
-          setEditTodoOpen,
           setNewTodoOpen,
-          setSummaryOpen,
-          summaryOpen,
-          todos,
+
+          setEditTodoOpen,
           togglePriority,
           toggleTodo,
           newTodoFormOpen,
-          time,
-          setTime,
           setEditedName,
           setEditedPriority,
+          // editedTodo,
           priority,
           setPriority,
-          loginOpen,
-          setLoginOpen,
         }}
       >
         <div className="flex justify-center items-center">
-          <LoginModal />
-          {!loginOpen ? (
+          <LoginModal loginOpen={loginOpen} setLoginOpen={setLoginOpen} />
+          {!loginOpen && (
             <>
               <TodoList />
-              <NewTodoForm />
-              <EditTodoForm />
+              <NewTodoForm addTodo={addTodo} />
+              <EditTodoForm deleteTodo={deleteTodo} patchTodo={patchTodo} />
               <CalendarModal />
               <SummaryModal />
               <Navigation />
             </>
-          ) : null}
+          )}
         </div>
       </TodoContext.Provider>
     </>

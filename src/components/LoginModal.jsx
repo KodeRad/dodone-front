@@ -5,7 +5,6 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import Slide from "@mui/material/Slide";
-import { TodoContext } from "./Todo";
 import { useForm } from "react-hook-form";
 import dodonelogo from "./../layout/dodone_logo.svg";
 
@@ -13,9 +12,7 @@ const Transition = forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function LoginModal() {
-  const { loginOpen, setLoginOpen } = useContext(TodoContext);
-
+export default function LoginModal({ setLoginOpen, loginOpen }) {
   const {
     register,
     handleSubmit,

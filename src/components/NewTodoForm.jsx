@@ -18,8 +18,8 @@ const Transition = forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function NewTodoForm() {
-  const { newTodoOpen, setNewTodoOpen, addTodo, time, priority, setPriority } =
+export default function NewTodoForm({ addTodo }) {
+  const { newTodoOpen, setNewTodoOpen, time, priority, setPriority } =
     useContext(TodoContext);
 
   const {

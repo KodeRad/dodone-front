@@ -3,7 +3,6 @@ import { useState } from "react";
 
 const useTodoApi = () => {
   const [todos, setTodos] = useState([]);
-
   const apiUrl = "http://localhost:8080/todos";
 
   const fetchData = async (url, method, data = null) => {
@@ -25,23 +24,10 @@ const useTodoApi = () => {
         throw new Error(`Failed to fetch data: ${response.statusText}`);
       }
 
-      return await response.json();
+      return method === "DELETE" ? null : await response.json();
     } catch (error) {
       console.error("API error:", error);
       throw error;
-    }
-  };
-
-  const deleteTodo = async (id) => {
-    try {
-      await fetch(`http://localhost:8080/todos/${id}`, {
-        method: "DELETE",
-      });
-      // await fetchData(`${apiUrl}/${id}`, "DELETE");
-
-      setTodos((currentTodos) => currentTodos.filter((todo) => todo.id !== id));
-    } catch (error) {
-      console.error("Error deleting todo:", error);
     }
   };
 
@@ -88,27 +74,6 @@ const useTodoApi = () => {
     }
   };
 
-  // // PATCH THAT IS PUT XD
-  // const patchTodo = async (id, name, priority, dueDate, createdDate) => {
-  //   try {
-  //     const body = todos.filter((todo) => {
-  //       console.log(id);
-  //       todo.id === id;
-  //     });
-
-  //     const data = await fetchData(`${apiUrl}/${id}`, "PUT", {
-  //       body,
-  //     });
-
-  //     setTodos((currentTodos) =>
-  //       currentTodos.map((todo) => (todo.id === id ? data : todo))
-  //     );
-  //   } catch (error) {
-  //     console.error("Error updating todo:", error);
-  //   }
-  // };
-
-  // TODO: CAN IT BE DONE?
   const patchTodo = async (id, name, priority, dueDate) => {
     // const editedTodo = todos.find((todo) => todo.id === id);
 
@@ -159,6 +124,16 @@ const useTodoApi = () => {
       );
     } catch (error) {
       console.error("Error toggling priority:", error);
+    }
+  };
+
+  const deleteTodo = async (id) => {
+    try {
+      await fetchData(`${apiUrl}/${id}`, "DELETE");
+
+      setTodos((currentTodos) => currentTodos.filter((todo) => todo.id !== id));
+    } catch (error) {
+      console.error("Error deleting todo:", error);
     }
   };
 
