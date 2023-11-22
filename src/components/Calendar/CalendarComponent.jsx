@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef } from "react";
+import React, { useContext, useEffect, useRef, forwardRef } from "react";
 import { Calendar } from "@fullcalendar/core";
 import listPlugin from "@fullcalendar/list";
 import dayGridPlugin from "@fullcalendar/daygrid";
@@ -7,22 +7,17 @@ import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import bootstrap5Plugin from "@fullcalendar/bootstrap5";
 
-export default function CalendarList() {
+const CalendarComponent = forwardRef(({ initialView }, ref) => {
   const { todos } = useContext(TodoContext);
 
-  const calendarSmall = useRef(null);
-  const calendarLarge = useRef(null);
-
-  // TODO: useMediaQuery() or smth else to get just one useEffect
-  // LIST CALENDAR VIEW
   useEffect(() => {
-    const calendar = new Calendar(calendarSmall.current, {
+    const calendar = new Calendar(ref.current, {
       plugins: [listPlugin, dayGridPlugin, bootstrap5Plugin],
       headerToolbar: {
         left: "prev,next today",
         right: "dayGridMonth,listWeek",
       },
-      initialView: "listWeek",
+      initialView: initialView,
       contentHeight: "auto",
       eventTimeFormat: {
         hour: "2-digit",
@@ -39,8 +34,15 @@ export default function CalendarList() {
           };
         }),
       eventDisplay: "auto",
-      dayMaxEvents: true,
       themeSystem: "bootstrap5",
+
+      dayMaxEvents: true,
+      dayMaxEventRows: true, // for all non-TimeGrid views
+      views: {
+        timeGrid: {
+          dayMaxEventRows: 2, // adjust to 6 only for timeGridWeek/timeGridDay
+        },
+      },
     });
 
     calendar.render();
@@ -48,5 +50,13 @@ export default function CalendarList() {
     return () => {
       calendar.destroy();
     };
-  }, [todos]);
-}
+  }, [todos, initialView, ref]);
+
+  return (
+    <>
+      <div ref={ref} />
+    </>
+  );
+});
+
+export default CalendarComponent;

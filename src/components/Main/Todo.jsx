@@ -17,7 +17,7 @@ export default function Todo() {
   // PROPS
   const [newTodoOpen, setNewTodoOpen] = useState(false);
   const [editTodoOpen, setEditTodoOpen] = useState(false);
-  const [loginOpen, setLoginOpen] = useState(true); // LOGIN
+  const [loginOpen, setLoginOpen] = useState(false); // LOGIN
   const [editedId, setEditedId] = useState("");
   const [editedName, setEditedName] = useState("");
   const [editedPriority, setEditedPriority] = useState(false);
