@@ -5,7 +5,7 @@ import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
 import "dayjs/locale/pl";
 import dayjs from "dayjs";
 import { useContext, useEffect } from "react";
-import { TodoContext } from "../Todo";
+import { TodoContext } from "../Main/Todo";
 
 export default function DatePicker() {
   const { time, setTime } = useContext(TodoContext);

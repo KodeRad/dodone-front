@@ -1,14 +1,14 @@
 import dayjs from "dayjs";
 import { useEffect, useState, createContext } from "react";
-import NewTodoForm from "./Forms/NewTodoForm";
+import NewTodoForm from "../Forms/NewTodoForm";
 import TodoList from "./TodoList";
-import Navigation from "./Navigation";
-import EditTodoForm from "./Forms/EditTodoForm";
-import CalendarModal from "./Calendar/CalendarModal";
-import SummaryModal from "./Summary/SummaryModal";
-import LoginModal from "./Login/LoginModal";
-import dodonedesign from "./../layout/dodone_design.svg";
-import useTodoApi from "./API/useTodoApi";
+import Navigation from "../Navigation/Navigation";
+import EditTodoForm from "../Forms/EditTodoForm";
+import CalendarModal from "../Calendar/CalendarModal";
+import SummaryModal from "../Summary/SummaryModal";
+import LoginModal from "../Login/LoginModal";
+import dodonedesign from "../../layout/dodone_design.svg";
+import useTodoApi from "../API/useTodoApi";
 
 export const TodoContext = createContext();
 export const FormContext = createContext();

@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useRef } from "react";
 import { Calendar } from "@fullcalendar/core";
 import listPlugin from "@fullcalendar/list";
 import dayGridPlugin from "@fullcalendar/daygrid";
-import { TodoContext } from "../Todo";
+import { TodoContext } from "../Main/Todo";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import bootstrap5Plugin from "@fullcalendar/bootstrap5";

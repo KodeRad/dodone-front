@@ -7,7 +7,7 @@ import Update from "@mui/icons-material/Update";
 import NewTodo from "@mui/icons-material/AddBox";
 import Calendar from "@mui/icons-material/CalendarMonth";
 import Paper from "@mui/material/Paper";
-import { TodoContext } from "./Todo";
+import { TodoContext } from "../Main/Todo";
 
 export default function Navigation() {
   const { newTodoFormOpen, handleCalendarOpen, handleSummaryOpen } =

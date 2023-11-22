@@ -7,9 +7,9 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import Slide from "@mui/material/Slide";
 import ProgressCircle from "./ProgressCircle";
-import TodoItem from "../TodoItem";
+import TodoItem from "../Main/TodoItem";
 import List from "@mui/material/List";
-import { TodoContext } from "../Todo";
+import { TodoContext } from "../Main/Todo";
 import Chip from "@mui/material/Chip";
 const Transition = forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;

@@ -1,4 +1,4 @@
-import Todo from "./components/Todo";
+import Todo from "./components/Main/Todo";
 import * as React from "react";
 import CssBaseline from "@mui/material/CssBaseline";
 
