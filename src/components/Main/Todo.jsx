@@ -14,20 +14,15 @@ export const TodoContext = createContext();
 export const FormContext = createContext();
 
 export default function Todo() {
-  // PROPS
   const [newTodoOpen, setNewTodoOpen] = useState(false);
   const [editTodoOpen, setEditTodoOpen] = useState(false);
-  const [loginOpen, setLoginOpen] = useState(false); // LOGIN
+  const [loginOpen, setLoginOpen] = useState(true);
   const [editedId, setEditedId] = useState("");
   const [editedName, setEditedName] = useState("");
   const [editedPriority, setEditedPriority] = useState(false);
-
-  // CONTEXT
   const [calendarOpen, setCalendarOpen] = useState(false);
   const [summaryOpen, setSummaryOpen] = useState(false);
   const [time, setTime] = useState(dayjs(new Date()));
-
-  // NEEDED ONLY IN NEWTODOFORM. IS IT THOUGH?
   const [priority, setPriority] = useState(false);
 
   const {
@@ -84,7 +79,6 @@ export default function Todo() {
 
       <TodoContext.Provider
         value={{
-          // global
           calendarOpen,
           setCalendarOpen,
           summaryOpen,
@@ -92,11 +86,9 @@ export default function Todo() {
           time,
           setTime,
           todos,
-          // TODO ITEM
           togglePriority,
           toggleTodo,
           handleEditForm,
-          // NAVIGATION
           handleCalendarOpen,
           handleSummaryOpen,
           newTodoFormOpen,
@@ -109,18 +101,14 @@ export default function Todo() {
               <TodoList />
               <FormContext.Provider
                 value={{
-                  // EDIT TODO FORM
                   editedId,
                   editedName,
                   editedPriority,
                   setEditedPriority,
                   editTodoOpen,
                   setEditTodoOpen,
-                  // NEW TODO FORM
                   newTodoOpen,
                   setNewTodoOpen,
-                  priority,
-                  setPriority,
                 }}
               >
                 <NewTodoForm addTodo={addTodo} />

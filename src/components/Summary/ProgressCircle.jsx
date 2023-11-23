@@ -11,12 +11,11 @@ function CircularProgressWithLabel({ value = 0 }) {
         value={100}
         color="secondary"
       />
-      {/* Completed tasks */}
       <CircularProgress
         size={200}
         variant="determinate"
         value={value}
-        color="strongBlue" // Use your desired color for remaining tasks
+        color="strongBlue"
         sx={{ position: "absolute" }}
       />
       <Box

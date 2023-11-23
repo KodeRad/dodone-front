@@ -4,10 +4,8 @@ import { useState } from "react";
 const useTodoApi = () => {
   const [todos, setTodos] = useState([]);
 
-  // TODO: VITE ENV TO HIDE
   const apiUrl = "http://localhost:8080/todos";
 
-  // TODO: TO DIFFERENT FILE AND EXPORT FROM THERE TO EACH HOOK
   const fetchData = async (url, method, data = null) => {
     try {
       const headers = {
@@ -34,7 +32,6 @@ const useTodoApi = () => {
     }
   };
 
-  // TODO: FOR EACH FETCH DO A SEPARATE HOOK
   const getTodos = async () => {
     try {
       const data = await fetchData(apiUrl, "GET");
@@ -82,22 +79,12 @@ const useTodoApi = () => {
   };
 
   const patchTodo = async (id, name, priority, dueDate) => {
-    // const editedTodo = todos.find((todo) => todo.id === id);
-
-    // const body = {
-    //   name: editedTodo.name, // gives me a different name
-    //   dueDate: editedTodo.dueDate,
-    //   priority: editedTodo.priority,
-    //   done: false,
-    // };
-
     try {
       const data = await fetchData(`${apiUrl}/${id}`, "PATCH", {
         name,
         dueDate,
         priority,
         done: false,
-        // body,
       });
 
       console.log(data);

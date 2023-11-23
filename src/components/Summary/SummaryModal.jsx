@@ -1,14 +1,13 @@
-// LEARN: CHECK WHAT FORWARDREF DOES
-import { useContext } from "react";
-import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import ProgressCircle from "./ProgressCircle";
+import Transition from "../Misc/Transition";
+import { TodoContext } from "../Main/Todo";
+import Dialog from "@mui/material/Dialog";
 import TodoItem from "../Main/TodoItem";
 import List from "@mui/material/List";
-import { TodoContext } from "../Main/Todo";
 import Chip from "@mui/material/Chip";
-import Transition from "../Misc/Transition";
+import { useContext } from "react";
 
 export default function SummaryModal() {
   const { summaryOpen, todos } = useContext(TodoContext);
@@ -20,13 +19,11 @@ export default function SummaryModal() {
   return (
     <>
       <Dialog
-        // className="flex items-center justify-center bg-blue-100 text-blue-30"
         open={summaryOpen}
         fullScreen
         TransitionComponent={Transition}
         keepMounted
         aria-describedby="summary-modal"
-        // Lowest zIndex
         style={{ zIndex: 500 }}
       >
         <DialogTitle className="flex items-center text-4xl bg-blue-300 text-blue-50 justify-evenly">
@@ -43,7 +40,6 @@ export default function SummaryModal() {
           </DialogTitle>
 
           <div className="flex items-center justify-center mt-3 mb-2 ">
-            {/* PROGRESS CIRCLE */}
             <ProgressCircle totalTodos={totalTodos} doneTodos={doneTodoNo} />
             <div className="flex flex-col justify-evenly">
               <Chip
@@ -68,7 +64,6 @@ export default function SummaryModal() {
           </div>
 
           <div className="flex items-center justify-center">
-            {/* TODOS DONE */}
             <List
               sx={{
                 width: "100%",
@@ -83,8 +78,7 @@ export default function SummaryModal() {
                 {!doneTodoNo ? "GET TO WORK MAN!" : "Tasks done: "}
               </DialogTitle>
               {doneTodos.map((todo) => {
-                // TODO: GET RID OF {...TODO} // DONT SPREAD OBJECTS LIKE THAT
-                return <TodoItem todo={todo} {...todo} key={todo.id} />;
+                return <TodoItem {...todo} key={todo.id} />;
               })}
             </List>
           </div>

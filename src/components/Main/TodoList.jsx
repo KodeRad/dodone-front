@@ -1,9 +1,9 @@
-import TodoItem from "./TodoItem";
-import List from "@mui/material/List";
-import { TodoContext } from "./Todo";
 import { useContext, useEffect, useState } from "react";
 import DownloadButton from "../Misc/ICSButton";
 import { Box, Button } from "@mui/material";
+import List from "@mui/material/List";
+import { TodoContext } from "./Todo";
+import TodoItem from "./TodoItem";
 
 export default function TodoList() {
   const { todos } = useContext(TodoContext);
@@ -24,9 +24,6 @@ export default function TodoList() {
         borderRadius: "10px",
       }}
     >
-      {/* TODO: CREATE A NICER ADNOTATION IF NO TODOS */}
-
-      {/* TODO: DO THE SORTING FOR DONE */}
       {leftTodos
         .sort((a, b) => b.priority - a.priority)
         .map((todo) => {
@@ -35,7 +32,6 @@ export default function TodoList() {
       {leftTodos.length === 0 ? (
         <Box className="p-1 mt-2 text-center text-blue-50">
           NO TASKS ADDED...
-          {/* <Button className="text-white">Download calendar</Button> */}
         </Box>
       ) : (
         <DownloadButton />
