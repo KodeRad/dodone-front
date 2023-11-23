@@ -61,9 +61,6 @@ export default function NewTodoForm({ addTodo }) {
               placeholder="Todo's name"
             />
 
-            {/* // TODO: VALIDATION */}
-            {/* include validation with required or other standard HTML validation rules */}
-            {/* // TODO: PRIORITY SET TO DISPLAY TO FALSE WHEN IT'S FALSE */}
             <Checkbox
               {...register("todoPriority")}
               sx={{
@@ -72,21 +69,13 @@ export default function NewTodoForm({ addTodo }) {
                   color: "rgb(59 130 246)",
                 },
               }}
-              // value={priority}
-              // onChange={(e) => {
-              //   // console.log(e.target.checked);
-              //   setPriority(e.target.checked);
-              // }}
+              value={priority}
+              onChange={(e) => {
+                setPriority(e.target.checked);
+              }}
               icon={<StarBorder />}
               checkedIcon={<Star />}
             />
-
-            {/* @react-refresh:160 Warning: Function components cannot be given refs. Attempts to access this ref will fail. Did you mean to use React.forwardRef()? Check the render method of `NewTodoForm`. */}
-            {/* <CheckboxComponent
-              {...register("todoPriority")}
-              icon={<StarBorder />}
-              checkedIcon={<Star />}
-            /> */}
 
             {/* // TODO: NEWTODOFORM HAS WRONG DATE, PRIORITY SET TO FALSE */}
             <DatePicker />

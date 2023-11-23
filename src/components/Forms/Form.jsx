@@ -4,7 +4,6 @@ import DatePicker from "./DatePicker";
 import { StarBorder, Star } from "@mui/icons-material";
 import { Checkbox } from "@mui/material";
 import Button from "@mui/material/Button";
-import CheckboxComponent from "../Misc/Checkbox";
 import dayjs from "dayjs";
 import { FormContext } from "../Main/Todo";
 import { useForm } from "react-hook-form";
@@ -37,8 +36,6 @@ const Form = ({ handleClose, deleteTodo, patchTodo }) => {
         );
       })}
     >
-      {/* register your input into the hook by invoking the "register" function */}
-
       <input
         className="pl-2 mr-12 bg-blue-200 rounded-md"
         {...register("todoName", { required: true })}
@@ -48,10 +45,6 @@ const Form = ({ handleClose, deleteTodo, patchTodo }) => {
         }}
       />
 
-      {/* include validation with required or other standard HTML validation rules */}
-      {/* // TODO: EXTRACT IT TO THE SEPARATE COMPONENT (USED ALSO IN NewTodoForm) */}
-      {/* ONCLICK = CHANGE STATE, UDPATE STATE BY FETCH ??? */}
-      {/*  // REFACTOR: AT FIRST RENDER MY STATE IS EMPTY FOR CHANGING THE PRIORITY OF THE TASK */}
       <Checkbox
         checked={editedPriority}
         onClick={() => {
@@ -68,32 +61,6 @@ const Form = ({ handleClose, deleteTodo, patchTodo }) => {
         checkedIcon={<Star />}
       />
 
-      {/* @react-refresh:160 Warning: Function components cannot be given refs. Attempts to access this ref will fail. Did you mean to use React.forwardRef()? Check the render method of `NewTodoForm`. */}
-      {/* <CheckboxComponent
-            checked={editedPriority}
-            {...register("todoPriority")}
-            icon={<StarBorder />}
-            checkedIcon={<Star />}
-          /> */}
-
-      {/* <Checkbox
-            value={editedPriority}
-            onClick={() => {
-              setEditedPriority(!editedPriority);
-            }}
-            // checked={editedPriority}
-            {...register("todoPriority")}
-            sx={{
-              color: "rgb(59 130 246)",
-              "&.Mui-checked": {
-                color: "rgb(59 130 246)",
-              },
-            }}
-            icon={<StarBorder />}
-            checkedIcon={<Star />}
-          /> */}
-
-      {/* TODO: SHOW THE TIME FOR THE TODO THAT YOU CLICK */}
       <DatePicker style={{ zIndex: 4000 }} time={time} setTime={setTime} />
 
       {/* errors will return when field validation fails  */}

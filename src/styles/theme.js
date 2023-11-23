@@ -1,4 +1,4 @@
-//
+// Colors
 // blue-50 rgb(239 246 255)
 // bg-blue-100 rgb(219 234 254)
 // blue-200 rgb(191 219 254)
@@ -11,24 +11,24 @@ import { createTheme } from "@mui/material/styles";
 const theme = createTheme({
   palette: {
     primary: {
-      main: "rgb(96, 165, 250)", // Your primary color
+      main: "rgb(96, 165, 250)",
     },
     secondary: {
-      main: "rgb(147, 197, 253)", // Your secondary color
+      main: "rgb(147, 197, 253)",
     },
     strongBlue: {
-      main: "rgb(59, 130, 246)", // Your extra blue color
+      main: "rgb(59, 130, 246)",
     },
   },
   typography: {
     primary: {
-      color: "rgb(59, 130, 246)", // Use .primary color
+      color: "rgb(59, 130, 246)",
     },
     secondary: {
-      color: "rgb(239 246 255)", // Use .primary color
+      color: "rgb(239 246 255)",
     },
     dark: {
-      color: "rgb(50, 50, 50)", // Use .primary color
+      color: "rgb(50, 50, 50)",
     },
   },
 });
