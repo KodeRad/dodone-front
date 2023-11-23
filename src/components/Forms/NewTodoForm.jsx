@@ -1,23 +1,18 @@
-// REFACTOR: NEWTODOFORM AND EDITTODOFORM CAN BE ONE?
-
-import { forwardRef, useContext, useState } from "react";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import { Star, StarBorder } from "@mui/icons-material";
+import DialogTitle from "@mui/material/DialogTitle";
+import { FormContext } from "../Main/Todo";
+import Transition from "../Misc/Transition";
 import { useForm } from "react-hook-form";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
-import DialogTitle from "@mui/material/DialogTitle";
-import Slide from "@mui/material/Slide";
-import DatePicker from "./DatePicker";
 import { Checkbox } from "@mui/material";
-import { Star, StarBorder } from "@mui/icons-material";
-import { TodoContext, FormContext } from "../Main/Todo";
-import CheckboxComponent from "../Misc/Checkbox";
-import Transition from "../Misc/Transition";
+import DatePicker from "./DatePicker";
+import { useContext } from "react";
 
 export default function NewTodoForm({ addTodo }) {
-  const { newTodoOpen, setNewTodoOpen, priority, setPriority } =
-    useContext(FormContext);
+  const { newTodoOpen, setNewTodoOpen } = useContext(FormContext);
 
   const {
     register,
@@ -25,16 +20,14 @@ export default function NewTodoForm({ addTodo }) {
     reset,
     setValue,
     formState: { errors },
-  } = useForm({
-    // defaultValues: { todoPriority: false },
-  });
+  } = useForm({});
 
   const handleClose = () => {
     setNewTodoOpen(false);
   };
 
   const onTimeChange = (selectedTime) => {
-    setValue("time", selectedTime); // Use the received value in register
+    setValue("time", selectedTime);
   };
 
   return (
@@ -54,8 +47,6 @@ export default function NewTodoForm({ addTodo }) {
             onSubmit={handleSubmit((data) => {
               addTodo(data.todoName, data.todoPriority, data.time);
               handleClose();
-
-              // Cleares input fields
               reset();
             })}
           >
@@ -65,10 +56,6 @@ export default function NewTodoForm({ addTodo }) {
               id="newTodoName"
               placeholder="Todo's name"
             />
-
-            {/* // TODO: VALIDATION */}
-            {/* include validation with required or other standard HTML validation rules */}
-            {/* // TODO: PRIORITY SET TO DISPLAY TO FALSE WHEN IT'S FALSE */}
             <Checkbox
               {...register("todoPriority")}
               sx={{
@@ -77,27 +64,12 @@ export default function NewTodoForm({ addTodo }) {
                   color: "rgb(59 130 246)",
                 },
               }}
-              // value={priority}
-              // onChange={(e) => {
-              //   // console.log(e.target.checked);
-              //   setPriority(e.target.checked);
-              // }}
               icon={<StarBorder />}
               checkedIcon={<Star />}
             />
 
-            {/* @react-refresh:160 Warning: Function components cannot be given refs. Attempts to access this ref will fail. Did you mean to use React.forwardRef()? Check the render method of `NewTodoForm`. */}
-            {/* <CheckboxComponent
-              {...register("todoPriority")}
-              icon={<StarBorder />}
-              checkedIcon={<Star />}
-            /> */}
-
-            {/* // TODO: NEWTODOFORM HAS WRONG DATE, PRIORITY SET TO FALSE */}
             <DatePicker {...register("time")} onTimeChange={onTimeChange} />
 
-            {/* // TODO: SET ERRORS AND DISPLAY THEM ON UI */}
-            {/* errors will return when field validation fails  */}
             {errors.exampleRequired && <span>This field is required</span>}
 
             <DialogActions

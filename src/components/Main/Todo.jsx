@@ -30,14 +30,11 @@ export default function Todo() {
   // NEEDED ONLY IN NEWTODOFORM. IS IT THOUGH?
   const [priority, setPriority] = useState(false);
 
-  // const [editedTodo, setEditedTodo] = useState({});
-
   const {
     todos,
     getTodos,
     addTodo,
     patchTodo,
-    // putTodo,
     toggleTodo,
     togglePriority,
     deleteTodo,
@@ -46,13 +43,6 @@ export default function Todo() {
   useEffect(() => {
     getTodos();
   }, []);
-
-  // TODO: REFACTOR TO ONE FUNCTION
-  // TODO: CHANGE NAME TO HANDLE
-  // TODO: ENUM AS A REGULAR JS OBJECT
-  const types = {
-    type: "1",
-  };
 
   const resetWindows = () => {
     setNewTodoOpen(false);
@@ -78,7 +68,6 @@ export default function Todo() {
     setSummaryOpen(!summaryOpen);
   };
 
-  // REFACTOR: PASS IT AS AN OBJECT, CHANGE NAME
   const handleEditForm = (id, name, priority, dueDate) => {
     setTime(dayjs(dueDate));
     setEditedId(id);

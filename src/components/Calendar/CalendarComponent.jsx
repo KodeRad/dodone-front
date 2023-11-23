@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, forwardRef } from "react";
+import React, { useContext, useEffect, forwardRef } from "react";
 import { Calendar } from "@fullcalendar/core";
 import listPlugin from "@fullcalendar/list";
 import dayGridPlugin from "@fullcalendar/daygrid";

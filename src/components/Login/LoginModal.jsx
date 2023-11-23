@@ -1,13 +1,11 @@
-import { forwardRef } from "react";
-import Slide from "@mui/material/Slide";
-import { useForm } from "react-hook-form";
-import Button from "@mui/material/Button";
-import Dialog from "@mui/material/Dialog";
-import DialogTitle from "@mui/material/DialogTitle";
-import dodonelogo from "./../../styles/dodone_logo.svg";
-import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
+import DialogActions from "@mui/material/DialogActions";
+import dodonelogo from "./../../styles/dodone_logo.svg";
+import DialogTitle from "@mui/material/DialogTitle";
 import Transition from "../Misc/Transition";
+import Dialog from "@mui/material/Dialog";
+import Button from "@mui/material/Button";
+import { useForm } from "react-hook-form";
 
 export default function LoginModal({ setLoginOpen, loginOpen }) {
   const {
@@ -15,9 +13,7 @@ export default function LoginModal({ setLoginOpen, loginOpen }) {
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm({
-    // defaultValues: { todoPriority: false },
-  });
+  } = useForm({});
 
   const handleClose = () => {
     setLoginOpen(false);
@@ -27,7 +23,6 @@ export default function LoginModal({ setLoginOpen, loginOpen }) {
     <>
       <Dialog
         className="items-center justify-center block text-4xl bg-blue-100 rounded-lg text-blue-30"
-        // TODO: zIndex ? // CSS: STYLE TO BLUE
         open={loginOpen}
         fullScreen
         TransitionComponent={Transition}
@@ -38,20 +33,15 @@ export default function LoginModal({ setLoginOpen, loginOpen }) {
           <img src={dodonelogo} alt="DoDone Logo" />
         </DialogTitle>
         <DialogContent className="bg-blue-200">
-          {/* // CONTENT: FORM */}
           <form
             className="flex flex-col items-center mt-12"
             onSubmit={handleSubmit((data) => {
               handleClose();
-              // Cleares input fields
               reset();
             })}
           >
-            {/* TODO: DECLARE ARRAY WITH VALUES AND MAP IT OVER IN HERE */}
             <input
               className="p-2 mb-4 text-center bg-blue-100 rounded-lg w-72 "
-              // sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-2/5
-              // className="flex items-center justify-center"
               {...register("Username", { required: true })}
               id="username"
               placeholder="Username"
@@ -63,8 +53,6 @@ export default function LoginModal({ setLoginOpen, loginOpen }) {
               type="password"
               placeholder="Password"
             />
-            {/* // TODO: SET ERRORS AND DISPLAY THEM ON UI */}
-            {/* errors will return when field validation fails  */}
             {errors.exampleRequired && <span>This field is required</span>}
             <DialogActions>
               <Button variant="contained" type="submit">

@@ -1,21 +1,19 @@
-import { useState, useRef, useContext } from "react";
-import Box from "@mui/material/Box";
-import CssBaseline from "@mui/material/CssBaseline";
-import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
-import Update from "@mui/icons-material/Update";
-import NewTodo from "@mui/icons-material/AddBox";
+import BottomNavigation from "@mui/material/BottomNavigation";
 import Calendar from "@mui/icons-material/CalendarMonth";
-import Paper from "@mui/material/Paper";
+import { useState, useRef, useContext } from "react";
+import CssBaseline from "@mui/material/CssBaseline";
+import NewTodo from "@mui/icons-material/AddBox";
+import Update from "@mui/icons-material/Update";
 import { TodoContext } from "../Main/Todo";
+import Paper from "@mui/material/Paper";
+import Box from "@mui/material/Box";
 
 export default function Navigation() {
   const { newTodoFormOpen, handleCalendarOpen, handleSummaryOpen } =
     useContext(TodoContext);
   const [value, setValue] = useState(0);
   const ref = useRef(null);
-
-  // TODO: SCREEN SHOTS MAKE AN ARRAY AND MAP OVER IT (USE KEY WHEN YOU MAP)
 
   return (
     <Box sx={{ pb: 7 }} ref={ref}>

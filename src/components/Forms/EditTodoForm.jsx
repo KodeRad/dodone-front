@@ -1,11 +1,10 @@
-import { useContext } from "react";
-import { createPortal } from "react-dom";
-import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
-import { FormContext } from "../Main/Todo";
 import Transition from "../Misc/Transition";
-
+import { FormContext } from "../Main/Todo";
+import Dialog from "@mui/material/Dialog";
+import { createPortal } from "react-dom";
+import { useContext } from "react";
 import Form from "./Form";
 
 export default function EditTodoForm({ deleteTodo, patchTodo }) {
@@ -31,7 +30,6 @@ export default function EditTodoForm({ deleteTodo, patchTodo }) {
         className="text-blue-500 bg-blue-100 "
         style={{ zIndex: 3000 }}
       >
-        {/* // TODO: NEW COMPONENT FOR FORM */}
         <Form
           handleClose={handleClose}
           deleteTodo={deleteTodo}
