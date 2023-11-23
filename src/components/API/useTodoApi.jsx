@@ -97,6 +97,7 @@ const useTodoApi = () => {
         // body,
       });
 
+      console.log(data);
       setTodos((currentTodos) =>
         currentTodos.map((todo) => (todo.id === id ? data : todo))
       );

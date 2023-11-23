@@ -3,27 +3,33 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
 import "dayjs/locale/pl";
-import { useContext } from "react";
+import { forwardRef, useContext } from "react";
 import { TodoContext } from "../Main/Todo";
 
-export default function DatePicker() {
+const DatePicker = forwardRef(({ onTimeChange }, ref) => {
   const { time, setTime } = useContext(TodoContext);
+
+  const handleTimeChange = (e) => {
+    // TODO: GET RID OF SECONDS FROM FORMAT BOTH IN FE AND BE
+    // const formattedDate = dayjs(e).format("YYYY-MM-DD HH:mm:ss");
+    setTime(e);
+    onTimeChange(e); // Call the callback function with the selected time
+  };
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="pl">
       <DemoContainer components={["DateTimePicker"]}>
         <DemoItem>
           <DateTimePicker
+            ref={ref}
             disablePast
-            onChange={(e) => {
-              // TODO: GET RID OF SECONDS FROM FORMAT BOTH IN FE AND BE
-              // const formattedDate = dayjs(e).format("YYYY-MM-DD HH:mm:ss");
-              setTime(e);
-            }}
+            onChange={handleTimeChange}
             value={time}
           />
         </DemoItem>
       </DemoContainer>
     </LocalizationProvider>
   );
-}
+});
+
+export default DatePicker;

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import DialogActions from "@mui/material/DialogActions";
 import DatePicker from "./DatePicker";
 import { StarBorder, Star } from "@mui/icons-material";
@@ -9,6 +9,7 @@ import { FormContext } from "../Main/Todo";
 import { useForm } from "react-hook-form";
 
 const Form = ({ handleClose, deleteTodo, patchTodo }) => {
+  const [timeTest, setTimeTest] = useState();
   const {
     editedId,
     editedName,
@@ -22,27 +23,38 @@ const Form = ({ handleClose, deleteTodo, patchTodo }) => {
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm();
+
+  useEffect(() => {
+    setValue("todoName", editedName);
+  }, [editedName]);
+
+  const onTimeChange = (selectedTime) => {
+    setValue("timeTesting", selectedTime); // Use the received value in register
+  };
 
   return (
     <form
       onSubmit={handleSubmit((data) => {
+        console.log(data);
         patchTodo(
           editedId,
-          editedName,
+          data.todoName,
           editedPriority,
-          dayjs(time).format("YYYY-MM-DD HH:mm:ss")
+          dayjs(data.timeTesting).format("YYYY-MM-DD HH:mm:ss")
         );
       })}
     >
+      {/*  */}
       <input
         className="pl-2 mr-12 bg-blue-200 rounded-md"
         {...register("todoName", { required: true })}
-        value={editedName}
-        onChange={(e) => {
-          setEditedName(e.target.value);
-        }}
+        // value={editedName}
+        // onChange={(e) => {
+        //   setEditedName(e.target.value);
+        // }}
       />
 
       <Checkbox
@@ -61,7 +73,11 @@ const Form = ({ handleClose, deleteTodo, patchTodo }) => {
         checkedIcon={<Star />}
       />
 
-      <DatePicker style={{ zIndex: 4000 }} time={time} setTime={setTime} />
+      <DatePicker
+        {...register("timeTesting")}
+        onTimeChange={onTimeChange}
+        style={{ zIndex: 4000 }}
+      />
 
       {/* errors will return when field validation fails  */}
       {errors.exampleRequired && <span>This field is required</span>}

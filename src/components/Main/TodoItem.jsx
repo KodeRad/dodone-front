@@ -13,13 +13,13 @@ export default function TodoItem({ todo, id, done, priority, name, dueDate }) {
   const { toggleTodo, togglePriority, handleEditForm } =
     useContext(TodoContext);
 
-  // console.log(todo);
+  if (todo) {
+    const { id, done, priority, name, dueDate } = todo;
+  }
 
-  // const { id, done, priority, name, dueDate } = props.todo;
   // console.log(id, done, priority, name, dueDate);
-  // console.log(todo.id, todo.done, todo.priority, todo.name, todo.dueDate);
+  // console.log(id, done, priority, todo.name, todo.dueDate);
   // console.log(todo);
-
   return (
     <ListItem className="bg-blue-100 text-blue-50" key={id}>
       <IconButton
