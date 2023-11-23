@@ -9,16 +9,8 @@ import { FormContext } from "../Main/Todo";
 import { useForm } from "react-hook-form";
 
 const Form = ({ handleClose, deleteTodo, patchTodo }) => {
-  const [timeTest, setTimeTest] = useState();
-  const {
-    editedId,
-    editedName,
-    editedPriority,
-    time,
-    setTime,
-    setEditedName,
-    setEditedPriority,
-  } = useContext(FormContext);
+  const { editedId, editedName, editedPriority, setEditedPriority } =
+    useContext(FormContext);
 
   const {
     register,
@@ -32,7 +24,7 @@ const Form = ({ handleClose, deleteTodo, patchTodo }) => {
   }, [editedName]);
 
   const onTimeChange = (selectedTime) => {
-    setValue("timeTesting", selectedTime); // Use the received value in register
+    setValue("time", selectedTime); // Use the received value in register
   };
 
   return (
@@ -43,18 +35,13 @@ const Form = ({ handleClose, deleteTodo, patchTodo }) => {
           editedId,
           data.todoName,
           editedPriority,
-          dayjs(data.timeTesting).format("YYYY-MM-DD HH:mm:ss")
+          dayjs(data.time).format("YYYY-MM-DD HH:mm:ss")
         );
       })}
     >
-      {/*  */}
       <input
         className="pl-2 mr-12 bg-blue-200 rounded-md"
         {...register("todoName", { required: true })}
-        // value={editedName}
-        // onChange={(e) => {
-        //   setEditedName(e.target.value);
-        // }}
       />
 
       <Checkbox
@@ -74,16 +61,14 @@ const Form = ({ handleClose, deleteTodo, patchTodo }) => {
       />
 
       <DatePicker
-        {...register("timeTesting")}
+        {...register("time")}
         onTimeChange={onTimeChange}
         style={{ zIndex: 4000 }}
       />
 
-      {/* errors will return when field validation fails  */}
       {errors.exampleRequired && <span>This field is required</span>}
 
       <DialogActions sx={{ display: "flex", justifyContent: "space-evenly" }}>
-        {/* //TODO: ADD POP OUT WINDOW TO CONFIRM DELETING  */}
         <Button
           sx={{ color: "rgb(248 113 113)" }}
           onClick={() => {

@@ -16,13 +16,14 @@ import CheckboxComponent from "../Misc/Checkbox";
 import Transition from "../Misc/Transition";
 
 export default function NewTodoForm({ addTodo }) {
-  const { newTodoOpen, setNewTodoOpen, time, priority, setPriority } =
+  const { newTodoOpen, setNewTodoOpen, priority, setPriority } =
     useContext(FormContext);
 
   const {
     register,
     handleSubmit,
     reset,
+    setValue,
     formState: { errors },
   } = useForm({
     // defaultValues: { todoPriority: false },
@@ -30,6 +31,10 @@ export default function NewTodoForm({ addTodo }) {
 
   const handleClose = () => {
     setNewTodoOpen(false);
+  };
+
+  const onTimeChange = (selectedTime) => {
+    setValue("time", selectedTime); // Use the received value in register
   };
 
   return (
@@ -47,7 +52,7 @@ export default function NewTodoForm({ addTodo }) {
           <form
             className="mt-3"
             onSubmit={handleSubmit((data) => {
-              addTodo(data.todoName, data.todoPriority, time);
+              addTodo(data.todoName, data.todoPriority, data.time);
               handleClose();
 
               // Cleares input fields
@@ -78,7 +83,7 @@ export default function NewTodoForm({ addTodo }) {
             />
 
             {/* // TODO: NEWTODOFORM HAS WRONG DATE, PRIORITY SET TO FALSE */}
-            <DatePicker />
+            <DatePicker {...register("time")} onTimeChange={onTimeChange} />
 
             {/* // TODO: SET ERRORS AND DISPLAY THEM ON UI */}
             {/* errors will return when field validation fails  */}

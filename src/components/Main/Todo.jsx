@@ -123,7 +123,6 @@ export default function Todo() {
                   // EDIT TODO FORM
                   editedId,
                   editedName,
-                  setEditedName,
                   editedPriority,
                   setEditedPriority,
                   editTodoOpen,
