@@ -33,8 +33,8 @@ export default function TodoList() {
           return <TodoItem {...todo} key={todo.id} />;
         })}
       {leftTodos.length === 0 ? (
-        <Box className="text-blue-50 text-center mt-2 p-1">
-          ADD NEW TASK!
+        <Box className="p-1 mt-2 text-center text-blue-50">
+          NO TASKS ADDED...
           {/* <Button className="text-white">Download calendar</Button> */}
         </Box>
       ) : (

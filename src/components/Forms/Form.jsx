@@ -9,10 +9,8 @@ import { FormContext } from "../Main/Todo";
 import { useForm } from "react-hook-form";
 
 const Form = ({ handleClose, deleteTodo, patchTodo }) => {
-  const { editedId, editedName, editedPriority, setEditedPriority, time } =
+  const { editedId, editedName, editedPriority, setEditedPriority } =
     useContext(FormContext);
-
-  const [initialTime, setInitialTime] = useState("");
 
   const {
     register,
@@ -36,10 +34,7 @@ const Form = ({ handleClose, deleteTodo, patchTodo }) => {
           editedId,
           data.todoName,
           editedPriority,
-          // I want to use the selected Time if I don't change time
-          // initialTime
-          // dayjs(selectedTime).format("YYYY-MM-DD HH:mm:ss")
-          dayjs(time).format("YYYY-MM-DD HH:mm:ss")
+          dayjs(data.time).format("YYYY-MM-DD HH:mm:ss")
         );
       })}
     >
@@ -67,7 +62,6 @@ const Form = ({ handleClose, deleteTodo, patchTodo }) => {
       <DatePicker
         {...register("time")}
         onTimeChange={onTimeChange}
-        setInitialTime={setInitialTime}
         style={{ zIndex: 4000 }}
       />
 
