@@ -37,10 +37,10 @@ const CalendarComponent = forwardRef(({ initialView }, ref) => {
       themeSystem: "bootstrap5",
 
       dayMaxEvents: true,
-      dayMaxEventRows: true,
+      dayMaxEventRows: true, // for all non-TimeGrid views
       views: {
         timeGrid: {
-          dayMaxEventRows: 2,
+          dayMaxEventRows: 2, // adjust to 6 only for timeGridWeek/timeGridDay
         },
       },
     });
