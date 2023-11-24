@@ -23,7 +23,6 @@ export default function Todo() {
   const [calendarOpen, setCalendarOpen] = useState(false);
   const [summaryOpen, setSummaryOpen] = useState(false);
   const [time, setTime] = useState(dayjs(new Date()));
-  const [priority, setPriority] = useState(false);
 
   const {
     todos,
@@ -49,7 +48,6 @@ export default function Todo() {
   const newTodoFormOpen = () => {
     resetWindows();
     setNewTodoOpen(!newTodoOpen);
-    setPriority(false);
     setTime(dayjs(new Date()));
   };
 

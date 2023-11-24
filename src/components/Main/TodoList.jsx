@@ -30,9 +30,7 @@ export default function TodoList() {
           return <TodoItem {...todo} key={todo.id} />;
         })}
       {leftTodos.length === 0 ? (
-        <Box className="p-1 mt-2 text-center text-blue-50">
-          NO TASKS ADDED...
-        </Box>
+        <Box className="p-1 mt-2 text-center text-blue-50">U DON ;)</Box>
       ) : (
         <DownloadButton />
       )}
