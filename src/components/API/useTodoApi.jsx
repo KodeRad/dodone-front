@@ -3,7 +3,9 @@ import { useState } from "react";
 
 const useTodoApi = () => {
   const [todos, setTodos] = useState([]);
-  const apiUrl = "http://localhost:8080/todos";
+
+  // hide it using vitesecrets?
+  const apiUrl = import.meta.env.VITE_API_BASE_URL;
 
   const fetchData = async (url, method, data = null) => {
     try {
@@ -75,22 +77,12 @@ const useTodoApi = () => {
   };
 
   const patchTodo = async (id, name, priority, dueDate) => {
-    // const editedTodo = todos.find((todo) => todo.id === id);
-
-    // const body = {
-    //   name: editedTodo.name, // gives me a different name
-    //   dueDate: editedTodo.dueDate,
-    //   priority: editedTodo.priority,
-    //   done: false,
-    // };
-
     try {
       const data = await fetchData(`${apiUrl}/${id}`, "PATCH", {
         name,
         dueDate,
         priority,
         done: false,
-        // body,
       });
 
       setTodos((currentTodos) =>

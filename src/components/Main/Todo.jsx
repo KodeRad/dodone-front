@@ -47,13 +47,6 @@ export default function Todo() {
     getTodos();
   }, []);
 
-  // TODO: REFACTOR TO ONE FUNCTION
-  // TODO: CHANGE NAME TO HANDLE
-  // TODO: ENUM AS A REGULAR JS OBJECT
-  const types = {
-    type: "1",
-  };
-
   const resetWindows = () => {
     setNewTodoOpen(false);
     setCalendarOpen(false);
@@ -89,7 +82,7 @@ export default function Todo() {
 
   return (
     <>
-      <h1 className="bg-blue-300 flex justify-center items-center h-1/6 fixed w-full top-0 z-10">
+      <h1 className="fixed top-0 z-10 flex items-center justify-center w-full bg-blue-300 h-1/6">
         <img src={dodonedesign} alt="DoDone Logo" />
       </h1>
 
@@ -113,7 +106,7 @@ export default function Todo() {
           newTodoFormOpen,
         }}
       >
-        <div className="flex justify-center items-center">
+        <div className="flex items-center justify-center">
           <LoginModal loginOpen={loginOpen} setLoginOpen={setLoginOpen} />
           {!loginOpen && (
             <>
