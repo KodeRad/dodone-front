@@ -47,13 +47,6 @@ export default function Todo() {
     getTodos();
   }, []);
 
-  // TODO: REFACTOR TO ONE FUNCTION
-  // TODO: CHANGE NAME TO HANDLE
-  // TODO: ENUM AS A REGULAR JS OBJECT
-  const types = {
-    type: "1",
-  };
-
   const resetWindows = () => {
     setNewTodoOpen(false);
     setCalendarOpen(false);
