@@ -1,6 +1,7 @@
 import CircularProgress from "@mui/material/CircularProgress";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
+import React from "react";
 
 function CircularProgressWithLabel({ value = 0 }) {
   return (
@@ -11,12 +12,11 @@ function CircularProgressWithLabel({ value = 0 }) {
         value={100}
         color="secondary"
       />
-      {/* Completed tasks */}
       <CircularProgress
         size={200}
         variant="determinate"
         value={value}
-        color="strongBlue" // Use your desired color for remaining tasks
+        color="strongBlue"
         sx={{ position: "absolute" }}
       />
       <Box

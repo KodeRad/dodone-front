@@ -1,5 +1,5 @@
 import dayjs from "dayjs";
-import { useState } from "react";
+import React, { useState } from "react";
 
 const useTodoApi = () => {
   const [todos, setTodos] = useState([]);
@@ -32,7 +32,6 @@ const useTodoApi = () => {
     }
   };
 
-  // TODO: FOR EACH FETCH DO A SEPARATE HOOK
   const getTodos = async () => {
     try {
       const data = await fetchData(apiUrl, "GET");

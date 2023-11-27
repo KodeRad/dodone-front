@@ -1,13 +1,13 @@
-import { useContext } from "react";
-import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import ProgressCircle from "./ProgressCircle";
+import Transition from "../Misc/Transition";
+import { TodoContext } from "../Main/Todo";
+import Dialog from "@mui/material/Dialog";
 import TodoItem from "../Main/TodoItem";
 import List from "@mui/material/List";
-import { TodoContext } from "../Main/Todo";
 import Chip from "@mui/material/Chip";
-import Transition from "../Misc/Transition";
+import React, { useContext } from "react";
 
 export default function SummaryModal() {
   const { summaryOpen, todos } = useContext(TodoContext);
@@ -54,6 +54,7 @@ export default function SummaryModal() {
               <Chip
                 sx={{
                   padding: "12px",
+
                   marginLeft: "2rem",
                 }}
                 label="UN-DONE "
@@ -77,10 +78,7 @@ export default function SummaryModal() {
                 {!doneTodoNo ? "GET TO WORK MAN!" : "Tasks done: "}
               </DialogTitle>
               {doneTodos.map((todo) => {
-                // console.log(todo);
-                // TODO: GET RID OF {...TODO} // DONT SPREAD OBJECTS LIKE THAT
-                // {...todo}
-                return <TodoItem todo={todo} {...todo} key={todo.id} />;
+                return <TodoItem {...todo} key={todo.id} />;
               })}
             </List>
           </div>

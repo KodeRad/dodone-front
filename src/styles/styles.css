@@ -6,10 +6,9 @@
   padding: 30px;
   display: flex;
   justify-content: center;
+  background-color: rgb(147 197 253);
 }
-/* .fc-media-screen {
-  max-width: 1200px;
-} */
+
 /* for listView Calendar */
 .fc-theme-standard .fc-list-day-cushion {
   background-color: #555;
@@ -28,50 +27,3 @@
 .fc-theme-standard .fc-popover {
   background-color: #333;
 }
-
-/* fc-daygrid-day-events */
-tbody tr {
-  /* ś */
-  overflow-y: hidden;
-  height: 130px;
-  /* align-items: normal !important;
-  z-index: 2; */
-}
-
-/* .fc-daygrid-day-events {
-  white-space: nowrap;
-  overflow: hidden;
-  align-items: normal !important;
-  z-index: 2;
-}
-.fc-list-table .fc-list-event:hover td {
-  background-color: #555;
-}
-.fc-daygrid-event-dot {
-  display: none;
-}
-.fc-direction-ltr .fc-daygrid-event .fc-event-time {
-  margin-right: 5px;
-  overflow: visible;
-}
-.fc-event-past .fc-list-event {
-  margin-left: 22px;
-}
-.fc-event-title,
-.fc-event-time {
-  font-size: 15px;
-  font-weight: 700;
-}
-.fc-daygrid-event:hover {
-  white-space: normal !important;
-  background-color: #176386;
-}
-.fc-list-day-text,
-.fc-list-day-side-text,
-.fc-col-header-cell-cushion,
-.fc-daygrid-day-number,
-.fc-daygrid-day-bottom a {
-  color: #ddd;
-  font-size: larger;
-  text-decoration: none;
-} */

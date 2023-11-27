@@ -1,8 +1,7 @@
-import { forwardRef, useContext } from "react";
+import React, { useContext } from "react";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
-import Slide from "@mui/material/Slide";
 import CalendarList from "./CalendarList";
 import { TodoContext } from "../Main/Todo";
 import styles from "./calendar.css";
@@ -27,9 +26,6 @@ export default function CalendarModal() {
           alt="DoDone Logo"
         />
       </DialogTitle>
-      {/* TODO: GET RID OF THOSE DIVS */}
-      <div className="bg-blue-300 text-blue-50"></div>
-      <div className="bg-blue-300 text-blue-50"></div>
       <DialogContent className="mb-10 text-blue-500 bg-blue-100">
         <CalendarList styles={{ styles }} />
       </DialogContent>

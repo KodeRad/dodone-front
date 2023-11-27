@@ -1,25 +1,18 @@
-import ListItem from "@mui/material/ListItem";
+import ListItemSecondaryAction from "@mui/material/ListItemSecondaryAction";
+import StarBorder from "@mui/icons-material/StarBorder";
 import ListItemText from "@mui/material/ListItemText";
 import IconButton from "@mui/material/IconButton";
-import ListItemSecondaryAction from "@mui/material/ListItemSecondaryAction";
-import Star from "@mui/icons-material/Star";
-import StarBorder from "@mui/icons-material/StarBorder";
-import { useContext, useEffect } from "react";
-import { TodoContext } from "./Todo";
 import CheckboxComponent from "../Misc/Checkbox";
+import ListItem from "@mui/material/ListItem";
+import Checkbox from "@mui/material/Checkbox";
+import Star from "@mui/icons-material/Star";
+import { TodoContext } from "./Todo";
+import React, { useContext } from "react";
 
-// TODO: REFACTOR:
-export default function TodoItem({ todo, id, done, priority, name, dueDate }) {
+export default function TodoItem({ id, done, priority, name, dueDate }) {
   const { toggleTodo, togglePriority, handleEditForm } =
     useContext(TodoContext);
 
-  if (todo) {
-    const { id, done, priority, name, dueDate } = todo;
-  }
-
-  // console.log(id, done, priority, name, dueDate);
-  // console.log(id, done, priority, todo.name, todo.dueDate);
-  // console.log(todo);
   return (
     <ListItem className="bg-blue-100 text-blue-50" key={id}>
       <IconButton
@@ -44,8 +37,14 @@ export default function TodoItem({ todo, id, done, priority, name, dueDate }) {
             togglePriority(id, e.target.checked);
           }}
         >
-          <CheckboxComponent
-            checkedValue={priority}
+          <Checkbox
+            checked={priority}
+            sx={{
+              color: "rgb(59 130 246)",
+              "&.Mui-checked": {
+                color: "rgb(59 130 246)",
+              },
+            }}
             icon={<StarBorder />}
             checkedIcon={<Star />}
           />

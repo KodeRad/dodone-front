@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import DialogActions from "@mui/material/DialogActions";
-import DatePicker from "./DatePicker";
 import { StarBorder, Star } from "@mui/icons-material";
-import { Checkbox } from "@mui/material";
-import Button from "@mui/material/Button";
-import dayjs from "dayjs";
 import { FormContext } from "../Main/Todo";
+import Button from "@mui/material/Button";
 import { useForm } from "react-hook-form";
+import { Checkbox } from "@mui/material";
+import DatePicker from "./DatePicker";
+import dayjs from "dayjs";
 
 const Form = ({ handleClose, deleteTodo, patchTodo }) => {
   const { editedId, editedName, editedPriority, setEditedPriority } =
@@ -42,7 +42,6 @@ const Form = ({ handleClose, deleteTodo, patchTodo }) => {
         className="pl-2 mr-12 bg-blue-200 rounded-md"
         {...register("todoName", { required: true })}
       />
-
       <Checkbox
         checked={editedPriority}
         onClick={() => {

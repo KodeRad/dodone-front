@@ -1,5 +1,5 @@
 import dayjs from "dayjs";
-import { useEffect, useState, createContext } from "react";
+import React, { useEffect, useState, createContext } from "react";
 import NewTodoForm from "../Forms/NewTodoForm";
 import TodoList from "./TodoList";
 import Navigation from "../Layout/Navigation";
@@ -14,30 +14,22 @@ export const TodoContext = createContext();
 export const FormContext = createContext();
 
 export default function Todo() {
-  // PROPS
   const [newTodoOpen, setNewTodoOpen] = useState(false);
   const [editTodoOpen, setEditTodoOpen] = useState(false);
-  const [loginOpen, setLoginOpen] = useState(false); // LOGIN
+  const [loginOpen, setLoginOpen] = useState(true);
   const [editedId, setEditedId] = useState("");
   const [editedName, setEditedName] = useState("");
   const [editedPriority, setEditedPriority] = useState(false);
-
-  // CONTEXT
   const [calendarOpen, setCalendarOpen] = useState(false);
   const [summaryOpen, setSummaryOpen] = useState(false);
   const [time, setTime] = useState(dayjs(new Date()));
-
-  // NEEDED ONLY IN NEWTODOFORM. IS IT THOUGH?
   const [priority, setPriority] = useState(false);
-
-  // const [editedTodo, setEditedTodo] = useState({});
 
   const {
     todos,
     getTodos,
     addTodo,
     patchTodo,
-    // putTodo,
     toggleTodo,
     togglePriority,
     deleteTodo,
@@ -71,7 +63,6 @@ export default function Todo() {
     setSummaryOpen(!summaryOpen);
   };
 
-  // REFACTOR: PASS IT AS AN OBJECT, CHANGE NAME
   const handleEditForm = (id, name, priority, dueDate) => {
     setTime(dayjs(dueDate));
     setEditedId(id);
@@ -88,7 +79,6 @@ export default function Todo() {
 
       <TodoContext.Provider
         value={{
-          // global
           calendarOpen,
           setCalendarOpen,
           summaryOpen,
@@ -96,11 +86,9 @@ export default function Todo() {
           time,
           setTime,
           todos,
-          // TODO ITEM
           togglePriority,
           toggleTodo,
           handleEditForm,
-          // NAVIGATION
           handleCalendarOpen,
           handleSummaryOpen,
           newTodoFormOpen,
@@ -113,18 +101,14 @@ export default function Todo() {
               <TodoList />
               <FormContext.Provider
                 value={{
-                  // EDIT TODO FORM
                   editedId,
                   editedName,
                   editedPriority,
                   setEditedPriority,
                   editTodoOpen,
                   setEditTodoOpen,
-                  // NEW TODO FORM
                   newTodoOpen,
                   setNewTodoOpen,
-                  priority,
-                  setPriority,
                 }}
               >
                 <NewTodoForm addTodo={addTodo} />

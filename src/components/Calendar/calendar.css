@@ -3,14 +3,10 @@
   display: flex;
   justify-content: center;
 }
-/* .fc-media-screen {
-  max-width: 1200px;
-} */
 
 .fc-button-group .fc-prev-button .fc-button .fc-button-primary {
-  background-color: red; /* Set your desired background color */
-  color: red; /* Set your desired text color */
-  /* Add any other styles as needed */
+  background-color: red;
+  color: red;
 }
 
 .btn-primary {
@@ -30,30 +26,17 @@
   --bs-btn-disabled-border-color: #0d6efd;
 }
 
-/* <div class="fc-button-group"><button type="button" title="Previous month" aria-pressed="false" class="fc-prev-button fc-button fc-button-primary"><span class="fc-icon fc-icon-chevron-left"></span></button><button type="button" title="Next month" aria-pressed="false" class="fc-next-button fc-button fc-button-primary"><span class="fc-icon fc-icon-chevron-right"></span></button></div> */
-
-/* for listView Calendar */
 .fc-theme-standard .fc-list-day-cushion {
   background-color: #555;
   padding: 15px;
 }
-
-/* .fc-event-main {
-  overflow: hidden;
-  background-color: red;
-  font-size: large;
-} */
 
 .fc-event-title {
   padding-left: 5px;
   text-overflow: ellipsis;
   font-size: medium;
 }
-/* .fc-theme-standard .fc-popover {
-  background-color: red;
-} */
 
-/* fc-daygrid-day-events */
 tbody tr {
   overflow-y: hidden;
   height: 130px;
@@ -67,9 +50,7 @@ tbody tr {
   align-items: normal !important;
   z-index: 2;
 }
-/* .fc-list-table .fc-list-event:hover td {
-  background-color: red;
-} */
+
 .fc-daygrid-event-dot {
   display: none;
 }
@@ -94,13 +75,3 @@ tbody tr {
   background-color: rgb(219 234 254);
   background-color: rgb(191 219 254);
 }
-
-/* .fc-list-day-text,
-.fc-list-day-side-text,
-.fc-col-header-cell-cushion,
-.fc-daygrid-day-number,
-.fc-daygrid-day-bottom a {
-  color: #ddd;
-  font-size: larger;
-  text-decoration: none;
-} */
