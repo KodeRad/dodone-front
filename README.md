@@ -12,7 +12,7 @@ A simple Todo List application built with React, Vite, and Material-UI.
 
 ## Demo
 
-To be added...
+![Demo Image](src/styles/dodone_demo.jpg)
 
 ## Features
 
