@@ -42,7 +42,6 @@ const useTodoApi = () => {
   };
 
   const addTodo = async (name, priority = false, dueDate = null) => {
-    console.log(dayjs(new Date()).format("YYYY-MM-DD HH:mm:ss"));
     try {
       const data = await fetchData(apiUrl + "/add", "POST", {
         name,
@@ -51,8 +50,6 @@ const useTodoApi = () => {
         done: false,
         createdDate: dayjs(new Date()).format("YYYY-MM-DD HH:mm:ss"),
       });
-
-      console.log(data);
 
       setTodos((currentTodos) => [...currentTodos, data]);
     } catch (error) {
@@ -87,7 +84,6 @@ const useTodoApi = () => {
         done: false,
       });
 
-      console.log(data);
       setTodos((currentTodos) =>
         currentTodos.map((todo) => (todo.id === id ? data : todo))
       );
